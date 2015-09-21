@@ -1,0 +1,203 @@
+% !TEX root = dynamicslearning.tex
+
+\subsection{General abstract framework}
+
+Many time-dependent phenomena in physics, biology, and social sciences can be modelled by a function $x:[0,T] \to \mathcal H$, where $\mathcal H$ represents the space of states of the physical, biological or social system, which evolves from an initial configuration $x(0)=x_0$  towards a more convenient state or a new equilibrium. The space $\mathcal H$ can conveniently be a Banach space or just a metric space. 
+This implicitly assumes that $x$ evolves driven by a minimization process of a potential energy $\mathcal J: \mathcal H \times [0,T] \to \mathbb R$.  In this preliminary introduction we consciously avoid specific assumptions on  $\mathcal J$, as we wish to keep a rather general view. We restrict the presentation to particular cases below.%
+
+Inspired by physics for which conservative forces are the derivatives of the potential energies, one can describe the evolution as satisfying a gradient flow inclusion of the type
+\begin{equation}\label{gradientflow}
+\dot x(t) \in - \partial_x \mathcal J(x(t),t),
+\end{equation}
+where $\partial_x \mathcal J(x,t)$ is some notion of differential of $\mathcal J$ with respect to $x$, which might already take into consideration additional constraints which are binding the states to a certain sets.
+
+
+
+\subsection{Example of gradient flow of nonlocal particle interactions}\label{sec:gradflow}
+
+Assume that $x=(x_1,\dots,x_N) \in \mathcal H= \mathbb R^{d\times N}$ and that 
+$$
+\mathcal J_N(x) = \frac{1}{2N} \sum_{i,j=1}^N A(| x_i -  x_j |),
+$$
+where $A:\mathbb R_+ \to \mathbb R$ is a suitable nonlinear interaction kernel function, which, for simplicity we assume to be smooth, and $|\cdot|$ is the Euclidean norm in $\mathbb R^d$. Then, the formal unconstrained gradient flow \eqref{gradientflow} associated to this energy is written coordinatewise
+\begin{equation}\label{fdgradientflow}
+\dot x_i(t) = \frac{1}{N} \sum_{j \neq i} \frac{A'(| x_i -  x_j |)}{| x_i -  x_j |} (x_j - x_i), \quad i=1,\dots,N.
+\end{equation}
+Under suitable assumptions of local Lipschitz continuity and boundedness of 
+\begin{equation}\label{intker}
+a(\cdot) = \frac{A'(|\cdot|)}{| \cdot |},
+\end{equation} this evolution is well-posed for any given $x(0)=x_0$ and it is expected to converge for $t \to \infty$ to configurations of the points whose mutual distances are close to local minimizers of the function $A$, representing steady states of the evolution as well as critical points of $\mathcal J_N$.\\
+It is also well-known \cite{AGS} (see also Proposition \ref{pr:exist} below) that for $N \to \infty$ a mean-field approximation holds, i.e., if the initial conditions $x_i(0)$ are distributed accoding to a compactly supported probability measure $\mu_0 \in \mathcal P_c(\mathbb R^d)$ for $i=1,2,3, \dots$, the empirical measure $\mu^N(t) = \frac{1}{N} \sum_{i=1}^N \delta_{x_i(t)}$ weakly converges for $N \to \infty$  to the probability measure valued trajectory $t \to \mu(t)$ satisfying weakly the equation
+\begin{equation}\label{eq:meanfield}
+\partial_t \mu(t) = - \nabla \cdot ((F[a] * \mu(t)) \mu(t)), \quad \mu(0)=\mu_0.
+\end{equation}
+where $F[a](x) =-a(| x |)x, x \in \mathbb R^{d}$. Actually, the differential equation \eqref{eq:meanfield} corresponds again to a gradient flow of an energy
+$$
+\mathcal J (\mu) = \int_{\mathbb R^{d\times d}} A(| x-  y |) d \mu(x) d\mu(y),
+$$
+on the metric space $\mathcal H =\mathcal P_c(\mathbb R^d)$ endowed with the so-called Wasserstein distance. Continuity equations of the type \eqref{eq:meanfield} with nonlocal interaction kernels are currently the subject of intensive research  towards the modeling of the biological and social behavior of microorganisms, animals, humans, etc. We refer to the  articles \cite{cafotove10,13-Carrillo-Choi-Hauray-MFL} for recent overviews on this subject. Despite the tremendous theoretical success of such research direction in terms of mathematical results, as we shall stress below in more detail, one of the issues which is so far scarcely addressed in the study of models of the type \eqref{fdgradientflow} or \eqref{eq:meanfield} is their actual applicability. Most of the results are addressing a purely {\it qualitative analysis} given certain smoothness and asymptotic properties of the kernels $A$ or $a$ at the origin or at infinity, in terms of well-posedness or in terms of asymptotic behavior of the solution for $t \to \infty$.  Certainly such results are of great importance, as such interaction functions, if ever they can really describe social dynamics,  are likely to differ significantly from well-known models from physics and it is reasonable and legitimate to consider a large variety of classes of such functions.
+However, a solid mathematical framework which establishes the conditions of ``learnability" of the interaction kernels from observations of the dynamics is currently not available and it will be the main subject of this paper.
+
+\subsection{Parametric energies and their identifications}
+
+Let us now consider an energy $\mathcal J[a]$ depending on a parameter function $a$. As in the example mentioned above, $a$ may be defining a nonlocal interaction kernel as in  \eqref{intker}. The parameter function $a$ not only determines the energy, but also the corresponding evolutions driven according to \eqref{gradientflow}, for fixed initial conditions $x(0)=x_0$. (Here we assume that the class of $a$ is such that the evolutions exist and they are essentially well-posed.)
+The fundamental question to be addressed is: can we recover $a$ with high accuracy given some observations of the realized evolutions? This question is prone to several specifications, for instance, we may want to assume that the initial conditions are generated according to a certain probability distribution or they are chosen deterministically ad hoc to determine at best $a$, that the observations are complete or incomplete, etc. As one  quickly realizes, this is a very broad field to explore with many possible developments. Surprisingly, there are no results in this direction at this level of generality, and very little is done in the specific directions we mentioned in the example above. We may refer for instance to \cite{mann11,heoemascszwa11} for studies on the inference of social rules in collective behavior. 
+\subsection{The optimal control approach and its drawbacks}
+Let us introduce an approach, which would perhaps naturally be considered at a first instance and focus for a moment on the gradient flow model \eqref{gradientflow}. Given a certain gradient flow evolution $t \to x[a](t)$ depending on the unknown parameter function $a$, one might decide to design the recovery of $a$ as an optimal control problem \cite{brpi07}: for instance, we may seek for a parameter function $\widehat a$ which minimizes
+\begin{equation}\label{optcontr}
+\mathcal E(\widehat a) = \frac{1}{T}\int_0^T \left [ \operatorname{dist}_{\mathcal H}(x[a](s) - x[\widehat a](s))^2 + \mathcal R(\widehat a) \right ] d s ,
+\end{equation}
+being $t \to x[\widehat a](t)$ the solution of gradient flow \eqref{gradientflow} for $\mathcal J = \mathcal J[\widehat a]$, i.e.,
+\begin{equation}\label{gradientflow2}
+\dot x[\widehat a](t) \in - \partial_x J(x[\widehat a](t),t),
+\end{equation}
+and $\mathcal R(\cdot)$ is a suitable regularization function, which restricts the possible minimizers of \eqref{optcontr} to a specific class. The first fundamental problem one immediately encounters with this formulation is the strongly nonlinear dependency of $t \to x[\widehat a](t)$ on $\widehat a$, which eventually results in a strong nonconvexity of the functional \eqref{optcontr}. This also implies that a direct minimization of \eqref{optcontr} would most likely risk to end up on suboptimal solutions, and even the computation of a first order optimality condition in terms of Pontryagin's minimum principle would not characterize uniquely the minimal solutions. On top of this essential problem, the numerical implementation of both strategies, direct optimization or solution of the first order optimality conditions, is expected to be computationally infeasible as soon as the underlying discretization dimension grows to meet good approximation accuracies.
+
+\subsection{A variational approach towards learning parameter functions in nonlocal energies}\label{sec:wp2}
+
+Let us consider the framework of the example in Section \ref{sec:gradflow}. We restrict our attention to interaction kernels $a$ belonging to the following \textit{set of admissible kernels}
+\begin{align*}
+	X=\bigl\{b:\R_+\rightarrow\R\,|\ b \in L_{\infty}(\R_+) \cap W^{1}_{\infty,\loc}(\R_+) \bigr \}.
+\end{align*}
+Notice that, if $a \in X$ then it is weakly differentiable and for every compact set $K \subset \R_+$ its local Lipschitz constant $\Lip_{K}(a)$ is finite.
+Our goal is to learn a target function $a \in X$ (which we fix throughout the section) from the observation of the dynamics of the empirical measure $\mu^N$ that is defined by $\mu^N(t)=\frac{1}{N} \sum_{i=1}^N \delta_{x_i(t)}$, where $x_i(t)$ are solving
+\begin{equation}\label{fdgradientflow2}
+\dot x_i(t) = \frac{1}{N} \sum_{j \neq i} a(| x_i -  x_j |) (x_j - x_i), \quad i=1,\dots,N.
+\end{equation}
+with $a$ as the interaction kernel. We already mentioned that the  most immediate approach of formulating the learning of $a$ in terms of an optimal control problem is not efficient and likely will not give optimal solutions due to the strong nonconvexity. We propose instead a rather novel approach which turns out to be both computationally very efficient and   produces optimal solutions under reasonable assumptions. As an approximation to $a$ we seek for a minimizer of the following \textit{discrete error functional}
+\begin{align}\label{eq-def-error1}
+	\begin{split}
+	\mathcal E_N(\widehat a) = \frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl|\frac{1}{N}\sum_{j=1}^N
+			\left(\widehat a(|x_i(t)-x_j(t)|)(x_i(t) - x_j(t))-\dot{x}_i(t)\right)\biggr|^2 dt,
+	\end{split}
+\end{align}
+among all functions $\widehat a \in X$. As we show in Proposition \ref{trajapprox}, if both $a, \widehat a \in X$ then there exist a constant $C>0$ depending on $T, \widehat a, \mu_0^N$ and a compact set $K \subset \R_+$ such that
+$$
+\| x[a](t) -x[a](t) \| \leq C (\|\widehat a\|_\infty + \operatorname{Lip}_K(\widehat a)) \sqrt{\mathcal E_N(\widehat a)}, 
+$$
+for all $t \in [0,T]$. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.) Hence, minimizing $\mathcal E_N(\widehat a)$ with respect to $\widehat a$ in turns implies an accurate approximation of the trajectory $t \to x[a](t)$ at finite time as well. Moreover,
+notice that, contrary to the optimal control approach, the functional $\mathcal E_N$ has the remarkable property of being easily computable from the knowledge of $x_i$ and $\dot{x}_i$. Of course, we can consider to approximate the time derivative $\dot{x}_i$ by finite differences $\frac{x_i(t+\delta t)- x_i(t)}{\delta t}$ and we can assume that the data of the problem can be fully defined on observations of $x_i(t)$ for $t \in [0,T]$ for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space. In particular, given a finite dimensional space $V \subset X$, we consider the minimizer:
+\begin{equation}\label{fdproxy}
+\widehat a_{N,V} = \argmin_{\widehat a \in V} \mathcal E_N(\widehat a).
+\end{equation}
+The fundamental question to be addressed in this paper is
+\begin{itemize}
+\item[(Q)] For which choice of the approximating spaces $V \in \Lambda$ (we assume here that $\Lambda$ is a countable family of invading subspaces of $X$) does $\widehat a_{N,V} \to a$ for $N \to \infty$ and $V \to X$ and 
+in which topology should this convergence hold?
+\end{itemize}
+We show now how  we are intending to address this issue in detail by a variational approach.
+For that let us conveniently rewrite the functional \eqref{eq-def-error1} as follows
+\begin{align}\label{pirlo}
+	\begin{split}
+	\mathcal E_N(\widehat a) & = \frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl|\frac{1}{N}\sum_{j=1}^N
+			\bigl(F[\widehat a]-F[a]\bigr)(x_i-x_j)\biggr|^2 dt\\
+			& = \frac{1}{T}\int_0^T \int_{\R^d} \biggl|\bigl(F[\widehat a]-F[a]\bigr)\ast\mu^N(t)\biggr|^2d\mu^N(t)(x)dt,
+	\end{split}
+\end{align}
+where $F[a](x) =-a(| x |)x, x \in \mathbb R^{d}$.  As we are searching for limits of a sequence of minimizers $(\widehat a_{N,V})_{N \in \mathbb N, V \in \Lambda}$, it is natural to consider  techniques of $\Gamma$-convergence \cite{MR1201152}, whose general aim is establishing the convergence of minimizers for a sequence of equi-coercive functionals $\Gamma$-converging to a target functional.
+
+
+The form \eqref{pirlo} of $\mathcal E_N$ clearly suggests a specific candidate for a $\Gamma$-limit functional:
+\begin{align}\label{ourfunctional}
+	\mathcal E(\widehat a)=\frac{1}{T}\int_0^T \int_{\R^d} \biggl|\bigl(F[\widehat a]-F[a]\bigr)\ast\mu(t)\biggr|^2d\mu(t)(x)dt,
+\end{align}
+where $\mu$ is a weak solution to the mean-field equation \eqref{meanfield}, as soon as the initial conditions $x_i(0)$ are identically and independently 
+distributed according to a compactly supported probability measure $\mu(0)=\mu_0$. Several issues  need to be addressed at this point.
+The first one is to establish the space where a result of $\Gamma$-convergence is supposed to hold. Surprisingly enough we expect that
+such a space is {\it not} independent of the initial probability measure $\mu_0$! We clarify this issue immediately, but let us stress that this feature of the problem
+makes it of particular interest and novelty. We observe that
+%, as soon as the function $a$ is in $X$, one can prove as well that
+%$\mu(t)$ is compactly supported at each time $t \in [0,T]$ (Proposition \ref{pr:exist}) and
+by Jensen inequality
+\begin{equation}\label{est-functional-1}
+\mathcal E(\widehat a) \leq \frac{1}{T}\int_0^T  \int_{\R^d} \int_{\R^d}  | \widehat a(| x-y|) - a(| x-y|)|^2 | x-y|^2d \mu(t)(x) d \mu(t)(y) dt.
+\end{equation}
+Using the Euclidean distance map
+\begin{align*}
+	d:\R^d\times\R^d\rightarrow\R_+\,,\qquad (x,y)\mapsto d(x,y)=|x-y|\,,
+\end{align*}
+we define by push-forward the probability measure-valued mapping $\varrho:[0,T]\rightarrow \mathcal{P}_1(\R_+)$  for every Borel set $A\subset\R_+$ as
+\begin{align*}
+	\varrho(t)(A)=(\mu(t)\otimes\mu(t))\bigl(d^{-1}(A)\bigr).
+\end{align*}
+With the introduction of $\varrho$ we can rewrite the estimate \eqref{est-functional-1},
+\begin{align}\label{midpoint1}
+	\mathcal E(\widehat a)\leq \frac{1}{T}  \int_0^T\int_{\R_+}\bigl|\widehat a(s)-a(s)\bigr|^2 d\varrho(t)(s) dt.
+\end{align}
+For every open set $A\subseteq\R_+$ the mapping $t \in [0,T] \mapsto\varrho(t)(A)$ is actually lower semi-continuous, whereas for
+	any compact set $A$ it is upper semi-continuous (see Lemma \ref{rhosc}).
+This allows us to define a probability measure $\widehat \rho$ on the Borel $\sigma$-algebra on $\R_+$: For any open set $A \subseteq \R_+$ we define
+\begin{align}\label{eq-rho-4}
+	\widehat \rho(A):=\frac{1}{T}\int_0^T\varrho(t)(A)dt,
+\end{align}
+and extend this set function to a probability measure on all Borel sets. Eventually we define
+$$
+ \rho(A):=\int_A s^2 d\widehat \rho(s),
+$$
+for all  $A\subseteq\R_+$ Borel sets.
+Then one can reformulate \eqref{midpoint1} as follows
+\begin{align}\label{midpoint2}
+	\mathcal E(\widehat a)\leq \int_{\R_+}\bigl|\widehat a(s)-a(s)\bigr|^2 d \rho(s)
+		=\| \widehat a - a \|^2_{L_2(\mathbb R_+,\rho)}.
+\end{align}
+Notice that $\rho$ is defined through $\mu(t)$ which in turn is depending on the initial probability measure $\mu_0$. To establish coercivity of the learning problem
+it is natural to assume that there exists  $c_T>0$ such that the following bound holds
+\begin{align}\label{coercivity}
+	c_T \| \widehat a - a \|^2_{L_2(\mathbb R_+,\rho)} \leq \mathcal E(\widehat a),
+\end{align}
+for all relevant $\widehat a \in X \cap  L_2(\mathbb R_+,\rho)$. This crucial assumption eventually fixes also the natural space $X \cap  L_2(\mathbb R_+,\rho)$ for the solutions 
+and, as mentioned above, it depends on the choice of the initial conditions $\mu_0$. In particular the constant $c_T\geq 0$ might not be nondegenerate for all the choices of $\mu_0$
+and one has to pick the right initial distribution so that \eqref{coercivity} can hold for $c_T >0$. 
+In Section \ref{sec:coerc} we show that for some specific choices of $a$ and rather arbitrary choices of $\widehat a \in X$ one can construct probability measure valued trajectories $t \to \mu(t)$ which allow to validate
+\eqref{coercivity}.
+
+
+Notice also that \eqref{coercivity} implies that $a$ is the unique minimizer of $\mathcal E$ in $X \cap  L_2(\mathbb R_+,\rho)$,
+which is an important condition for the learnability via variational limit. 
+Let us now state the main result of this paper, Theorem \ref{thm},  on the learnability problem by means of a variational approach: Fix 
+\begin{align*}
+	M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)},
+	\end{align*}
+and define the set
+\begin{align*}
+X_{M,K} = \left\{b \in W^{1}_{\infty}(K) :
+ \|b\|_{L_{\infty}(K)} + \|b'\|_{L_{\infty}(K)} \leq M
+ \right\}
+\end{align*}
+for a suitable interval $K=[0,2 R]$, for $R>0$ large enough for $\supp(\rho) \subset K$.
+Additionally for every $N \in \N$, let $V_N$ be a closed subset of $X_{M,K}$ w.r.t. the uniform convergence on $K$ with the following {\it uniform approximation property}: for all $b\in X_{M,K}$ there exists a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ and such that $b_N\in V_N$ for every $N \in \N$. Then the minimizers 
+	\begin{align} \label{truealgo1}
+		\widehat a_N\in\argmin_{\widehat a\in V_N} \mathcal E_N(\widehat a).
+	\end{align}
+	%(notice that $\widehat a_N\in V_N$ and that $\|\widehat a_N\|_{W^{1,\infty}(\supp(\rho))}\leq\|a\|_{W^{1,\infty}(\supp(\rho))}$ by definition).
+ converge uniformly to some continuous function $\widehat a \in X_{M,K}$ such that
+	$\mathcal E(\widehat a)=0$. If we additionally assumed the coercivity condition \eqref{coercivity}, then we could eventually conclude that 
+	$\widehat a=a$ in $L_2(\mathbb R_+, \rho)$. This would be our first instance of an answer to question (Q). The proof of such a statement is  addressed by exploiting the uniform relative compactness of $X_{M,K}$
+and the fact that uniform convergence matches well with the weak convergence of the measures $\mu_N \rightharpoonup \mu$.
+
+
+\subsection{Numerical implementation of the variational approach }\label{sec:wp3}
+
+The strength of the result from the variational approach followed in Section \ref{sec:wp2} is the total arbitrariness of the sequence $V_N$ except
+for the assumed {\it uniform approximation property} and that the result is  to hold - deterministically - with uniform convergence (hence a very strong convergence). Nevertheless such 
+a great result may  hide a horrible truth: the promise of an efficient and easy learning of $a$ by solving \eqref{truealgo1} might have been badly broken! In fact the spaces $V_N$ are supposed
+to be picked as subsets of $X_{M,K}$ and one presupposes to have knowledge of $M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}$. First of all this means that we need
+to know a priori a lot about the solution itself. Secondly, the finite dimensional optimization \eqref{truealgo1} is not anymore a simple {\it unconstrained} least squares (as claimed in \eqref{fdproxy}),
+but hiddenly it requires a uniform bound on both the solution and its gradient! It is clearly very interesting to understand how severe these two drawbacks are. In particular, what happens
+if one picks initially a wrong possible estimate for the constant $M>0$? Can one choose $M$ very large for $N$ moderately small and then tune it  down to the "right" level adaptively, for $N$ growing?
+How can one implement efficiently such a numerical optimization \eqref{truealgo1} with $L_\infty$ constraints?
+We address these aspects in Section \ref{sec:num} with several numerical experiments ... etc
+ \\
+
+We conclude this introduction by mentioning that the variational approach is based on a compactness argument and, as a consequence, it does not provide any rate of convergence. This is another significant drawback of this technique.
+\\
+
+Although we expect these mentioned drawbacks to be only ``mildly severe", one may wonder anyway whether we can relax some aspects of the approximation strategy developed
+in Section \ref{sec:wp2} which can lead to a more practical and efficient algorithmic solution with guaranteed rates of convergence.
+In our follow-up paper \cite{bofohamaXX} we are following the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. To the  price of a  weaker approximation to hold only with high probability and of a constrained choice of the approximating spaces $V_N$, we obtain that for every $\beta>0$
+	\begin{equation}\label{finalestimate}
+		\mathcal P_{\mu_0} \Bigl(\|a- \widehat a_{N,V_N}\|_{L_2(\R_+,\rho)}
+			>(c_3\|a\|_\infty+|a|_{\mathcal{A}^s_\mu})\bigl(\tfrac{\log N}{N^3}\bigr)^{\frac{s}{2s+1}}\Bigr)
+			\leq c_4 N^{-\beta}\,,
+	\end{equation}
+	if $c_3$ is chosen sufficiently large (depending on $\beta$), where $\mathcal{A}^s_\mu$ is a suitable functional class indicating how efficiently $a$ can be approximated by piecewise polynomial functions in  $L_2(\R_+,\rho)$. Let us now present the details of the variational approach.

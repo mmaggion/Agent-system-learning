@@ -1,0 +1,337 @@
+% !TEX root = dynamicslearning.tex
+
+\section{$\Gamma$-convergence of $\mathcal E_N$ to $\mathcal E$}
+
+%At the end of the last section, we have seen which are the main ingredients to ensure that our error functional $E$ has the target interaction kernel $a$ as unique minimizer (the coercivity assumption \eqref{eq-coercive}), and for the well-posedness of the minimization problem of the functionals $E_N$ (the knowledge of an upper bound for $\|a\|_{L_{\infty}(\R_+)}$ and $\|a'\|_{L_{\infty}(\supp(\rho))}$).
+
+We now introduce is the key property that a family of approximation spaces $V_N$ must possess in order to ensure that the minimizers of the functionals $\mathcal E_N$ converge to minimizers of $\mathcal E$ by $\Gamma$-convergence.
+
+\begin{definition}\label{VNdef}
+Let $M > 0$ and $K=[0,2R]$ interval in $\R_+$  be given . We say that a family of closed subsets $V_N \subset X_{M,K}$, $N \in \N$ has the \emph{uniform approximation property} in $L_{\infty}(K)$ if for all $b\in X_{M,K}$ there exists a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ and such that $b_N\in V_N$ for every $N \in \N$.
+\end{definition}
+
+
+\begin{theorem}\label{thm} Assume $a\in X$, fix $\mu_0 \in \mathcal{P}_c(\R^d)$ and let  $K=[0,2R]$ be an interval in $\R_+$ with $R>0$ as in Proposition \ref{pr:exist}.
+	Set
+	\begin{align*}
+	M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}.
+	\end{align*}
+	For every $N \in \N$, let $x^N_{0,1},\ldots,x^N_{0,N}$ be i.i. $\mu_0$-distributed and define $\mathcal E_N$ as in \eqref{eq-def-error} for the solution $\mu^N$ of system \eqref{eq:contdyn} with initial datum
+	\begin{align*}
+	\mu^{N}_0 = \frac{1}{N}\sum^N_{i = 1} \delta_{x^{N}_{0,i}}, \quad x \in \R^d.
+	\end{align*}
+	For  $N \in \N$, let $V_N\subset X_{M,K}$ be a sequence of subsets with the uniform approximation property as in Definition \ref{VNdef} and consider
+	\begin{align*}
+		\widehat a_N\in\argmin_{\widehat a\in V_N} \mathcal E_N(\widehat a).
+	\end{align*}
+	%(notice that $\widehat a_N\in V_N$ and that $\|\widehat a_N\|_{W^{1,\infty}(\supp(\rho))}\leq\|a\|_{W^{1,\infty}(\supp(\rho))}$ by definition).
+	
+	Then the sequence $(\widehat a_{N})_{N \in \N}$ converges uniformly on $K$ to some continuous function $\widehat a \in X_{M,K}$ such that
+	$\mathcal E(\widehat a)=0$. If we additionally assume the coercivity condition \eqref{eq-coercive}, then it holds
+	$\widehat a=a$ in $L_2(\R_+,\rho)$.
+%	Assume $a\in X\cap L_2(\R_+,\rho)$ as well as
+%	\begin{equation}\label{eq-a-bounded}
+%		a\in W^{1,p}_{\text{loc}}(\R_+)
+%	\end{equation}
+%	for some $1\leq p\leq\infty$.
+%	Further assume that $E$ satisfies \eqref{eq-coercive}. Let $x_1,x_2,\ldots,x_N,\ldots$ i.i. $\mu_0$-distributed for
+%	some $\mu_0\in P_c(\R^d)$, and define a sequence of finite-dimensional subspaces $V_M\subset L_2(\R_+,\rho)$
+%	for $M=2,3,\ldots$ such that for all $b\in X\cap L_2(\R_+,\rho)$ with $\|b\|_{1,p}\leq\|a\|_{1,p}$
+%	\begin{equation*}
+%		\exists b_M\in V_M, \|b_M\|_{1,p}\leq\|a\|_{1,p}\quad\text{s.t.}\quad b_M\rightarrow b\,,
+%	\end{equation*}
+%	with local convergence in $W^{1,p}$.
+%	
+%	We define
+%	\begin{equation}\label{eq-error-mod}
+%		E_N(\widehat a)_p=
+%		\begin{cases}
+%			\frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\bigl\|\frac{1}{N}\sum_{j=1}^N
+%				\bigl(\widehat a(|x_i-x_j|)-a(|x_i-x_j|)\bigr)\frac{x_i-x_j}{|x_i-x_j|}\bigr\|^2 dt\,,\\
+%			\qquad\text{if }\widehat a\in V_N, \|\widehat a\|_{1,p}\leq\|a\|_{1,p}\,,\\
+%			+\infty\,,\\
+%			\qquad\text{if }\widehat a \in L_2(\R_+,\rho),
+%				\text{but $\widehat a$ does not satisfy the conditions above.}
+%		\end{cases}
+%	\end{equation}
+%	Accordingly, we define
+%	\begin{equation}\label{eq-error-mod-2}
+%		\widehat a_N=\argmin_{\widehat a\in  L_2(\R_+,\rho)}E_N(\widehat a)_p
+%	\end{equation}
+%	(notice that $\widehat a_N\in V_N$ and $\|\widehat a_N\|_{1,p}\leq\|a\|_{1,p}$ by definition).
+%	
+%	Then the sequence $(\widehat a_{N})_N$ converges uniformly to some continuous function $\overline a$ with
+%	$E(\overline a)=0$. If we additionally assume the coercivity condition \eqref{eq-coercive}, then we have
+%	$\overline a=a$. Furthermore, the sequence $(\widehat a_N')_N$ has a subsequence weakly converging in
+%	$L_p(\R_+,\rho)$ to $\overline a'$ for every $1<p<\infty$.
+\end{theorem}
+
+We start with a technical lemma.
+
+\begin{lemma}\label{lemma-semicontinuous-1}
+	Under the assumptions of Theorem \ref{thm}, let $(b_N)_{N \in \N}\subset X_{M,K}$ be a sequence of continuous functions uniformly converging to a function $b \in X_{M,K}$ on $K=[0,2R]$  with $R>0$ as in \eqref{Rest}. % with the property that there exists an $M > 0$ such that $\|\widehat a_N\|_{L_{\infty}(\supp(\rho))} \leq M$ for every $N \in \N$.
+Then it holds
+	\begin{align*}
+		\lim_{N\rightarrow\infty} \mathcal E_{N}(b_{N})= \mathcal E(b).
+	\end{align*}
+\end{lemma}
+
+\begin{proof}
+	From \cite[Lemma 3.3]{fornahuetter} it follows $\W_1(\mu_0,\mu^N_0) \rightarrow 0$ for $N \rightarrow \infty$. Hence, from \eqref{stab} we have that $W_1(\mu(t),\mu^N(t))\rightarrow 0$ for $N\rightarrow\infty$, uniformly for  $t \in [0,T]$.%, which in particular implies the weak convergence of the sequence of measures $(\mu^N(t))_{N \in \N}$ towards $\mu(t)$ for all $t\in [0,T]$. Moreover, for all $x,y,y' \in B(0,R)$, by triangle inequality
+\begin{align*}
+|(F[a] -F[ b])(x-y') - &(F[a] -F[ b])(x- y)|  \\
+& \leq [2R (\Lip_K( b) + \Lip_K( b))    +\|a\|_{L_\infty(K)} + \| b\|_{L_\infty(K)} ] |y-y'|,
+\end{align*}
+implying the uniform Lipschitz continuity of $(F[a] -F[ b])(x- \cdot)$ with respect to $x \in B(0,R)$.
+For every $\varepsilon > 0$ one can find $N_0(\varepsilon)$ such that, for all $N \geq N_0(\varepsilon)$ we have
+	\begin{align*}
+		\sup_{x,y \in B(0,R)}|F[ b_{N}](x-y)-F[ b](x-y)|
+			\leq 2R \| b_{N}- b\|_{L_\infty(K)}\leq\varepsilon/2,
+	\end{align*}
+	as well as
+	\begin{align*}
+		\biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)
+			-\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\biggr|\leq\varepsilon/2,
+	\end{align*}
+uniformly with respect to $t \in [0,T]$ and $x \in B(0,R)$.
+	The first estimate follows from  the uniform convergence of the $ b_{N}$, while the second one follows from the uniform Lipschitz continuity of
+	$(F[a] -F[ b])(x- \cdot)$ with respect to $x \in B(0,R)$  and the uniform Wasserstein convergence of $\mu^{N}(t)$ to $\mu(t)$ with respect to $t \in [0,T]$. Hence for $N\geq N_0(\varepsilon)$ we obtain
+	\begin{align*}
+		\Biggl|
+			&\biggl|\int_{\R^d}\bigl(F[ b_{N}]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)\biggr|
+				-\biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\biggr|\Biggr|\\
+			&\leq\biggl|\int_{\R^d}\bigl(F[ b_{N}]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)
+					-\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\biggr|\\
+			&\leq\Biggl|\int_{\R^d}
+				\bigl(F[ b_{N}]-F[ b]\bigr)(x-y)d\mu^{N}(t)(y)\Biggr|\\
+			&\qquad +\biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)
+					-\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\biggr|\\
+			&\leq2R \| b_{N}-\widehat  a\|_{L_\infty(K)}\int_{\R^d}d\mu^{N}(t)(y)+\frac{\varepsilon}{2}=\varepsilon,
+	\end{align*}
+	which implies that, for every $t \in [0,T]$ and $x \in B(0,R)$, it holds
+	\begin{align}\label{firstlim}
+		\lim_{N\rightarrow\infty}\Biggl|\int_{\R^d}\bigl(F[ b_{N}]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)\Biggr|^2
+			=\Biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\Biggr|^2.
+	\end{align}
+%	For $t \in [0,T]$, we now pass to compute the limit
+%	\begin{align*}
+%		\lim_{N\rightarrow\infty}
+%			\int_{\R^d}\Biggl|\int_{\R^d}\bigl(F[ b_{N}]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)\Biggr|^2d\mu^N(t)(x).
+%	\end{align*}
+	Denote
+	\begin{align*}
+		H_N(t,x)&=\Biggl|\int_{\R^d}\bigl(F[ b_{N}]-F[a]\bigr)(x-y)d\mu^{N}(t)(y)\Biggr|^2,\\
+		G_N(t)&= \int_{\R^d}H_N(t,x)d\mu^N(t)(x),\\
+		H(t,x)&= \Biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\Biggr|^2,\\
+		G(t)&= \int_{\R^d}H(t,x)d\mu(t)(x),
+	\end{align*}
+	and we estimate
+	\begin{align}
+		|G_N(t)-G(t)|&\leq \left|\int_{\R^d}H(t,x)d\mu^N(t)(x) - \int_{\R^d}H(t,x)d\mu(t)(x)\right| \nonumber\\
+		&\quad + \int_{\R^d}\left|H_N(t,x) - H(t,x)\right|d\mu(t)(x). \label{pippo3}
+	\end{align}
+	We now prove that the function $H$ is Lipschitz continuous with respect to $x \in B(0,R)$ uniformly in $t \in [0,T]$. To do so, we write $H$ as
+	\begin{align*}
+	H(t,x) = g\left(\int_{\R^d} f(x,y) d\mu(t)(y)\right),
+	\end{align*}
+	where $g$ is a differentiable function in $\R^d$ and $f(\cdot,y)$ is a Lipschitz continuous function uniformly in $y$ with values in $\R^d$ (in this case $f(\cdot,y)=(F[a] -F[ b])(\cdot -y)$). Since the measure $\mu(t)$ has support contained in $B(0,R)$, it follows
+	\begin{align*}
+	\left|\int_{\R^d} f(x,y) d\mu(t)(y)\right| &\leq \int_{\R^d} |f(x,y)| d\mu(t)(y) \\
+	& \leq \sup_{x,y \in B(0,R)} |f(x,y)|\\
+	& =: S <+\infty.
+	\end{align*}
+	Therefore, for every $x, x' \in B(0,R)$ we can argue
+	\begin{align*}
+	\left|H(t,x)-H(t,x')\right| &\leq \Lip_{B(0,S)} (g) \left|\int_{\R^d} f(x,y) d\mu(t)(y) - \int_{\R^d} f(x',y) d\mu(t)(y)\right| \\
+	&\leq \Lip_{B(0,S)} (g) \int_{\R^d} \left|f(x,y)  - f(x',y)\right|  d\mu(t)(y)\\
+	&\leq \Lip_{B(0,S)} (g) \; \Lip_{B(0,R)} (f) \; |x-x'|,
+	\end{align*}
+	from which follows the Lipschitz continuity of $H(t,x)$ with respect to $x \in B(0,R)$ uniformly in $t \in [0,T]$.
+	
+	From this uniform Lipschitz continuity and the uniform Wasserstein convergence of $\mu^N(t)$ to $\mu(t)$ with respect to $t \in [0,T]$, it follows that for every $\varepsilon > 0$ we can find $N_0(\varepsilon)$ such that for all $N \geq N_0(\varepsilon)$ it holds
+	\begin{align}\label{pippo1}
+		\left|\int_{\R^d}H(t,x)d\mu^N(t)(x) - \int_{\R^d}H(t,x)d\mu(t)(x)\right|\leq \frac{\varepsilon}{2},
+	\end{align}
+	uniformly with respect to $t \in [0,T]$. From \eqref{firstlim} it follows also that for all $N \geq N_0(\varepsilon)$ we have
+	\begin{align}\label{pippo2}
+	\left|H_N(t,x) - H(t,x)\right| \leq \frac{\varepsilon}{2},
+	\end{align}
+	uniformly with respect to $t \in [0,T]$ and $x \in B(0,R)$. A combination of \eqref{pippo3} with \eqref{pippo1} and \eqref{pippo2}  yields $|G_N(t)-G(t)| \leq \varepsilon$ uniformly in $t \in [0,T]$. Hence
+	\begin{align*}
+		\lim_{N\rightarrow\infty}
+			\int_{\R^d}\Biggl|\int_{\R^d}\bigl(F[ b_{N}]-&F[a]\bigr)(x-y)d\mu^{N}(t)(y)\Biggr|^2d\mu^N(t)(x) = \\
+			&\int_{\R^d}\Biggl|\int_{\R^d}\bigl(F[ b]-F[a]\bigr)(x-y)d\mu(t)(y)\Biggr|^2d\mu(t)(x),
+	\end{align*}
+	 holds uniformly in $t \in [0,T]$.
+	
+	To eventually show that $\lim_{N \rightarrow \infty} \mathcal E_N( b_N) = \mathcal E( b)$, we simply note that uniform convergence of $G_N$ to $G$ implies 
+	\begin{align*}
+		\lim_{N \rightarrow \infty} \mathcal E_N( b_N) =  \lim_{N\rightarrow\infty} \frac{1}{T} \int^T_0 G_N(t) dt = \frac{1}{T} \int^T_0 G(t) dt = \mathcal E( b).
+	\end{align*}
+%	But this follows easily from the dominated convergence theorem and the fact that $T$ is finite, since we can bound the functions $G_N$ uniformly from above using \eqref{Faest} as
+%	\begin{align*}
+%		|G_N(t)| & \leq \int_{\R^d}\Biggl(\int_{\R^d}\bigl|(F[\widehat a_{N}]-F[a])(x-y)\bigr|d\mu^{N}(t)(y)\Biggr)^2d\mu^N(t)(x) \\
+%		& \leq 4R^2 \|\widehat a_N - a \|^2_{L_{\infty}(K)} \\
+%		& \leq 4R^2(B + \|a \|_{L_{\infty}(K)})^2.
+%	\end{align*}
+%	Here $B$ is an appropriate bound for $\|\widehat a_N\|^2_{L_{\infty}(K)}$, which exists since $(\widehat a_N)_{N \in\N}$ is a uniformly convergent sequence on $K$ (and thus bounded).
+%	Thus applying the result from {\it arXiv-article}, we obtain
+%	\begin{align*}
+%		\liminf_k\frac{1}{T}\int_0^T\int_{\R^d}
+%			&\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x)\Bigr\|^2 d\mu_t^{N_k}(x) dt\\
+%			&\geq\frac{1}{T}\int_0^T \int_{\R^d} \liminf_{\substack{k\rightarrow\infty,\\x'\rightarrow x}}
+%				\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x')\Bigr\|^2 d\mu_t(x) dt\\
+%			&=\frac{1}{T}\int_0^T\int_{\R^d}\liminf_{k\rightarrow\infty}
+%				\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x)\Bigr\|^2 d\mu_t(x) dt\,,\\
+%	\end{align*}
+%	where the last line is due to continuity of the function
+%	\begin{align*}
+%		x'\mapsto\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x')\Bigr\|\,.
+%	\end{align*}
+\end{proof}
+
+%\begin{lemma}\label{lemma-semicontinuous-2a}
+%	Let $(a_N)_N\subset L_2(\R_+,\rho)$ be a sequence of continuous functions which converges pointwise
+%	$\cl_1$-almost everywhere to some function $\overline a$. Then for every $\varepsilon>0$ there exist sets
+%	$K^t_\varepsilon\subset\R^d$, $t\in [0,T]$, such that $\mu_t(\R^d\setminus K^t_\varepsilon)\leq\varepsilon$ and
+%	\begin{equation}\label{eq-lower-semi-2}
+%		\begin{split}
+%		\liminf_{N\rightarrow\infty}&E_N(a_N)\\
+%			&\geq\frac{1}{T}\int_0^T\int_{\R^d}\Biggl(\Biggl\|\int_{K^t_\varepsilon}
+%				\bigl(F[\bar a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|
+%				-4\varepsilon\|a\|_\infty\Biggr )^2 d\mu_t(x)\,.
+%		\end{split}
+%	\end{equation}
+%\end{lemma}
+%
+%\begin{proof}
+%	{\bf Step 1:}
+%	Step 2 of the proof of Lemma \ref{lemma-semicontinuous-1} can be re-used here.
+%	
+%	Since $\supp\mu_t^N\subset A$ (compact) uniformly w.r.t. $N$ and $t$ {\it (reference)} by Egorov's
+%	Theorem for all $\varepsilon>0$ and all $t>0$ there exist measurable sets $K_\varepsilon^t\subset A$ with
+%	$\mu_t(A\setminus K_\varepsilon^t)\leq\varepsilon$ such that
+%	$F[\widehat a_N]\rightrightarrows F[\overline a]$ uniformly on $K_\varepsilon^t$. Splitting the integration
+%	domain accordingly and using triangle inequality we find
+%	\begin{align*}
+%		\Biggl\|
+%			&\int_{\R^d}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+%			&=\Biggl\|\int_{K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)
+%				+\int_{A\setminus K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+%			&\geq\underbrace{\Biggl\|\int_{K_\varepsilon^t}
+%				\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|}_{I_N}
+%				-\underbrace{\Biggl\|\int_{A\setminus K_\varepsilon^t}
+%					\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|}_{II_N}\,.
+%	\end{align*}
+%	
+%	For the term $I_N$ we further find by combining the uniform convergence of $a_N$ on
+%	$K_\varepsilon^t$ and the weak convergence of $\mu_t^N$ that the limit $N\rightarrow\infty$ exists: For
+%	$N\geq N_0(\delta)$ we have
+%	\begin{equation*}
+%		\|F[a_N]-F[\overline a]\|
+%			=\|a_N-\overline a\|_{L_\infty(K_\varepsilon^t)}\leq\delta/2\,,
+%	\end{equation*}
+%	as well as
+%	\begin{equation*}
+%		\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^N_t(y)
+%			-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\leq\delta/2\,,
+%	\end{equation*}
+%	note that continuity of $a$ and $\overline a$ (the latter holds only on $K_\varepsilon^t$!) implies continuity of
+%	$F[a]$ and $F[\overline a]$. Hence for $N\geq N_0(\delta)$ we obtain
+%	\begin{align*}
+%		\Biggl|
+%			&I-\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\Biggr|\\
+%			&\leq\biggl\|\int_{K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu^N_t(y)
+%					-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+%			&\leq\Biggl\|\int_{K_\varepsilon^t}
+%				\bigl(F[a_N]-F[\overline a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+%			&\qquad +\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^N_t(y)
+%					-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+%			&\leq\int_{K_\varepsilon^t}\frac{\delta}{2}d\mu_t^N(y)+\frac{\delta}{2}\leq\delta\,,
+%	\end{align*}
+%	which implies
+%	\begin{equation*}
+%		\lim_{N\rightarrow\infty}I_N
+%			=\Biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|\,.
+%	\end{equation*}
+%	For the term $II_N$ we first obtain
+%	\begin{equation*}
+%		II_N\leq 2\|a\|_\infty\int_{A\setminus K_\varepsilon^t}d\mu_t^N(y)
+%			\leq 2\|a\|_\infty\int_{\R^d}\psi_\varepsilon(y)d\mu_t^N(y)\,,
+%	\end{equation*}
+%	where $\psi_\varepsilon$ is a bounded continuous (bump) function approximating
+%	$\chi_{A\setminus K_\varepsilon^t}$ in $L_1(\mu_t)$ from above, i.e.
+%	$\psi_\varepsilon\geq\chi_{A\setminus K_\varepsilon^t}$ and
+%	\begin{equation*}
+%		\|\psi_\varepsilon-\chi_{A\setminus K_\varepsilon^t}\|_{L_1(\mu_t)}\leq\varepsilon\,.
+%	\end{equation*}
+%	But then the weak convergence of $\mu_t^N$ implies
+%	\begin{equation*}
+%		\int_{\R^d}\psi_\varepsilon(y)d\mu_t^N(y)
+%			\longrightarrow\int_{\R^d}\psi_\varepsilon(y)d\mu_t(y)\leq 2\varepsilon
+%	\end{equation*}
+%	by choice of $\psi_\varepsilon$ and $K_\varepsilon^t$. Put together, we thus have
+%	\begin{equation*}
+%		\limsup_{N\rightarrow\infty}II_N\leq 4\|a\|_\infty\varepsilon\,.
+%	\end{equation*}
+%	In turn, this yields
+%	\begin{equation*}
+%		\liminf_N\Biggl\|\int_{\R^d}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|
+%			\geq\Biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|
+%				-4\|a\|_\infty\varepsilon\,,
+%	\end{equation*}
+%	so far for every choice of $\varepsilon>0$ and $t>0$. Integrating over $t$ then yields \eqref{eq-lower-semi-2}.
+%\end{proof}
+%
+%
+%\begin{lemma}\label{lemma-semicontinuous-2}
+%	Let $(a_N)_N\subset L_2(\R_+,\rho)$ be a sequence of continuous, weakly differentiable functions such that for all
+%	$N$
+%	\[
+%		\|a_N\|_{W^1_1(\R_+,\rho)}\leq C_0\,,
+%	\]
+%	and let $(a_N)_N$ be uniformly bounded at a point.
+%	
+%	Then there exists a subsequence $(a_{N_k})_k$ which converges $\cl_1$-a.e.
+%\end{lemma}
+%
+%\begin{proof}
+%	If we denote by $\phi_t$ the Radon-Nicodym derivative of $\varrho_t$ w.r.t. $\cl_1$, for arbitrary fixed
+%	$t\in [0,T]$ we can apply Helly's Selection Theorem to the functions $(a_N\phi_t)_N$. Then there exists a
+%	subsequence $(a_{N_k}\phi_t)_k$ which converges pointwise $\cl_1$-a.e. to some
+%	function $\overline a\phi_t$ of bounded variation.
+%\end{proof}
+
+\begin{proof}[\normalfont\bf Proof of Theorem \ref{thm}]
+%	By the respective construction of the functionals $E_N$, the sequence of minimizers
+%	$(\widehat a_N)_N$ satisfies the assumptions of one of the above lemmas. Hence it has a pointwise $\rho$-a.e. or
+%	uniformly, respectively, convergent subsequence with limit function $\overline a$. We wish to show that
+%	$\overline a$ is a minimizer of $E$, then by \eqref{eq-coercive} we have $\overline a=a$. Since in this way for
+%	every subsequence we can extract a subsubsequence converging to the same limit function $a$, we can infer that
+%	the entire sequence converges to $a$. For simplicity we will only treat the case $p=\infty$; the case $1<p<\infty$
+%	can be reduced to the proof for $p=1$ in view of $W^1_p\hookrightarrow W^1_1$; finally, the case $p=1$ uses the
+%	same arguments as $p=\infty$, with Lemma \ref{lemma-semicontinuous-1} replaced by Lemmas
+%	\ref{lemma-semicontinuous-2a} and \ref{lemma-semicontinuous-2}.
+	The sequence of minimizers $(\widehat a_N)_{N \in \N}$ is by definition a subset of $X_{M,K}$, hence by Proposition \ref{XMdef} it admits a subsequence $(\widehat a_{N_k})_{k \in \N}$ uniformly converging to a function $\widehat a \in X_{M,K}$.
+	
+	To show the optimality of $\widehat a$, let $b\in X_{M,K}$ be given. By Definition \ref{VNdef}, we can find a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ such that $b_N\in V_N$ for every $N\in \N$. Hence, by Lemma \ref{lemma-semicontinuous-1}, it holds
+	\begin{align*}
+		\mathcal E(b)=\lim_{N\rightarrow\infty} \mathcal E_{N}(b_{N}).
+	\end{align*}
+	Now, by the optimality of $\widehat a_{N_k}$ and again by Lemma \ref{lemma-semicontinuous-1}, it follows that
+	\begin{align*}
+		\mathcal E(b)=\lim_{N\rightarrow\infty}\mathcal E_N(b_N)
+			= \lim_{k \rightarrow\infty}\mathcal E_{N_k}(b_{N_k})
+			\geq\lim_{k \rightarrow\infty}\mathcal E_{N_k}(\widehat a_{N_k})
+			= \mathcal E(\widehat a)\,.
+	\end{align*}
+	We can therefore conclude the fundamental estimate
+	\begin{align}\label{fond}
+		\mathcal E(b)\geq \mathcal E(\widehat a),
+	\end{align}
+	which holds for every $b \in X_{M,K}$. In particular, \eqref{fond} applies to $b=a\in X_{M,K}$ (by the particular choice of $M$), which finally implies
+	\begin{align*}
+		0=\mathcal E(a)\geq \mathcal E(\widehat a)\geq 0\Longrightarrow \mathcal  E(\widehat a)=0,
+	\end{align*}
+	showing that $\widehat a$ is also a minimizer of $\mathcal E$. In case \eqref{eq-coercive} holds, by Proposition \ref{uniquemin} it follows $\widehat a=a$ in  $L_2(\R_+,\rho)$.
+\end{proof}
