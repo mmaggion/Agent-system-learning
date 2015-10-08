@@ -1,0 +1,75 @@
+\begin{thebibliography}{10}
+
+\bibitem{AFP00}
+L.~Ambrosio, N.~Fusco, and D.~Pallara.
+\newblock {\em {Functions of Bounded Variation and Free Discontinuity
+  Problems.}}, volume 254.
+\newblock Clarendon Press Oxford, 2000.
+
+\bibitem{AGS}
+L.~Ambrosio, N.~Gigli, and G.~Savar{\'e}.
+\newblock {\em {G}radient {F}lows in {M}etric {S}paces and in the {S}pace of
+  {P}robability {M}easures}.
+\newblock Lectures in Mathematics ETH Z\"urich. Birkh\"auser Verlag, Basel,
+  second edition, 2008.
+
+\bibitem{CanCarRos10}
+J.~{Ca\~nizo}, J.~{Carrillo}, and J.~{Rosado}.
+\newblock {A well-posedness theory in measures for some kinetic models of
+  collective motion.}
+\newblock {\em {Math. Models Methods Appl. Sci.}}, 21(3):515--539, 2011.
+
+\bibitem{CS}
+F.~Cucker and S.~Smale.
+\newblock Emergent behavior in flocks.
+\newblock {\em IEEE Trans. Automat. Control}, 52(5):852--862, 2007.
+
+\bibitem{Fil}
+A.~{Filippov}.
+\newblock {\em {Differential equations with discontinuous right-hand sides}}.
+\newblock Kluwer Academic Publishers, 1988.
+
+\bibitem{fornahuetter}
+M.~{Fornasier} and J.-C. {H\"utter}.
+\newblock Consistency of probability measure quantization by means of power
+  repulsion-attraction potentials.
+\newblock Submitted, 2015.
+
+\bibitem{MFOC}
+M.~Fornasier and F.~Solombrino.
+\newblock Mean-field optimal control.
+\newblock {\em ESAIM Control Optim. Calc. Var.}, 20(4):1123--1152, 2014.
+
+\bibitem{KelleyTop}
+J.~L. {Kelley}.
+\newblock {\em {General topology}}.
+\newblock Springer-Verlag, 1955.
+
+\bibitem{Kin-Sta}
+D.~Kinderlehrer and G.~Stampacchia.
+\newblock {\em {An Introduction to Variational Inequalities and their
+  Applications}}.
+\newblock Academic Press, New York, NY, 1980.
+
+\bibitem{lennard24}
+J.~E. Lennard-Jones.
+\newblock On the determination of molecular fields.
+\newblock {\em Proc. R. Soc. Lond. A}, 106(738):463---477, 1924.
+
+\bibitem{reynolds1987flocks}
+C.~W. Reynolds.
+\newblock Flocks, herds and schools: A distributed behavioral model.
+\newblock {\em ACM SIGGRAPH Computer Graphics}, 21(4):25--34, 1987.
+
+\bibitem{vicsek2012collective}
+T.~Vicsek and A.~Zafeiris.
+\newblock Collective motion.
+\newblock {\em Phys. Rep.}, 517(3):71--140, 2012.
+
+\bibitem{villani}
+C.~Villani.
+\newblock {\em {Topics in Optimal Transportation}}, volume~58 of {\em Graduate
+  Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 2003.
+
+\end{thebibliography}

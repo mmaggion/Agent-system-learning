@@ -12,39 +12,41 @@ A very reasonable and intuitive strategy would be to pick $\widehat a \approx a$
 	\end{split}
 \end{align}
 
+The minimization of $\mathcal E_N$ has a close connection to the optimal control problem \eqref{optcontr}, as the following result shows.
 \begin{proposition}\label{trajapprox}
 If $a,\widehat a \in X$ then there exist a constant $C>0$ depending on $T,\widehat a$ and $\mu_0^N$ and a compact set $K \subset \R_+$ such that
 \begin{equation}\label{eq:trajapprox}
-\| x[a](t) -x[\widehat a](t) \| \leq C (\|\widehat a\|_\infty + \operatorname{Lip}_K(\widehat a)) \sqrt{\mathcal E_N(\widehat a)}, 
+\| x[a](t) -x[\widehat a](t) \| \leq C \sqrt{\mathcal E_N(\widehat a)}, 
 \end{equation}
 for all $t \in [0,T]$, and $x[a], x[\widehat a]$ are the solutions to \eqref{eq:discrdyn} for the interaction kernels $a$ and $\widehat a$ respectively. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.)
 \end{proposition}
 \begin{proof}
 Let us denote $x=x[a]$ and $\widehat x =x[\widehat a]$ and we estimate by Jensen or H\"older inequalities
-\begin{eqnarray*}
-&&\|x(t) - \widehat x(t) \|^2 = \left \| \int_0^t ( \dot x(s) - \dot{\widehat x}(s)) ds \right \|^2  \leq  t \int_0^t \| \dot x(s) - \dot{\widehat x}(s) \|^2 ds \\
-&=&  t \int_0^t \frac{1}{N} \sum_{i=1}^N \left | (F[a] * \mu^N(x_i)- F[\widehat a] * \widehat \mu^N(\widehat x_i)) \right |^2 ds\\
-&\leq&2 t \int_0^t \left [  \frac{1}{N} \sum_{i=1}^N \left | (F[a] - F[\widehat a]) *  \mu^N( x_i)) \right |^2 +\left | \frac{1}{N} \sum_{j=1}^N \widehat a(|x_i-x_j|)( (\widehat x_j - x_j) + (x_i-\widehat x_i)) \right . \right .  \\
-&+& \widehat a(| \widehat x_i-\widehat x_j|)( (\widehat x_j - \widehat x_i) -  \widehat a(| x_i- x_j |)( (\widehat x_j - \widehat x_i) \Big |^2  \Big ] ds \\
-&\leq &2 T^2 \mathcal E_N(\widehat a) +  \int_0^t 8 T( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2 )\|x(s) - \widehat x(s) \|^2  ds,
-\end{eqnarray*}
+\begin{align*}
+\|x(t) - \widehat x(t) \|^2 & = \left \| \int_0^t ( \dot x(s) - \dot{\widehat x}(s)) ds \right \|^2 \leq  t \int_0^t \| \dot x(s) - \dot{\widehat x}(s) \|^2 ds \\
+&=  t \int_0^t \frac{1}{N} \sum_{i=1}^N \left | (F[a] * \mu^N(x_i)- F[\widehat a] * \widehat \mu^N(\widehat x_i)) \right |^2 ds\\
+&\leq 2 t \int_0^t \Bigg[  \frac{1}{N} \sum_{i=1}^N \left| (F[a] - F[\widehat a]) *  \mu^N( x_i)) \right |^2 \\
+&\quad +\Bigg| \frac{1}{N} \sum_{j=1}^N \widehat a(|x_i-x_j|)( (\widehat x_j - x_j) + (x_i-\widehat x_i))  \\
+&\quad+ \widehat a(| \widehat x_i-\widehat x_j|)( \widehat x_j - \widehat x_i) -  \widehat a(| x_i- x_j |)( (\widehat x_j - \widehat x_i) \Bigg|^2  \Bigg ] ds \\
+&\leq 2 T^2 \mathcal E_N(\widehat a) +  \int_0^t 8 T( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2 )\|x(s) - \widehat x(s) \|^2  ds,
+\end{align*}
 for $K=[0,2 R]$ and $R>0$ is as in Proposition \ref{pr:exist} for $a$ substituted by $\widehat a$.
 An application of Gronwall's inequality yields the estimate
 $$
-\|x(t) - \widehat x(t) \|^2 \leq 2 T^2 (8 T( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2 ))  \mathcal E_N(\widehat a) t \leq 16 T^2 ( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2 )) \mathcal E_N(\widehat a) 
+\|x(t) - \widehat x(t) \|^2 \leq 2 T^2   e^{8 T^2( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2)} \mathcal E_N(\widehat a),
 $$
-or, more simply
+and taking $C = \sqrt{2} T e^{4 T^2( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2)}$, we get
 $$
-\| x[a](t) -x[\widehat a](t) \| \leq C (\|\widehat a\|_{\infty} + \operatorname{Lip}_K(\widehat a)) \sqrt{\mathcal E_N(\widehat a)}.
+\| x[a](t) -x[\widehat a](t) \| \leq C \sqrt{\mathcal E_N(\widehat a)}.
 $$
 \end{proof}
 As already mentioned in the introduction, for $N \to \infty$ a natural mean-field approximation to the learning problem can be stated in terms of the following functional,
 \begin{align*}
-	\mathcal E(\widehat a)=\frac{1}{T}\int_0^T \int_{\R^d} \biggl|\bigl(F[\widehat a]-F[a]\bigr)\ast\mu(t)\biggr|^2d\mu(t)(x)dt,
+	\mathcal E(\widehat a)=\frac{1}{T}\int_0^T \int_{\R^d} \biggl|\bigl((F[\widehat a]-F[a])\ast\mu(t)\bigr)(x)\biggr|^2d\mu(t)(x)dt,
 \end{align*}
 where $\mu(t)$ is a weak solution to \eqref{eq:contdyn}. 
 
-We clarify in the following in detail how the coercivity assumption \eqref{coercivity} arises.% By Proposition \ref{pr:exist} it follows that $\supp(\mu(t)) \subseteq B(0,R)$, where $R$ is given by \eqref{Rest}. The estimate
+We clarify in the following in detail how the coercivity assumption \eqref{coercivity} arises. The inequality % By Proposition \ref{pr:exist} it follows that $\supp(\mu(t)) \subseteq B(0,R)$, where $R$ is given by \eqref{Rest}. The estimate
 \begin{align*}
 |F[\widehat a](x-y) - F[a](x-y)|\leq |\widehat a(|x-y|) - a(|x-y|)| |x-y|
 \end{align*}
@@ -81,7 +83,7 @@ In order to rigorously derive \eqref{coercivity}, we need to explore finer prope
 %	\varrho(t)=d_{\#} (\mu(t)\otimes\mu(t))\,,
 %\end{equation}
 
-\subsection{The measure $\rho$}
+\subsection{The measure $\widehat{\rho}$}
 
 \begin{lemma}\label{rhosc}
 	For every open set $A\subseteq\R_+$ the mapping $t \in [0,T] \mapsto\varrho(t)(A)$ is lower semi-continuous, whereas for
@@ -92,7 +94,7 @@ In order to rigorously derive \eqref{coercivity}, we need to explore finer prope
 	convergence $\varrho(t_n)\rightharpoonup\varrho(t)$ for $n \rightarrow +\infty$. For this, in turn we first prove the weak convergence of the product measure
 	$\mu(t_n)\otimes\mu(t_n)\rightharpoonup\mu(t)\otimes\mu(t)$.
 	
-	It is a basic property of the space $\mathcal{C}(\R^d\times\R^d)$ that it coincides with the inductive tensor product
+	A well-known property of the space $\mathcal{C}(\R^d\times\R^d)$ is that it coincides with the inductive tensor product
 	$\mathcal{C}(\R^d)\otimes_\varepsilon \mathcal{C}(\R^d)$. In particular, functions of the form $h=\sum_{j=1}^J f_j\otimes g_j$ with
 	$f_j,g_j\in \mathcal{C}(\R^d)$, for $j=1,\ldots,J$ and $J\in\N$, are a dense subspace of $\mathcal{C}(\R^{2d})$. Hence, to prove the weak
 	convergence of measures on $\R^{2d}$, we can restrict the proof to functions of this form. Due to linearity of
@@ -104,7 +106,7 @@ In order to rigorously derive \eqref{coercivity}, we need to explore finer prope
 	\[
 		\int_{\R^{2d}}f\otimes g\, d(\mu(t_n)\otimes\mu(t_n))
 			=\int_{\R^d}f d\mu(t_n)\cdot\int_{\R^d}g d\mu(t_n)
-			\stackrel{n\rightarrow\infty}{\longrightarrow}\int_{\R^d}f d\mu(t)\cdot\int_{\R^d}g d\mu(t,.
+			\stackrel{n\rightarrow\infty}{\longrightarrow}\int_{\R^d}f d\mu(t)\cdot\int_{\R^d}g d\mu(t).
 	\]
 	This implies the claimed weak convergence $\varrho(t_n)\rightharpoonup\varrho(t)$, since for any
 	function $f\in \mathcal{C}(\R_+)$ we have that the continuity of $d$ implies continuity of $f\circ d$, and hence
@@ -200,7 +202,7 @@ We now proceed to show the absolute continuity of $ \widehat  \rho$ w.r.t. the L
 	Then it immediately follows
 	\begin{align*}
 		(\ct^\mu_t)^{-1}(A)\subset\bigcup_n\widetilde B_n\qquad\text{as well as}\qquad
-		\sum_n\cl_d(\widetilde B_n)=L_d\sum_n\cl_d(B_n)<L_d\varepsilon\,.
+		\sum_n\cl_d(\widetilde B_n)\leq L\sum_n\cl_d(B_n)<L\varepsilon\,.
 	\end{align*}
 	Thus we have found a cover for $(\ct^\mu_t)^{-1}(A)$ whose measure is bounded from above by (a multiple of) $\varepsilon$, which finally
 	yields $\cl_d((\ct^\mu_t)^{-1}(A))=0$.
@@ -238,7 +240,7 @@ We now proceed to show the absolute continuity of $ \widehat  \rho$ w.r.t. the L
 	definition as an integral average \eqref{eq-rho-4}.
 \end{proof}
 
-As an easy consequence that the dynamics of our system has support uniformly bounded in time, we get the following crucial properties of the measure $\widehat \rho$.
+As an easy consequence of the fact that the dynamics of our system has support uniformly bounded in time, we get the following crucial properties of the measure $\widehat \rho$.
 
 \begin{lemma}\label{rhocompact}
 	The measure $\widehat \rho$ is finite and has compact support.
@@ -267,7 +269,7 @@ since the distance function is continuous and the support of $\mu$ is uniformly 
 \begin{remark}
 	While absolute continuity of $\mu_0$ implies the same for $\widehat \rho$, the situation is different for purely atomic
 	measures $\mu_0^N$. On the one hand, also $\mu^N(t)$ is then purely atomic for every $t$, and this remains true for
-	$\varrho^N(t) = d_\# (\mu^N(t) \oplus \mu^N(t))$. However, due to the averaging \eqref{eq-rho-4} involved in the definition of $\widehat \rho^N=\frac{1}{T} \int_0^T \varrho^N(t) dt$, it generally cannot be atomic. For
+	$\varrho^N(t) = d_\# (\mu^N(t) \otimes \mu^N(t))$. However, due to the averaging \eqref{eq-rho-4} involved in the definition of $\widehat \rho^N=\frac{1}{T} \int_0^T \varrho^N(t) dt$, it generally cannot be atomic. For
 	example, we obtain
 	\begin{align*}
 		\frac{1}{T}\int_0^T\delta(t) dt=\frac{1}{T}\cl_1\llcorner_{[0,T]}\,,
@@ -306,7 +308,7 @@ Now, let us observe more closely the integrand on the left-hand-side and for $\w
 &=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2\\
 &=&\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
 \end{eqnarray*}
-Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equivalence and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \to x_i(t)$. However, the case of two particles might be perceived too simple and we may want to extend our arguments to multiple particles. Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible cases is an involved exercise. For this reason we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. We also assume that $\mathcal K$ gets its maximal value precisely at $r$, hence
+Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equality sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \to x_i(t)$. However, the case of two particles might be perceived too simple and we may want to extend our arguments to multiple particles. Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible cases is an involved exercise. For this reason we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. We also assume that $\mathcal K$ gets its maximal value precisely at $r$, hence
 $$
 \frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
 $$
@@ -316,7 +318,7 @@ Notice that it holds also
 \end{equation}
 A direct computation in this case shows that 
 $$
- \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2.
+ \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2,
 $$
 and therefore
 $$ 
@@ -336,29 +338,30 @@ Let us assume that the maximal value of $\mathcal K$ is attained precisely at $2
 $$
 \frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  \geq \frac{1}{16} ( \mathcal K(2 r)^2 - 2 \sqrt{2} \mathcal K(2 r)^2 + 2 \mathcal K(\sqrt 2 r)^2 ) = \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
 $$
-Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible, perhaps not suriprisingly, to conclude the coercivity condition for the uniform distribution over the circle.
+Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible, perhaps not surprisingly, to conclude the coercivity condition for the uniform distribution over the circle.
 \\
 
 At this point one may complain that all the examples presented so far are based on discrete measures $\mu^N=\frac{1}{N} \sum_{i=1}^N\delta_{x_i}$ supported on particles lying on the vertexes of polytopes. However, one can consider an approximated identity $g_\varepsilon$ for which $g_\varepsilon \to \delta_0$ for $\varepsilon \to 0$ and  the regularized probability measure
 $$
 \mu_\varepsilon(x) = g_\varepsilon * \mu^N (x)= \frac{1}{N} \sum_{i=1}^N g_\varepsilon (x-x_i).
 $$
-This diffuse measure approximates $\mu^N$ in the sense that $\mathcal W_1(\mu_\varepsilon,\mu^N) \to 0$ for $\varepsilon \to 0$, hence in particular intergrals against Lipschitz functions can be well-approximated, i.e.,
+This diffuse measure approximates $\mu^N$ in the sense that $\mathcal W_1(\mu_\varepsilon,\mu^N) \to 0$ for $\varepsilon \to 0$, hence in particular integrals against Lipschitz functions can be well-approximated, i.e.,
 $$
 \left | \int_{\mathbb R^d} \varphi(x) d \mu^N(x) -\int_{\mathbb R^d}  \varphi(x) d \mu_\varepsilon(x) \right | \leq \Lip(\varphi) \mathcal W_1(\mu_\varepsilon,\mu^N) .
 $$
-Under the additional assumption that $\Lip_K(\widehat a) \sim \| \widehat a \|_{L_\infty(K)}$ (and this is true whenever $\widehat a$ is a piecewise polynomial function over a finite partition of $\R_+$) one can extend the validity of the coercivity condition for $\mu^N$ \eqref{coercN2} 
+Under the additional assumption that $\Lip_K(\widehat a) \sim \| \widehat a \|_{L_\infty(K)}$ (and this is true whenever $\widehat a$ is a piecewise polynomial function over a finite partition of $\R_+$, with the constant of the equivalence depending on the particular partition) one can extend the validity of the coercivity condition for $\mu^N$ \eqref{coercN2} 
 to $\mu_\varepsilon$ as follows
-$$
-\frac{1}{T} \int_0^T \int_{\mathbb R^d}  \left | \int_{\mathbb R^d}  \mathcal K(|x-y|) \frac{y-x}{|y-x|} d \mu_\varepsilon(x) \right |^2 d\mu_\varepsilon(y) dt \geq \frac{c_{T,\varepsilon }}{T} \int_0^T  \int_{\mathbb R^d}  \int_{\mathbb R^d}  |\mathcal K(|x-y|)|^2    d\mu_\varepsilon(x) d\mu_\varepsilon(y)dt,
-$$
+\begin{align*}
+\frac{1}{T} \int_0^T \int_{\mathbb R^d}  \left | \int_{\mathbb R^d}  \mathcal K(|x-y|) \frac{y-x}{|y-x|} d \mu_\varepsilon(x) \right |^2 &d\mu_\varepsilon(y) dt \geq \\
+&\frac{c_{T,\varepsilon }}{T} \int_0^T  \int_{\mathbb R^d}  \int_{\mathbb R^d}  |\mathcal K(|x-y|)|^2    d\mu_\varepsilon(x) d\mu_\varepsilon(y)dt,
+\end{align*}
 for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
 \\
 
 We hope that these examples convince the reader that the coercivity condition is verifiable in many cases and from now on we assume it without further concerns. We conclude this section by presenting two simple implications of the coercivity condition.
 Notice that, as an easy consequence of Lemma \ref{rhocompact}, it holds
 \begin{align}\label{eq:inftyimplyl2}
-\|a\|^2_{L_2(\R_+,\rho)} = \int_{\R_+} \bigl|a(s)\bigr|^2 d\rho(s) \leq \operatorname{diam}(\supp(\rho))^2\|a\|^2_{L_{\infty}(\supp(\rho))},
+\|a\|^2_{L_2(\R_+,\rho)} = \int_{\R_+} \bigl|a(s)\bigr|^2 d\rho(s) \leq \operatorname{diam}(\supp(\rho))\|a\|^2_{L_{\infty}(\supp(\rho))},
 \end{align}
 and hence, $X\subseteq L_2(\R_+,\rho)$. 
 
@@ -374,14 +377,14 @@ The following proposition, which is a straightforward consequence of Ascoli-Arze
 \begin{proposition}\label{XMdef}
 Fix $M > 0$ and $K=[0,2R] \subset  \mathbb R_+$ for any $R>0$. Define the set
 \begin{align*}
-X_{M,K} = \left\{b \in W^{1,\infty}(K) :
+X_{M,K} = \left\{b \in W^{1}_{\infty}(K) :
  \|b\|_{L_{\infty}(K)} + \|b'\|_{L_{\infty}(K)} \leq M
  \right\}.
 \end{align*}
 The space $X_{M,K}$ is relatively compact with respect to the uniform convergence on $K$.
 \end{proposition}
 \begin{proof}
-Consider $(\widehat a_n)_{n \in \N} \subset X_{M,K}$. The Fundamental Theorem of Calculus (which is applicable for functions in $W^{1,\infty}$, see \cite[Theorem 2.8]{AFP00}) tells us that, for any $r_1,r_2 \in K$ it holds
+Consider $(\widehat a_n)_{n \in \N} \subset X_{M,K}$. The Fundamental Theorem of Calculus (which is applicable for functions in $W^{1}_{\infty}$, see \cite[Theorem 2.8]{AFP00}) tells us that, for any $r_1,r_2 \in K$ it holds
 	\begin{align*}
 		a_n(r_1)-a_n(r_2)=\int_{r_1}^{r_2}a_n'(r)dr.
 	\end{align*}
@@ -403,7 +406,7 @@ Assume $a \in X$. Fix $M > 0$ and $K=[0,2R] \subset  \mathbb R_+$ for $R>0$ as i
 admits a solution.
 \end{proposition}
 \begin{proof}
-In light of the fact that $\inf \mathcal E_N \geq 0$, we can consider a minimizing sequence $(\widehat a_n)_{n \in \N} \subset V$, i.e., it holds $\lim_{n \rightarrow \infty} \mathcal E_N(\widehat a_n) = \inf_{V} \mathcal E_N$. By Proposition \ref{XMdef} there exists a subsequence of $(\widehat a_n)_{n \in \N}$ (which we do not relabel) converging uniformly on $K$ to a function $\widehat a \in V$ (since $V$ is closed). We now show that $\lim_{n \rightarrow \infty} \mathcal E_N(\widehat a_n) = \mathcal  E_N(\widehat a)$, from which it follows  that $\mathcal  E_N$ attains its minimum in $V$. 
+In light of the fact that $\inf \mathcal E_N \geq 0$, we can consider a minimizing sequence $(\widehat a_n)_{n \in \N} \subset V$, i.e., it holds $\lim_{n \rightarrow \infty} \mathcal E_N(\widehat a_n) = \inf_{V} \mathcal E_N$. By Proposition \ref{XMdef} there exists a subsequence of $(\widehat a_n)_{n \in \N}$ (labelled again $(\widehat a_n)_{n \in \N}$) converging uniformly on $K$ to a function $\widehat a \in V$ (since $V$ is closed). We now show that $\lim_{n \rightarrow \infty} \mathcal E_N(\widehat a_n) = \mathcal  E_N(\widehat a)$, from which it follows  that $\mathcal  E_N$ attains its minimum in $V$. 
 %First, notice that, since from Lemma \ref{le-abs} we have that $\rho$ is absolutely continuous w.r.t. the Lebesgue measure $\cl_1\llcorner_{\R_+}$, we have
 %\begin{align*}
 %\|\widehat a_n - \widehat a\|_{L_{\infty}(\supp(\rho))} \leq \|\widehat a_n - \widehat a\|_{L_{\infty}(\R_+,\rho)},

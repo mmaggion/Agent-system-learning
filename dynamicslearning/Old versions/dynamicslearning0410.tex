@@ -1,0 +1,845 @@
+\documentclass[A4paper,11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{enumerate}
+%\usepackage{enumitem}
+\usepackage{paralist}
+\usepackage{graphics} %% add this and next lines if pictures should be in esp format
+\usepackage{float}
+\usepackage{epsfig} %For pictures: screened artwork should be set up with an 85 or 100 line screen
+\usepackage{graphicx}
+\usepackage{epstopdf}%This is to transfer .eps figure to .pdf figure; please compile your paper using PDFLeTex or PDFTeXify.
+%\usepackage[colorlinks=true]{hyperref}
+%\hypersetup{urlcolor=blue, citecolor=red}
+\usepackage{hyperref}
+
+\usepackage{bm}
+\usepackage{color}
+
+%  \textheight=8.2 true in
+%   \textwidth=5.0 true in
+%    \topmargin 30pt
+%     \setcounter{page}{1}
+
+\usepackage[a4paper]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}
+\newtheorem*{main}{Main Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem*{problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{assumption}{Assumption}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\eps}[1]{{#1}_{\varepsilon}}
+
+\newcommand{\vnorm}[1]{\left\| #1 \right\|}
+\newcommand{\scalarp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\redd}[1]{{\color{red}{#1}}}
+
+\newcommand{\Lip}{\text{Lip}}
+\newcommand{\loc}{\text{loc}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cb}{\mathcal{B}}
+\newcommand{\cf}{\mathcal{F}}
+\newcommand{\ch}{\mathcal{H}}
+\newcommand{\cl}{\mathcal{L}}
+\newcommand{\cn}{\mathcal{N}}
+\newcommand{\ct}{\mathcal{T}}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\argmin}{arg\,min}
+\DeclareMathOperator{\Span}{span}
+
+
+\title{Interaction Kernel Learning in Multi-Agent Dynamical System}
+
+\author{M. Bongini, M. Fornasier, M. Hansen, M. Maggioni}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\bigskip
+
+
+\section{New model}
+
+The scope of this note is to support a model which differs from the one proposed at Duke in two fundamental aspects:
+
+1.) In the dynamical systems we are considering, of the type
+\begin{equation}\label{eq-dynamics}
+	\dot x_i=\frac{1}{N}\sum_{j=1}^N a(|x_i-x_j|)\frac{x_j-x_i}{|x_j-x_i|}\,,\quad i=1,\ldots,N\,,
+\end{equation}
+we cannot distinguish between different particles. Hence assuming an asymmetric distribution of initial conditions $(x_1(0),\ldots,x_N(0))\sim\pi_0$, where $\pi_0\neq\bigotimes_{i=1}^N\mu_0$ is perhaps a ``conceptual crime.'' Hence we are forced to consider distributions of the type $\pi_0=\bigotimes_{i=1}^N\mu_0$ leading to the well-established theory of the so-called BBGKY-hierarchy and mean-field limits. This implies that the only relevant underlying dynamics is the transport of the indicated probability $\mu_0$ along the characteristics induced by \eqref{eq-dynamics} (more explanations below).
+
+2.) While at Duke there has been an attempt to parallel the work of Binev, Cohen, Dahmen, DeVore and Temlyakov on piecewise polynomial approximations induced by least squares. It is quite clear to us (as explained below) that the reference infinite dimensional variational problem approximated by the finite dimensional sampling counterpart is {\bf not} a least squares in the strict sense that the theory by BCDDT has to be significantly (?) modified and adapted. This means no straightforward application of it!
+
+\subsection{Mean-field limit}
+
+Let us reformulate \eqref{eq-dynamics} as a discrete instance of a mean-field PDE. For that we introduce the empirical measure $\mu_t^N=\frac{1}{N}\sum_{j=1}^N\delta_{x_i(t)}$ supported on the trajectories of \eqref{eq-dynamics}. We can then rewrite \eqref{eq-dynamics} in the following form
+\begin{align}
+	\dot x_i
+		&=\frac{1}{N}\sum_{j=1}^N a(|x_i-x_j|)\frac{x_j-x_i}{|x_j-x_i|}\notag\\
+		&=\int_{\R^d} a(|x_i-y|)\frac{y-x_i}{|y-x_i|}d\mu_t^N(y)
+			=\bigl(F[a]\ast\mu_t^N\bigr)(x_i)\,,
+\end{align}
+where we introduced the notation
+\[
+	F[a](\xi)=\frac{\xi}{|\xi|}a(|\xi|)\,,\quad\xi\in\R^d\setminus\{0\}\,.
+\]
+Based on this formulation and given a probability measure-valued mapping $\mu:[0,T]\rightarrow P_1(\R^d)$ (with values on the probability with bounded first moments) and one point $x_0\in\R^d$ we define the corresponding trajectory in $\R^d$ as the solution of the IVP
+\begin{equation}\label{eq-trajectory}
+	\left\{\begin{split}
+		\dot x(t)&=\bigl(F[a]\ast\mu\bigr)(x)\,,\\
+		x(0)&=x_0
+	\end{split}\right.
+\end{equation}
+We denote the associated flow map by $\mathcal{T}^\mu_t(x_0):=x(t)$; accordingly, for $\mu_0\in P_c(\R^d)$ (i.e. $\mu_0$ is a compactly supported probability measure on $\R^d$), we define further the fixed point solution $\mu:[0,T]\rightarrow P_c(\R^d)$ of
+\begin{equation}\label{eq-fixed}
+	\mu(t)\equiv \mu_t=\mathcal{T}^\mu_t\#\mu_0
+\end{equation}
+via the push-forward of $\mu_0$ by means of the transport/flow map $\mathcal{T}^\mu_t(x_0)$ defined according to \eqref{eq-trajectory}. It's possible to prove (see Section 8 of Ambrosio, Gigli, Sarar\'e 2008) that $\mu$ is also the solution to the equation
+\begin{equation}\label{eq-pushforward}
+	\int_{\R^d}\varphi(x)d\mu_t(x)-\int_{\R^d}\varphi(x)d\mu_0(x)
+		=\int_0^t \int_{\mathbb R^d} \nabla\varphi(x)\cdot \bigl(F[a]\ast\mu_s\bigr)(x)d\mu_s(x) ds
+\end{equation}
+$\forall\varphi\in C^1(\R^d)$ or \underline{formally} by saying that $\mu_t$ is the weak solution of the PDE
+\begin{equation}\label{eq-mean-field}
+	\frac{\partial\mu_t}{\partial t}=-\nabla\cdot\Bigl[\bigl(F[a]\ast\mu_t\bigr)\mu_t\Bigr]\,.
+\end{equation}
+The equation \eqref{eq-mean-field} is called the mean-field equation associated to \eqref{eq-dynamics} for $N\rightarrow\infty$ and it can be derived also via BBGKY-hierarchy (which clarifies how the indistinguishability of particles results in the evolution of a single probability $\mu_t$).
+
+\subsection{Stability of solution of \eqref{eq-pushforward} and \eqref{eq-mean-field}}
+
+Let us now introduce the space $X$ of admissible potentials $a$ as follows:
+\begin{equation}\label{eq-admissible}
+	X=\bigl\{a:\R_+\rightarrow\R\,|\ F[a]\in\Lip_\loc(\R^d)\bigr \}\,.
+\end{equation}
+We also introduce the $1$-Wasserstein distance on $P_1(\R^d)$,
+\begin{equation}\label{eq-wasserstein}
+	W_1(\mu,\nu)=\sup_{\Lip\varphi\leq 1}\biggl|\int_{\R^d}\varphi d\mu-\int_{\R^d}\varphi d\nu\biggr | \,,
+	\quad\mu,\nu\in P_1(\R^d)\,.
+\end{equation}
+Given $\mu_0,\nu_0\in P_c(\R^d)$ (compact support particularly entails finite first moment), and denoting by $\mu_t$ and $\nu_t$, respectively, the corresponding solutions of \eqref{eq-fixed}--\eqref{eq-mean-field} then it is possible to show that
+\begin{equation}
+	W_1(\mu_t,\nu_t)\leq C(T)W_1(\mu_0,\nu_0)
+\end{equation}
+for all $t\in [0,T]$. Notice that, as $\mu_t^N=\frac{1}{N}\sum_{j=1}^N\delta_{x_i(t)}$ is a particular solution of \eqref{eq-fixed}--\eqref{eq-mean-field}, for $x_1,x_2,\ldots,x_N,\ldots$ i.i. $\mu_0$-distributed points, we  conclude
+\begin{equation}\label{eq-wasserstein-discret}
+	W_1(\mu_t,\mu_t^N)\leq C(T)W_1(\mu_0,\mu_0^N)\stackrel{N\rightarrow\infty}{\longrightarrow}0
+\end{equation}
+for all $t\in [0,T]$.
+
+For future reference we note that the family of measures $\mu=(\mu_t)_t$ is equi-compactly supported, i.e. there exists a compact set $K_\mu$ such that
+\begin{equation}\label{eq-equi-compact}
+	\supp\mu_t\subset K_\mu\quad\text{for all}\quad t\in [0,T]\,.
+\end{equation}
+Moreover, their first moments are bounded.
+
+\subsection{Learning $a$}
+
+We are considering the following ``error function''
+\begin{equation}\label{eq-def-error}
+	\begin{split}
+	E_N(\widehat a)
+		&=\frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl\|\frac{1}{N}\sum_{j=1}^N
+			\bigl(F[\widehat a]-F[a]\bigr)(x_i-x_j)\biggr\|_{\R^d}^2 dt\\
+		&\equiv\frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl\|\frac{1}{N}\sum_{j=1}^N
+			\bigl(\widehat a(|x_i-x_j|)-a(|x_i-x_j|)\bigr)\frac{x_i-x_j}{|x_i-x_j|}\biggr\|_{\R^d}^2 dt\,,
+	\end{split}
+\end{equation}
+and we define a minimizer $\widehat a^N_V$ of it as
+\begin{equation*}
+	\widehat a^N_V=\argmin_{\widehat a\in V}E_N(\widehat a)
+\end{equation*}
+for arbitrary subspaces $V \subset X$.
+
+In order to understand the approximation properties of $\widehat a^N_V$ towards $a$ for $N\rightarrow\infty$ and $V \uparrow X$ we need to rewrite \eqref{eq-def-error} in a proper form:
+\begin{equation}\label{eq-error-2}
+	E_N(\widehat a)
+		=\frac{1}{T}\int_0^T \int_{\R^d} \biggl\|\bigl(F[a]-F[\widehat a]\bigr)\ast\mu_t^N(x)\biggr\|^2_{\R^d} d\mu_t^N(x)\,.
+\end{equation}
+This suggests a very specific counterpart of $E_N$ for $N\rightarrow\infty$ (in the spirit of the mean-field limits) given by
+\begin{equation}\label{eq-error-limit}
+	E(\widehat a)=\frac{1}{T}\int_0^T \int_{\R^d} \biggl\|\bigl(F[\widehat a]-F[a]\bigr)\ast\mu_t(x)\biggr\|^2_{\R^d}d\mu_t(x)\,,
+\end{equation}
+where $\mu_t$ is the solution to the mean-field equations \eqref{eq-fixed}--\eqref{eq-mean-field} associated to \eqref{eq-dynamics}.
+
+Let us look at $E$ more carefully and  consider afterwards certain additional coercivity assumptions on it: Using the obvious estimate $\bigl\|F[a](\xi)\bigr\|_{\R^d}\leq \bigl|a(|\xi|)\bigr|$ we obtain
+\begin{equation*}
+	E(\widehat a)
+		\leq\frac{1}{T}\int_0^T\int_{\R^d}\biggl(\int_{\R^d}\bigl|\widehat a(|x-y|)-a(|x-y|)\bigr|
+			d\mu_t(y)\biggr)^2 d\mu_t(x) dt\,.
+\end{equation*}
+Now observe that for any $\nu\in P(\R^d)$ the following estimate holds
+\begin{equation*}
+	\int_{\R^d}|f(x)|d\nu(x)\leq\biggl(\int_{\R^d}|f(x)|^2 d\nu(x)\biggr)^{1/2}\,.
+\end{equation*}
+Hence we further estimate
+\begin{equation*}
+	E(\widehat a)\leq\frac{1}{T}\int_0^T\int_{\R^d}\int_{\R^d}\bigl|\widehat a(|x-y|)-a(|x-y|)
+		\bigr|^2 d\mu_t(y) d\mu_t(x) dt\,.
+\end{equation*}
+Using distance the map
+\begin{equation*}
+	d:\R^d\times\R^d\rightarrow\R_+\,,\qquad (x,y)\mapsto d(x,y)=|x-y|\,,
+\end{equation*}
+we define by retract the probability measure-valued mapping $\varrho:[0,T]\rightarrow P(\R_+)$
+\begin{equation}\label{eq-rho}
+	\varrho_t=d\# (\mu_t\otimes\mu_t)\,,
+\end{equation}
+which  is explicitly defined via
+\begin{equation}\label{eq-rho-2}
+	\varrho_t(A)=(\mu_t\otimes\mu_t)\bigl(d^{-1}(A)\bigr)
+\end{equation}
+for Borel-sets $A\subset\R_+$.
+
+\begin{lemma}
+	For every open set $A\subset\R_+$ the mapping $t\mapsto\varrho_t(A)$ is lower semi-continuous, wheres for
+	compact $A$ it is upper semi-continuous.
+\end{lemma}
+
+\begin{proof}
+	{\bf Step 1:} As a first step we show that for every given sequence $(t_n)_n$ converging to $t>0$ we have weak
+	convergence $\varrho_{t_n}\rightharpoonup\varrho_t$. For this in turn we first prove weak convergence
+	$\mu_{t_n}\otimes\mu_{t_n}\rightharpoonup\mu_t\otimes\mu_t$.
+	
+	It is a basic property of the space $C(\R^d\times\R^d)$ that it coincides with the inductive tensor product
+	$C(\R^d)\otimes_\varepsilon C(\R^d)$. In particular, functions of the form $h=\sum_{j=1}^J f_j\otimes g_j$ with
+	$f_j,g_j\in C(\R^d)$, $j=1,\ldots,J$, $J\in\N$, are a dense subspace of $C(\R^{2d})$. Thus to prove weak
+	convergence of measures on $\R^{2d}$, we can restrict the considerations to such functions. Due to linearity of the
+	integrals this can be further reduced to simple tensor products $h=f\otimes g$.
+	
+	However, for such simple tensor products we can simply apply Fubini's Theorem and the weak convergence
+	$\mu_{t_n}\rightharpoonup\mu_t$ (which in turn is a consequence of the continuity of $\mu$ w.r.t. the
+	Wasserstein metric $W_1$), and find
+	\[
+		\int_{\R^{2d}}f\otimes g\, d(\mu_{t_n}\otimes\mu_{t_n})
+			=\int_{\R^d}f d\mu_{t_n}\cdot\int_{\R^d}g d\mu_{t_n}
+			\stackrel{n\rightarrow\infty}{\longrightarrow}\int_{\R^d}f d\mu_t\cdot\int_{\R^d}g d\mu_t\,.
+	\]
+	This already implies the claimed weak convergence $\varrho_{t_n}\rightharpoonup\varrho_t$. In detail: Given a
+	function $f\in C(\R_+)$. Then we obtain
+	\begin{align*}
+		\int_{\R_+}f\,d\varrho_{t_n}
+			&=\int_{\R^{2d}}(f\circ d)(x,y)d(\mu_{t_n}\otimes\mu_{t_n})(x,y)\\
+			&\stackrel{n\rightarrow\infty}{\longrightarrow}
+				\int_{\R^{2d}}(f\circ d)(x,y)d(\mu_t\otimes\mu_t)(x,y)
+			=\int_{\R_+}f\,d\varrho_t\,,
+	\end{align*}
+	simply observe that the continuity of $d$ implies continuity of $f\circ d$.
+	
+	{bf Step 2:} The claim now follows from general results for weakly* convergent sequences of Radon measures, see
+	e.g. \cite[Proposition 1.62]{AmbrosiaFuscoPallara}
+\end{proof}
+
+This lemma justifies defining another probability measure $\rho$,
+\begin{equation}\label{eq-rho-4}
+	\rho=\frac{1}{T}\int_0^T\varrho_t dt\,,\qquad\rho(A)=\frac{1}{T}\int_0^T\varrho_t(A)dt\,.
+\end{equation}
+More precisely, it is defined in this way on compact and open sets, and thereafter extended to all Borel-measurable sets. Then $E$ can be estimated from above as follows,
+\begin{equation}\label{eq-rho-3}
+	E(\widehat a)\leq\frac{1}{T}\int_0^T\int_{\R_+}\bigl|\widehat a(s)-a(s)\bigr|^2 d\varrho_t(s) dt
+		\equiv\int_{\R_+} \bigl|\widehat a(s)-a(s)\bigr|^2 d\rho
+		\equiv\|\widehat a-a\|^2_{L_2(\R_+,\rho)}\,.
+\end{equation}
+
+Equation \eqref{eq-rho-3} suggests an additional relevant condition to ensure that $a$ is actually the unique minimizer of $E$ on $X\cap L_2(\R_+,\rho)$. We assume that there exists a constant $c>0$ such that
+\begin{equation}\label{eq-coercive}
+	E(\widehat a)\geq c\|\widehat a-a\|^2_{L_2(\R_+,\rho)}\,.
+\end{equation}
+Since $E(a)=0$ and $E(\widehat a)\geq 0$ for all $\widehat a\in X$ then $a$ is a minimizer of $E$. Clearly, if $a\in X\cap L_2(\R_+,\rho)$ and $E(\widehat a)=0$ for some $\widehat a\in L_2(\R_+,\rho)$, by \eqref{eq-coercive} we obtain that $\widehat a=a$ in $L_2(\R_+,\rho)$.
+
+\subsection{Properties of $\rho$}
+
+Before we proceed to our main result, we shall have a closer look at the measures $\varrho_t$ and $\rho$.
+
+\begin{lemma}\label{lemma-AC-1}
+	Let $\mu_0$ be absolutely continuous w.r.t. the $d$-dimensional Lebesgue measure $\cl^d$. Then for every
+	$t\in [0,T]$ also the measures $\mu_t$ are absolutely continuous w.r.t. $\cl^d$.
+\end{lemma}
+
+\begin{proof}
+	{\bf Step 1:} As a first step, we note that the transport map $\ct^\mu_t$ is locally Bi-Lipschitz, i.e. it is a bijective
+	locally Lipschitz map, and its inverse is locally Lipschitz as well. Bijectivity is a consequence of the uniqueness of
+	the solution to the corresponding ODE.
+	
+	Note that with $a$ being bounded on $\R_+$ also $F[a]$ is bounded on $\R^d$, which in turn yields boundedness
+	of $F[a]\ast\mu_t$ (uniformly in $t$; see \cite[Lemma 6.4]{FornasierSolombrino}). Moreover, for fixed $t$ this
+	function is locally Lipschitz continuous, thus $g(t,x)=(F[a]\ast\mu_t)(x)$ is a Carath\'eodory function. In particular,
+	we have
+	\[
+		|g(t,x_1)-g(t,x_2)|\leq C_{a,\mu}|x_1-x_2|
+	\]
+	for almost every $t$ and $x_1,x_2$ with $|x_i|\leq c_{r,a,T}=(r+T\|a\|_\infty)\exp(T\|a\|_\infty)$. This ultimately
+	implies the stability estimate
+	\[
+		\bigl|\ct^\mu_t x_0-\ct^\mu_t x_1\bigr|
+			\leq\exp\bigl(TC_{a,\mu}\bigr)|x_0-x_1|\,,\qquad |x_i|\leq r\,,\quad i=0,1\,,
+	\]
+	shown e.g. in \cite[Lemma 6.3]{FornasierSolombrino}, i.e. $\ct^\mu_t$ is locally Lipschitz.
+	
+	In view of the uniqueness of the solutions to the ODE, it is furthermore clear that the inverse of $\ct^\mu_{t_0}$ is
+	given by the transport map associated to the backward ODE
+	\[
+		\dot x(t)=\bigl(F[a]\ast\mu\bigr)(x)\,,\quad x(t_0)=x_0\,.
+	\]
+	However, this problem in turn can be cast into the form of an IVP simply by putting $\nu_t=\mu_{t_0-t}$. Then
+	$y(t)=x(t_0-t)$ solves
+	\[
+		\dot y(t)=-\bigl(F[a]\ast\nu\bigr)(x)\,,\quad y(0)=x(t_0)\,.
+	\]
+	The corresponding stability estimate for this problem then yields that the inverse of $\ct^\mu_t$ is indeed
+	locally Lipschitz (with the same local constants).
+	
+	{\bf Step 2:} Now let a Lebesgue null-set $A\subset\R^d$ be given. Put $B=(\ct^\mu_0)^{-1}(A)=\ct^\mu_0(A)$,
+	the (pre-)image of $A$ under the transport map $\ct^\mu_t$. The claim now follows from showing $\cl^d(B)=0$,
+	as then by assumption also $\mu_0(B)=0$, which by definition yields
+	\[
+		0=\mu_0(B)=\mu_0\bigl((\ct^\mu_0)^{-1}(A)\bigr)\equiv\mu_t(A)\,.
+	\]
+	Moreover, we can reduce this further to consider only $B\cap K_\mu$ with $K_\mu$ from
+	\eqref{eq-equi-compact}, since $\mu_t(B\setminus K_\mu)=0$ for all $t$. Hence we no longer need to distinguish
+	between local and global Lipschitz maps.
+	
+	It thus remains to show that the image of a Lebesgue null-set under a Lipschitz map is again a null-set. To see this,
+	recall that a measurable set $A$ has Lebesgue meaure zero if, and only if for every $\varepsilon>0$ there exists a
+	family of balls $B_1,B_2,\ldots$ (or, equivalently, with cubes) such that
+	\[
+		A\subset\bigcup_n B_n\qquad\text{and}\qquad\sum_n\cl^d(B_n)<\varepsilon\,.
+	\]
+	Let $L$ be the Lipschitz constant of $\ct^\mu_t$ on $K$, and $d(B_n)$ the diameter. Then clearly the image of
+	$B_n$ under $\ct^\mu_t$ is contained in a ball of diameter at most $Ld(B_n)$. Denote those balls by
+	$\widetilde B_n$.
+	Then it immediately follows
+	\[
+		\ct^\mu_t(A)\subset\bigcup_n\widetilde B_n\qquad\text{as well as}\qquad
+		\sum_n\cl^d(\widetilde B_n)=L^d\sum_n\cl^d(B_n)<L^d\varepsilon\,.
+	\]
+	Thus we have found a cover for $\ct^\mu_t(A)$ with the required property for $L^d\varepsilon$, which finally
+	yields $\cl^d(\ct^\mu_t(A))=0$.
+\end{proof}
+
+\begin{lemma}
+	Let $\mu_0$ be absolutely continuous w.r.t. $\cl^d$. Then for all $t\in [0,T]$, the measure $\varrho_t$ is absolutely
+	continuous w.r.t. $\cl^1|_{\R_+}$, and this remains true for the measure $\rho$.
+\end{lemma}
+
+\begin{proof}
+	Fix $t\in [0,T]$. By Lemma \ref{lemma-AC-1} we already know that $\mu_t$ is absolutely continuous w.r.t.
+	$\cl^d$. This immediately implies that $\mu_t\otimes\mu_t$ is absolutely continuous w.r.t. $\cl^{2d}$. It hence
+	remains to show that $d\#\cl^{2d}$ is absolutely continuous w.r.t. $\cl^1|_{\R_+}$.
+	
+	Let $A\subset\R_+$ be a Lebesgue null-set, and put $B=d^{-1}(A)\subset\R^{2d}$. Moreover, we denote
+	$B_x=\{y\in\R^d:|x-y|\in A\}$. Then clearly $B_{x+z}=z+B_x$. Moreover, using Fubin's Theorem we obtain
+	\[
+		\cl^{2d}(B)=\int_{\R^d}\cl^d(B_x)d\cl^d(x)\,.
+	\]
+	It thus remains $\cl^d(B_x)=0$ for one (and thus for all, due to translation invariance of $\cl^d$) $x\in\R^d$.
+	However, to calculate $\cl^d(B_0)$, we can transform to polar coordinates, and once more using Fubini's Theorem
+	we obtain
+	\[
+		\cl^d(B_x)=\int_{\R^d}\chi_{B_0}(y)d\cl^d(y)
+			=\int_{S^d}\int_{\R_+}\chi_A(r)dr d\omega=\Omega_d\cl^1(A)=0\,,
+	\]
+	where $\Omega_d$ is the surface measure of the unit sphere $S_d$. This proves the absolute continuity of
+	$\varrho_t$, since
+	\[
+		\cl^1(A)=0\Longrightarrow\cl^{2d}(d^{-1}(A))
+			\Longrightarrow (\mu_t\otimes\mu_t)(d^{-1}(A))=0\iff\varrho_t(A)=0\,.
+	\]
+	The absolute continuity of $\rho$ now follows immediately from the one of $\varrho_t$ for every $t$ and its
+	definition as an integral average.
+\end{proof}
+
+
+\begin{lemma}
+	The measure $\rho$ has compact support.
+\end{lemma}
+
+\begin{proof}
+	The supports of the measures $\varrho_t$ are subsets of $B=d(K_\mu,K_\mu)=\{|x-y|:x,y\in K_\mu\}$, where
+	$K_\mu$ is the set introduced in \eqref{eq-equi-compact}.
+	Due to continuity of $d$ this set $B$ is again a compact subset of $\R_+$. We then immediately obtain
+	$\supp\rho\subset B$.
+\end{proof}
+
+\begin{remark}
+	While absolute continuity of $\mu_0$ implies the same for $\rho$, the situation is different for purely atomic
+	measures $\mu_0$. On the one hand, also $\mu_t$ then is purely atomic for every $t$, and this remains true for
+	$\varrho_t$. However, due to the averaging involved in the definition of $\rho$ it generally cannot be atomic. For
+	example, we obtain
+	\[
+		\frac{1}{T}\int_0^T\delta_t dt=\frac{1}{T}\cl^1|_{[0,T]}\,,
+	\]
+	as becomes immediately clear when integrating a continuous function against those measures.
+\end{remark}
+
+
+\section{The main result}
+
+
+\begin{theorem}\label{thm}
+	Assume $a\in X\cap L_2(\R_+,\rho)$ as well as
+	\begin{equation}\label{eq-a-bounded}
+		a\in W^{1,p}_{\text{loc}}(\R_+)
+	\end{equation}
+	for some $1\leq p\leq\infty$.
+	Further assume that $E$ satisfies \eqref{eq-coercive}. Let $x_1,x_2,\ldots,x_N,\ldots$ i.i. $\mu_0$-distributed for
+	some $\mu_0\in P_c(\R^d)$, and define a sequence of finite-dimensional subspaces $V_M\subset L_2(\R_+,\rho)$
+	for $M=2,3,\ldots$ such that for all $b\in X\cap L_2(\R_+,\rho)$ with $\|b\|_{1,p}\leq\|a\|_{1,p}$
+	\begin{equation*}
+		\exists b_M\in V_M, \|b_M\|_{1,p}\leq\|a\|_{1,p}\quad\text{s.t.}\quad b_M\rightarrow b\,,
+	\end{equation*}
+	with local convergence in $W^{1,p}$.
+	
+	We define
+	\begin{equation}\label{eq-error-mod}
+		E_N(\widehat a)_p=
+		\begin{cases}
+			\frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\bigl\|\frac{1}{N}\sum_{j=1}^N
+				\bigl(\widehat a(|x_i-x_j|)-a(|x_i-x_j|)\bigr)\frac{x_i-x_j}{|x_i-x_j|}\bigr\|^2 dt\,,\\
+			\qquad\text{if }\widehat a\in V_N, \|\widehat a\|_{1,p}\leq\|a\|_{1,p}\,,\\
+			+\infty\,,\\
+			\qquad\text{if }\widehat a \in L_2(\R_+,\rho),
+				\text{but $\widehat a$ does not satisfy the conditions above.}
+		\end{cases}
+	\end{equation}
+	Accordingly, we define
+	\begin{equation}\label{eq-error-mod-2}
+		\widehat a_N=\argmin_{\widehat a\in  L_2(\R_+,\rho)}E_N(\widehat a)_p
+	\end{equation}
+	(notice that $\widehat a_N\in V_N$ and $\|\widehat a_N\|_{1,p}\leq\|a\|_{1,p}$ by definition).
+	
+	Then the sequence $(\widehat a_{N})_N$ converges uniformly to some continuous function $\overline a$ with
+	$E(\overline a)=0$. If we additionally assume the coercivity condition \eqref{eq-coercive}, then we have
+	$\overline a=a$. Furthermore, the sequence $(\widehat a_N')_N$ has a subsequence weakly converging in
+	$L_p(\R_+,\rho)$ to $\overline a'$ for every $1<p<\infty$.
+\end{theorem}
+
+We start with a technical lemma.
+
+\begin{lemma}\label{lemma-semicontinuous-1}
+	Let $(a_N)_N\subset L_2(\R_+,\rho)$ be a sequence of continuous, weakly differentiable functions such that for all
+	$N$
+	\[
+		\|a_N\|_\infty\leq C_0\qquad\text{and}\qquad\|a_N'\|_{L_\infty(\R_+)}\leq C_1\,.
+	\]	
+	Then there exists a uniformly convergent subsequence, denoted by $(a_{N_k})_{k \in \mathbb N}$, with limit 
+	$\overline a$, and it holds
+	\begin{equation}\label{eq-lower-semi}
+		\liminf_{k\rightarrow\infty}E_{N_k}(a_{N_k})\geq E(\overline a)\,.
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	{\bf Step 1:} By assumption, the functions $a_N$ are uniformly bounded. We shall prove that they are also
+	equi-continuous, then by the Arzel\`a-Ascoli Theorem there exists a subsequence uniformly converging to some
+	continuous function $\overline a$.
+	
+	To see the equi-continuity we apply the Fundamental Theorem of Calculus (which is applicable for functions from
+	$W^{1,p}$, see \cite[Theorem 2.8]{AmbrosioFuscoPallara}) to obtain
+	\[
+		a_N(x)-a_N(y)=\int_{[x,y]}a_N'(t)dt\,.
+	\]
+	This implies
+	\[
+		\bigl|a_N(x)-a_N(y)\bigr|\leq\int_{[x,y]}|a_N'(t)|dt
+			\leq |x-y|^{1/p'}\|a_N'\|_{L_p(\R_+)}\,.
+	\]
+	In particular, the functions $a_N$ all are Lipschitz continuous with Lipschitz constant uniformly bounded by
+	$C_1$, which in turn implies equi-continuity.
+	
+	{\bf Step 2:} We notice that $W_1(\mu_t,\mu_t^N)\rightarrow 0$ for $N\rightarrow\infty$
+	(see \eqref{eq-wasserstein-discret}) particularly implies weak convergence of the sequence of measures
+	$(\mu_t^N)_N$ towards $\mu_t$ for every $t\in [0,T]$. Thus applying the result from {\it arXiv-article}, we obtain
+	\begin{align*}
+		\liminf_k\frac{1}{T}\int_0^T\int_{\R^d}
+			&\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x)\Bigr\|^2 d\mu_t^{N_k}(x) dt\\
+			&\geq\frac{1}{T}\int_0^T \int_{\R^d} \liminf_{\substack{k\rightarrow\infty,\\x'\rightarrow x}}
+				\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x')\Bigr\|^2 d\mu_t(x) dt\\
+			&=\frac{1}{T}\int_0^T\int_{\R^d}\liminf_{k\rightarrow\infty}
+				\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x)\Bigr\|^2 d\mu_t(x) dt\,,\\
+	\end{align*}
+	where the last line is due to continuity of
+	\begin{equation*}
+		x'\mapsto\Bigl\|\bigl(F[a_{N_k}]-F[a]\bigr)\ast\mu_t^{N_k}(x')\Bigr\|\,.
+	\end{equation*}
+	It remains to deal with
+	\begin{equation*}
+		\liminf_{k\rightarrow\infty}
+			\Biggl\|\int_{\R^d}\bigl(F[a_{N_k}]-F[a]\bigr)(x-y)d\mu_t^{N_k}(y)\Biggr\|^2\,.
+	\end{equation*}
+	
+	{\bf Step 3:} Combining the uniform convergence of $a_{N_k}$ and the weak convergence of
+	$\mu_t^{N_k}$ we see that the limit $k\rightarrow\infty$ exists: For $k\geq k_0(\delta)$ we have
+	\begin{equation*}
+		\|F[a_{N_k}]-F[\overline a]\|_{L_\infty(\R^d)}
+			=\|a_{N_k}-\overline a\|_{L_\infty(\R_+)}\leq\delta/2\,,
+	\end{equation*}
+	as well as
+	\begin{equation*}
+		\biggl\|\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^{N_k}_t(y)
+			-\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\leq\delta/2\,,
+	\end{equation*}
+	note that continuity of $a$ and $\overline a$ implies continuity of
+	$F[a]$ and $F[\overline a]$. Hence for $k\geq k_0(\delta)$ we obtain
+	\begin{align*}
+		\Biggl|
+			&\biggl\|\int_{\R^d}\bigl(F[a_{N_k}]-F[a]\bigr)(x-y)d\mu_t^{N_k}(y)\biggr\|
+				-\biggl\|\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\Biggr|\\
+			&\leq\biggl\|\int_{\R^d}\bigl(F[a_{N_k}]-F[a]\bigr)(x-y)d\mu^{N_k}_t(y)
+					-\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+			&\leq\Biggl\|\int_{\R^d}
+				\bigl(F[a_{N_k}]-F[\overline a]\bigr)(x-y)d\mu_t^{N_k}(y)\Biggr\|\\
+			&\qquad +\biggl\|\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^{N_k}_t(y)
+					-\int_{\R^d}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+			&\leq\int_{\R^d}\frac{\delta}{2}d\mu_t^{N_k}(y)+\frac{\delta}{2}=\delta\,,
+	\end{align*}
+	which implies
+	\begin{equation*}
+		\lim_{k\rightarrow\infty}\Biggl\|\int_{\R^d}\bigl(F[a_{N_k}]-F[a]\bigr)(x-y)d\mu_t^{N_k}(y)\Biggr\|
+			=\Biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|\,.
+	\end{equation*}
+	As this holds for every (fixed) $t$, this implies the claim.
+\end{proof}
+
+\begin{lemma}\label{lemma-semicontinuous-2a}
+	Let $(a_N)_N\subset L_2(\R_+,\rho)$ be a sequence of continuous functions which converges pointwise
+	$\cl^1$-almost everywhere to some function $\overline a$. Then for every $\varepsilon>0$ there exist sets
+	$K^t_\varepsilon\subset\R^d$, $t\in [0,T]$, such that $\mu_t(\R^d\setminus K^t_\varepsilon)\leq\varepsilon$ and
+	\begin{equation}\label{eq-lower-semi-2}
+		\begin{split}
+		\liminf_{N\rightarrow\infty}&E_N(a_N)\\
+			&\geq\frac{1}{T}\int_0^T\int_{\R^d}\Biggl(\Biggl\|\int_{K^t_\varepsilon}
+				\bigl(F[\bar a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|
+				-4\varepsilon\|a\|_\infty\Biggr )^2 d\mu_t(x)\,.
+		\end{split}
+	\end{equation}
+\end{lemma}
+
+\begin{proof}
+	{\bf Step 1:}
+	Step 2 of the proof of Lemma \ref{lemma-semicontinuous-1} can be re-used here.
+	
+	Since $\supp\mu_t^N\subset A$ (compact) uniformly w.r.t. $N$ and $t$ {\it (reference)} by Egorov's
+	Theorem for all $\varepsilon>0$ and all $t>0$ there exist measurable sets $K_\varepsilon^t\subset A$ with
+	$\mu_t(A\setminus K_\varepsilon^t)\leq\varepsilon$ such that
+	$F[\widehat a_N]\rightrightarrows F[\overline a]$ uniformly on $K_\varepsilon^t$. Splitting the integration
+	domain accordingly and using triangle inequality we find
+	\begin{align*}
+		\Biggl\|
+			&\int_{\R^d}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+			&=\Biggl\|\int_{K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)
+				+\int_{A\setminus K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+			&\geq\underbrace{\Biggl\|\int_{K_\varepsilon^t}
+				\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|}_{I_N}
+				-\underbrace{\Biggl\|\int_{A\setminus K_\varepsilon^t}
+					\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|}_{II_N}\,.
+	\end{align*}
+	
+	For the term $I_N$ we further find by combining the uniform convergence of $a_N$ on
+	$K_\varepsilon^t$ and the weak convergence of $\mu_t^N$ that the limit $N\rightarrow\infty$ exists: For
+	$N\geq N_0(\delta)$ we have
+	\begin{equation*}
+		\|F[a_N]-F[\overline a]\|
+			=\|a_N-\overline a\|_{L_\infty(K_\varepsilon^t)}\leq\delta/2\,,
+	\end{equation*}
+	as well as
+	\begin{equation*}
+		\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^N_t(y)
+			-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\leq\delta/2\,,
+	\end{equation*}
+	note that continuity of $a$ and $\overline a$ (the latter holds only on $K_\varepsilon^t$!) implies continuity of
+	$F[a]$ and $F[\overline a]$. Hence for $N\geq N_0(\delta)$ we obtain
+	\begin{align*}
+		\Biggl|
+			&I-\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\Biggr|\\
+			&\leq\biggl\|\int_{K_\varepsilon^t}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu^N_t(y)
+					-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+			&\leq\Biggl\|\int_{K_\varepsilon^t}
+				\bigl(F[a_N]-F[\overline a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|\\
+			&\qquad +\biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu^N_t(y)
+					-\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\biggr\|\\
+			&\leq\int_{K_\varepsilon^t}\frac{\delta}{2}d\mu_t^N(y)+\frac{\delta}{2}\leq\delta\,,
+	\end{align*}
+	which implies
+	\begin{equation*}
+		\lim_{N\rightarrow\infty}I_N
+			=\Biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|\,.
+	\end{equation*}
+	For the term $II_N$ we first obtain
+	\begin{equation*}
+		II_N\leq 2\|a\|_\infty\int_{A\setminus K_\varepsilon^t}d\mu_t^N(y)
+			\leq 2\|a\|_\infty\int_{\R^d}\psi_\varepsilon(y)d\mu_t^N(y)\,,
+	\end{equation*}
+	where $\psi_\varepsilon$ is a bounded continuous (bump) function approximating
+	$\chi_{A\setminus K_\varepsilon^t}$ in $L_1(\mu_t)$ from above, i.e.
+	$\psi_\varepsilon\geq\chi_{A\setminus K_\varepsilon^t}$ and
+	\begin{equation*}
+		\|\psi_\varepsilon-\chi_{A\setminus K_\varepsilon^t}\|_{L_1(\mu_t)}\leq\varepsilon\,.
+	\end{equation*}
+	But then the weak convergence of $\mu_t^N$ implies
+	\begin{equation*}
+		\int_{\R^d}\psi_\varepsilon(y)d\mu_t^N(y)
+			\longrightarrow\int_{\R^d}\psi_\varepsilon(y)d\mu_t(y)\leq 2\varepsilon
+	\end{equation*}
+	by choice of $\psi_\varepsilon$ and $K_\varepsilon^t$. Put together, we thus have
+	\begin{equation*}
+		\limsup_{N\rightarrow\infty}II_N\leq 4\|a\|_\infty\varepsilon\,.
+	\end{equation*}
+	In turn, this yields
+	\begin{equation*}
+		\liminf_N\Biggl\|\int_{\R^d}\bigl(F[a_N]-F[a]\bigr)(x-y)d\mu_t^N(y)\Biggr\|
+			\geq\Biggl\|\int_{K_\varepsilon^t}\bigl(F[\overline a]-F[a]\bigr)(x-y)d\mu_t(y)\Biggr\|
+				-4\|a\|_\infty\varepsilon\,,
+	\end{equation*}
+	so far for every choice of $\varepsilon>0$ and $t>0$. Integrating over $t$ then yields \eqref{eq-lower-semi-2}.
+\end{proof}
+
+
+\begin{lemma}\label{lemma-semicontinuous-2}
+	Let $(a_N)_N\subset L_2(\R_+,\rho)$ be a sequence of continuous, weakly differentiable functions such that for all
+	$N$
+	\[
+		\|a_N\|_{W^1_1(\R_+,\rho)}\leq C_0\,,
+	\]
+	and let $(a_N)_N$ be uniformly bounded at a point.
+	
+	Then there exists a subsequence $(a_{N_k})_k$ which converges $\cl^1$-a.e.
+\end{lemma}
+
+\begin{proof}
+	If we denote by $\phi_t$ the Radon-Nicodym derivative of $\varrho_t$ w.r.t. $\cl^1$, for arbitrary fixed
+	$t\in [0,T]$ we can apply Helly's Selection Theorem to the functions $(a_N\phi_t)_N$. Then there exists a
+	subsequence $(a_{N_k}\phi_t)_k$ which converges pointwise $\cl^1$-a.e. to some
+	function $\overline a\phi_t$ of bounded variation.
+\end{proof}
+
+\begin{proof}[\normalfont\bf Proof of Theorem \ref{thm}]
+	By the respective construction of the functionals $E_N$, the sequence of minimizers
+	$(\widehat a_N)_N$ satisfies the assumptions of one of the above lemmas. Hence it has a pointwise $\rho$-a.e. or
+	uniformly, respectively, convergent subsequence with limit function $\overline a$. We wish to show that
+	$\overline a$ is a minimizer of $E$, then by \eqref{eq-coercive} we have $\overline a=a$. Since in this way for
+	every subsequence we can extract a subsubsequence converging to the same limit function $a$, we can infer that
+	the entire sequence converges to $a$. For simplicity we will only treat the case $p=\infty$; the case $1<p<\infty$
+	can be reduced to the proof for $p=1$ in view of $W^1_p\hookrightarrow W^1_1$; finally, the case $p=1$ uses the
+	same arguments as $p=\infty$, with Lemma \ref{lemma-semicontinuous-1} replaced by Lemmas
+	\ref{lemma-semicontinuous-2a} and \ref{lemma-semicontinuous-2}.
+	
+	Now let $b\in X\cap L_2(\R_+,\rho)$ with $\|b\|_{1,\infty}\leq\|a\|_{1,\infty}$ be given. By assumption there exists
+	$b_N\in V_N$ with $\|b_N\|_{1,\infty}\leq\|b\|_{1,\infty}\leq\|a\|_\infty$ and $b_N\rightarrow b$. Hence, by
+	the same arguments as in the proof of Lemma \ref{lemma-semicontinuous-1},
+	combining  the uniform convergence of a subsequence $b_{N_k}$ and the weak convergence of $\mu_t^N$, we
+	obtain
+	\begin{equation*}
+		E(b)=\lim_{k\rightarrow\infty}E_{N_k}(b_{N_k}).
+	\end{equation*}
+	Now, we can argue
+	\begin{equation*}
+		E(b)=\lim_{N\rightarrow\infty}E_N(b_N)
+			= \lim_{k \rightarrow\infty}E_{N_k}(b_{N_k})
+			\geq\lim_{k \rightarrow\infty}E_{N_k}(\widehat a_{N_k})
+			\geq E(\overline a)\,.
+	\end{equation*}
+	The first inequality is due to optimality of $\widehat a_{N_k}$ and the second is due to Lemma
+	\ref{lemma-semicontinuous-1}. We therefore can conclude the fundamental estimate
+	\[
+		E(b)\geq E(\overline a)\,,
+	\]
+	which particularly applies to $b=a\in X\cap L_2(\R_+,\rho)$. This finally implies
+	\begin{equation*}
+		0=E(a)\geq E(\overline a)\geq 0\Longrightarrow E(\overline a)=0.
+	\end{equation*}
+	In case \eqref{eq-coercive} holds, yields $\overline a=a$, that condition immediately further implies
+	$\overline a=a$.
+\end{proof}
+
+\section{DeVore et.al.}
+
+The setting: $X\subset\R^d$ bounded domain, $Y=\R$, and $Z=X\times Y$. Moreover, $\rho$ is an unknown probability measure on $Z$, and $\rho_X$ the corresponding marginal measure on $X$, i.e. $\rho_X(A)=\rho(A\times Y)$. For $f\in L_2(X,\rho_X)$, $f:X\rightarrow Y$, define the functional
+\[
+	\mathcal{E}(f)=\int_Z (y-f(x))^2 d\rho\,.
+\]
+Objective: Find the minimizer of $\mathcal{E}$, or equivalently, minimize $\|f-f_\rho\|_{L_2(\rho)}$.
+
+Data: Independent samples $(x_j,y_j)$ with distribution $\rho$.
+
+Approach: For a given subspace $V$ define $f_V$ as the minimizer of the approximate (empirical) functional
+\[
+	\mathcal{E}_{\mathbf{z}}(f)=\frac{1}{m}\sum_{j=1}^m(y_j-f(x_j))^2\,,
+\]
+which clearly can be rewritten as integration against the empirical measure
+$\rho_m=\frac{1}{m}\sum_{j=1}^m\delta_{x_j}$, with the identification $y_j=f_\rho(x_j)$.
+
+\vspace{1cm}
+
+i) In our setting, together with the coercivity assumption, we know that the only minimizer of our functional $E$ is the function $a$. In that case, minimizing $E$ is equivalent to minimizing $\|\cdot-a\|_{L_2(\rho)}$, in the sense that they have the same unique global minimizer (at least $\rho$-a.e.) (which coincides with the exact solution of our learning problem).
+
+ii) In the DeVore-Article, while the measure $\rho$ is not known, it is assumed that one can obtain independent samples. For us, we may sample the initial values according to $\mu_0$, which in turn leads to independent samples of $\mu_t$, but do we get also samples for our measure $\rho$ that way?
+
+\pagebreak
+
+\section{Analysis}
+
+We start with an estimate for the sampling error, i.e. the error contribution incurred on a fixed partition $\Lambda$ due to inexact projections.
+
+\begin{theorem}[Sampling error]
+	Let $\Lambda$ be a fixed partition. Then
+	\[
+		P\bigl(\|P_\Lambda a-a^N_M\|_{L_2(\rho)}>\eta\bigr)
+			\leq 4M\exp\Bigl(-\frac{3N^2\eta^2}{256MB_a^2}\Bigr)
+	\]
+	where $a^N_M=\argmin_{b\in V_M}E_N(b)$, $M=\#\Lambda$ and $B_a=\|a\|_\infty$.
+\end{theorem}
+
+\begin{proof}
+	We follow the proof of DeVore et. al.
+	
+	{\bf Step 1:} By definition we can write
+	\[
+		\|P_\Lambda a-a^N_M\|^2_{L_2(\rho)}
+			=\sum_{I\in\Lambda}|c_I-c^N_I|^2\rho(I)\,.
+	\]
+	With the function $a$, also the coefficients $c_I$ and $c_{I,N}$ are always bounded ({\bf add details}). Therefore,
+	if we split the partition into
+	\[
+		\Lambda^-=\Bigl\{I\in\Lambda:\rho(I)\leq\frac{\eta^2}{8NM^2}\Bigr\}
+	\]
+	and $\Lambda^+=\Lambda\setminus\Lambda^-$. Then we first obtain
+	\[
+		\sum_{I\in\Lambda^-}|c_I-c^N_I|^2\leq\frac{\eta^2}{2}
+	\]
+	(i.e. with probability $1$). To prove the theorem it is hence sufficient to show
+	\[
+		P\Bigl(|c_I-c^N_I|^2\geq\frac{\eta^2}{2M\rho(I)}\Bigr)
+			\leq 4\exp\Bigl(-\frac{3N^2\eta^2}{256MB_a^2}\Bigr)\,,
+	\]
+	because of the union bound and $\#\Lambda^+\leq\#\Lambda=M$. To see this estimate, we write
+	$\rho^N(I)=(1+\beta_I)\rho(I)$, so that in case $|\beta_I|\leq\frac{1}{2}$ we find
+	\begin{align*}
+		|c_I-c^N_I|
+			&=\Bigl|\frac{\alpha_I}{\rho_I}-\frac{\alpha^N_I}{\rho^N_I}\Bigr|
+				=\frac{1}{\rho(I)(1+\beta_I)}\bigl|\alpha^N_I-\alpha_I-\beta_I\alpha_I|\\
+			&\leq\frac{2}{\rho(I)}\bigl(|\alpha^N_I-\alpha_I|+|\alpha_I\beta_I|\bigr)\,.
+	\end{align*}
+	If we further require
+	\[
+		|\alpha_I-\alpha^N_I|\leq\frac{\eta\sqrt{\rho(I)}}{4\sqrt{2M}}
+	\]
+	as well as
+	\[
+		|\rho^N(I)-\rho(I)|\leq\min\Bigl(\frac{1}{2}\rho(I),\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|}\Bigr)
+	\]
+	we conclude (note $\alpha_I\beta_I=\frac{\alpha_I}{\rho(I)}(\rho^N(I)-\rho(I))$)
+	\begin{align*}
+		|c_I-c^N_I|
+			&\leq\frac{2}{\rho(I)}\bigl(|\alpha^N_I-\alpha_I|+|\alpha_I\beta_I|\bigr)\\
+			&\leq\frac{2}{\rho(I)}\frac{\eta\sqrt{\rho(I)}}{4\sqrt{2M}}
+				+\frac{2}{\rho(I)}\frac{|\alpha_I|}{\rho(I)}\rho^N(I)-\rho(I)|\\
+			&\leq\frac{\eta}{2\sqrt{2M\rho(I)}}
+				+\min\Bigl(\frac{|\alpha_I|}{\rho(I)},\frac{\eta}{2\sqrt{2M\rho(I)}}\Bigr)
+				\leq\frac{\eta}{\sqrt{2M\rho(I)}}\,.
+	\end{align*}
+	We thus obtain
+	\begin{align}
+		P\Bigl(|
+			&c^N_I-c_I|^2\geq\frac{\eta^2}{2M\rho(I)}\Bigr)\notag\\
+			\label{eq-prob-1}
+			&\leq P\Bigl(|\alpha^N_I-\alpha_I|\geq\frac{\eta\sqrt{\rho(I)}}{4\sqrt{2N}}\Bigr)
+				+P\Bigl(|\rho^N(I)-\rho(I)|\geq
+					\min\bigl(\frac{1}{2}\rho(I),\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|}\bigr)\Bigr)\,.
+	\end{align}
+	
+	{\bf Step 2:}
+	These probabilities we now estimate with the help of Bernstein's inequality. We recall, if $\zeta_i$ are $m$
+	independent realizations of a bounded random variable $\zeta$ with $|\zeta(\omega)-\mathbb{E}(\zeta)|\leq B$ and
+	$\text{Var}(\zeta)=\sigma^2$, then for every $\varepsilon>0$ it follows
+	\[
+		P\biggl(\Bigl|\frac{1}{m}\sum_{i=1}^m\zeta_i-\mathbb{E}(\zeta)\Bigr|\geq\varepsilon\biggr)
+			\leq 2e^{-\frac{m\varepsilon^2}{2(\sigma^2+B\varepsilon/3)}}\,.
+	\]
+	{\bf needs reference}
+	
+	Since we have no direct access to $\rho$-distributed random variables, we have to rely on random variables
+	distributed according to the initial distribution $\mu_0$. We therefore write
+	\begin{align*}
+		\rho(I)
+			&-\rho^N(I)\\
+			&=\frac{1}{T}\int_0^T\int_{\R^{2d}}\chi_{d^{-1}(I)}d(\mu_t\otimes\mu_t)dt
+				-\frac{1}{N^2}\sum_{i,j}\frac{1}{T}\int_0^T\chi_I(|\ct^\mu_t x_i-\ct^\mu_t x_j|)dt\\
+			&=\frac{1}{T}\int_0^T\int_{\R^{2d}}\chi_{\Phi_t^{-1}(I)}(x,y)d(\mu_0\otimes\mu_0)(x,y)\,dt
+						-\frac{1}{N^2}\sum_{i,j}\frac{1}{T}\int_0^T\chi_{\Phi_t^{-1}(I)}(x_i,x_j)dt\\
+			&=\int_{\R^{2d}}\frac{1}{T}\int_0^T\chi_{\Phi_t^{-1}(I)}(x,y)dt\,d(\mu_0\otimes\mu_0)
+						-\frac{1}{N^2}\sum_{i,j}\frac{1}{T}\int_0^T\chi_{\Phi_t^{-1}(I)}(x_i,x_j)dt\,,
+	\end{align*}
+	where $\Phi=(\ct^\mu_t\otimes\ct^\mu_t)\circ d$, i.e. $\Phi_t(x,y)=|\ct^\mu_t x-\ct^\mu_t y|$. Therein, in the last
+	line the inner integral has to be interpreted as a Bochner-integral. Hence defining
+	\[
+		\zeta=\frac{1}{T}\int_0^T\chi_{\Phi_t^{-1}(I)}dt\,,
+	\]
+	again in the sense of a Bochner integral in $L_1(\R^{2d},\mu_0\otimes\mu_0)$, we can write
+	\[
+		\rho(I)-\rho^N(I)
+			=\int_{\R^{2d}}\zeta(x,y)d(\mu_0\otimes\mu_0)(x,y)
+				-\frac{1}{N^2}\sum_{i,j}\zeta(x_i,x_j)\,.
+	\]
+	Let $x_i$, $i=1,\ldots,N$, be independent samples of $\mu_0$. Then the pairs $(x_i,x_j)$, $i,j=1,\ldots,N$,
+	are independent w.r.t. $\mu_0\otimes\mu_0$. Thus we can apply Bernstein's inquality to $\zeta$, which clearly is
+	bounded by $1$ (thus $B=2$ here), with $\mathbb{E}(\zeta)=\rho(I)$ and
+	$\text{Var}(\zeta)=\rho(I)(1-\rho(I))\leq\rho(I)$. We then obtain in the case
+	$\frac{1}{2}\rho(I)\geq\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|}$
+	\begin{align*}
+		P\biggl(|\rho(I)-\rho^N(I)|\geq\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|}\biggr)
+			&\leq 2\exp\Bigl(-\frac{N^2\eta^2\rho(I)^3}
+				{64M|\alpha_I|^2(\rho(I)+\frac{2}{3}\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|})}\Bigr)\\
+			&\leq 2\exp\Bigl(-\frac{N^2\eta^2\rho(I)^3}{256M B_a^2\rho(I)^3/3}\Bigr)
+				=2\exp\Bigl(-\frac{3N^2\eta^2}{256M B_a^2}\Bigr)
+	\end{align*}
+	where we used the simple estimate $|\alpha_I|\leq B_a\rho(I)$. In the case
+	$\frac{1}{2}\rho(I)\leq\frac{\eta\rho(I)^{3/2}}{4\sqrt{2M}|\alpha_I|}$ we find
+	\begin{align*}
+		P\bigl(|\rho(I)-\rho^N(I)|\geq\tfrac{1}{2}\rho(I)\bigr)
+			&\leq 2\exp\Bigl(-\frac{N^2\rho(I)^2}{8(\rho(I)+\rho(I)/3}\Bigr)\\
+			&=2\exp\Bigl(-\frac{3}{32}N^2\rho(I)\Bigr)
+				\leq 2\exp\Bigl(-\frac{3N^2\eta^2}{256MB_a^2}\Bigr)\,,
+	\end{align*}
+	where in the last step we used $I\in\Lambda^+$. This takes care of the second probability in \eqref{eq-prob-1}. To
+	deal with the first one, we now apply Bernstein's inequality with
+	\[
+		\zeta_a(x,y)
+			=\frac{1}{T}\int_0^T a\bigl(\Phi_t\bigr)\chi_{\Phi_t^{-1}(I)} dt\,,
+	\]
+	again in the sense of Bochner integrals. With this definition we can write
+	\[
+		\alpha_I-\alpha^N_I
+			=\int_{\R^{2d}}\zeta_a(x,y)d(\mu_0\otimes\mu_0)(x,y)
+				-\frac{1}{N^2}\sum_{i,j}\zeta_a(x_i,x_j)\,.
+	\]
+	Moreover, we have $\mathbb{E}(\zeta_a)=\alpha_I$, $|\zeta(x,y)-\mathbb{E}(\zeta)|\leq 2B_a$ and
+	$\text{Var}(\zeta)\leq B_a^2\rho(I)$. Thus Bernstein's inequality yields
+	\begin{align*}
+		P\biggl(|\rho(I)-\rho^N(I)|\geq\frac{\eta\sqrt{\rho(I)}}{4\sqrt{2M}}\biggr)
+			&\leq 2\exp\Bigl(-\frac{N^2\eta^2\rho(I)}
+				{64M(B_a^2\rho(I)+\frac{2B_a\eta\sqrt{\rho(I)}}{12\sqrt{2M}})}\Bigr)\\
+			&\leq 2\exp\Bigl(-\frac{N^2\eta^2\rho(I)}{64M(B_a^2\rho(I)+\frac{4B_a^2\rho(I)}{12})}\Bigr)
+					=2\exp\Bigl(-\frac{3N^2\eta^2}{256MB_a^2}\Bigr)\,.
+	\end{align*}
+	Here we once more used $I\in\Lambda^+$. This completes the proof.
+\end{proof}
+
+{\bf TODO: Include Lemma which shows that $\zeta$ and $\zeta_a$ are well-defined functions from $L_1$ (particularly: measurable); equivalently that the mentioned Bochner integral exist.}
+\end{document}

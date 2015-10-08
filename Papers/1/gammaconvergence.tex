@@ -4,7 +4,7 @@
 
 %At the end of the last section, we have seen which are the main ingredients to ensure that our error functional $E$ has the target interaction kernel $a$ as unique minimizer (the coercivity assumption \eqref{eq-coercive}), and for the well-posedness of the minimization problem of the functionals $E_N$ (the knowledge of an upper bound for $\|a\|_{L_{\infty}(\R_+)}$ and $\|a'\|_{L_{\infty}(\supp(\rho))}$).
 
-We now introduce is the key property that a family of approximation spaces $V_N$ must possess in order to ensure that the minimizers of the functionals $\mathcal E_N$ converge to minimizers of $\mathcal E$ by $\Gamma$-convergence.
+We now introduce the key property that a family of approximation spaces $V_N$ must possess in order to ensure that the minimizers of the functionals $\mathcal E_N$ converge to minimizers of $\mathcal E$ by $\Gamma$-convergence.
 
 \begin{definition}\label{VNdef}
 Let $M > 0$ and $K=[0,2R]$ interval in $\R_+$  be given . We say that a family of closed subsets $V_N \subset X_{M,K}$, $N \in \N$ has the \emph{uniform approximation property} in $L_{\infty}(K)$ if for all $b\in X_{M,K}$ there exists a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ and such that $b_N\in V_N$ for every $N \in \N$.
@@ -77,12 +77,13 @@ Then it holds
 \end{lemma}
 
 \begin{proof}
-	From \cite[Lemma 3.3]{fornahuetter} it follows $\W_1(\mu_0,\mu^N_0) \rightarrow 0$ for $N \rightarrow \infty$. Hence, from \eqref{stab} we have that $W_1(\mu(t),\mu^N(t))\rightarrow 0$ for $N\rightarrow\infty$, uniformly for  $t \in [0,T]$.%, which in particular implies the weak convergence of the sequence of measures $(\mu^N(t))_{N \in \N}$ towards $\mu(t)$ for all $t\in [0,T]$. Moreover, for all $x,y,y' \in B(0,R)$, by triangle inequality
+	From \cite[Lemma 3.3]{fornahuetter} it follows $\W_1(\mu_0,\mu^N_0) \rightarrow 0$ for $N \rightarrow \infty$. Hence, from \eqref{stab} we have that $W_1(\mu(t),\mu^N(t))\rightarrow 0$ for $N\rightarrow\infty$, uniformly for  $t \in [0,T]$.%, which in particular implies the weak convergence of the sequence of measures $(\mu^N(t))_{N \in \N}$ towards $\mu(t)$ for all $t\in [0,T]$.
+Moreover, for all $x,y,y' \in B(0,R)$, by triangle inequality we have
 \begin{align*}
 |(F[a] -F[ b])(x-y') - &(F[a] -F[ b])(x- y)|  \\
-& \leq [2R (\Lip_K( b) + \Lip_K( b))    +\|a\|_{L_\infty(K)} + \| b\|_{L_\infty(K)} ] |y-y'|,
+& \leq \left[2R (\Lip_K(a) + \Lip_K( b))    +\|a\|_{L_\infty(K)} + \| b\|_{L_\infty(K)} \right] |y-y'|,
 \end{align*}
-implying the uniform Lipschitz continuity of $(F[a] -F[ b])(x- \cdot)$ with respect to $x \in B(0,R)$.
+which implies the uniform Lipschitz continuity of $(F[a] -F[ b])(x- \cdot)$ with respect to $x \in B(0,R)$.
 For every $\varepsilon > 0$ one can find $N_0(\varepsilon)$ such that, for all $N \geq N_0(\varepsilon)$ we have
 	\begin{align*}
 		\sup_{x,y \in B(0,R)}|F[ b_{N}](x-y)-F[ b](x-y)|
@@ -128,7 +129,7 @@ uniformly with respect to $t \in [0,T]$ and $x \in B(0,R)$.
 	and we estimate
 	\begin{align}
 		|G_N(t)-G(t)|&\leq \left|\int_{\R^d}H(t,x)d\mu^N(t)(x) - \int_{\R^d}H(t,x)d\mu(t)(x)\right| \nonumber\\
-		&\quad + \int_{\R^d}\left|H_N(t,x) - H(t,x)\right|d\mu(t)(x). \label{pippo3}
+		&\quad + \int_{\R^d}\left|H_N(t,x) - H(t,x)\right|d\mu^N(t)(x). \label{pippo3}
 	\end{align}
 	We now prove that the function $H$ is Lipschitz continuous with respect to $x \in B(0,R)$ uniformly in $t \in [0,T]$. To do so, we write $H$ as
 	\begin{align*}
@@ -314,11 +315,11 @@ uniformly with respect to $t \in [0,T]$ and $x \in B(0,R)$.
 %	\ref{lemma-semicontinuous-2a} and \ref{lemma-semicontinuous-2}.
 	The sequence of minimizers $(\widehat a_N)_{N \in \N}$ is by definition a subset of $X_{M,K}$, hence by Proposition \ref{XMdef} it admits a subsequence $(\widehat a_{N_k})_{k \in \N}$ uniformly converging to a function $\widehat a \in X_{M,K}$.
 	
-	To show the optimality of $\widehat a$, let $b\in X_{M,K}$ be given. By Definition \ref{VNdef}, we can find a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ such that $b_N\in V_N$ for every $N\in \N$. Hence, by Lemma \ref{lemma-semicontinuous-1}, it holds
+	To show the optimality of $\widehat a$ in $X_{M,K}$, let $b\in X_{M,K}$ be given. By Definition \ref{VNdef}, we can find a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ such that $b_N\in V_N$ for every $N\in \N$. Hence, by Lemma \ref{lemma-semicontinuous-1}, it holds
 	\begin{align*}
 		\mathcal E(b)=\lim_{N\rightarrow\infty} \mathcal E_{N}(b_{N}).
 	\end{align*}
-	Now, by the optimality of $\widehat a_{N_k}$ and again by Lemma \ref{lemma-semicontinuous-1}, it follows that
+	Now, by the optimality of $\widehat a_{N_k}$ in $V_N$ and again by Lemma \ref{lemma-semicontinuous-1}, it follows that
 	\begin{align*}
 		\mathcal E(b)=\lim_{N\rightarrow\infty}\mathcal E_N(b_N)
 			= \lim_{k \rightarrow\infty}\mathcal E_{N_k}(b_{N_k})

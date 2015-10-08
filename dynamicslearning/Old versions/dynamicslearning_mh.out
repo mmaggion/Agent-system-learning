@@ -1,0 +1,12 @@
+\BOOKMARK [1][-]{section.1}{The framework}{}% 1
+\BOOKMARK [1][-]{section.2}{Numerical experiments}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{The algorithm}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Refinement procedure}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Known issues}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Smooth kernel}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Oscillatory kernel}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Discontinuous kernel}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Theoretical framework \(as discussed with Massimo\)}{}% 9
+\BOOKMARK [2][-]{subsection.3.1}{Upper bound}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.2}{Lower bound}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.3}{Related issues}{section.3}% 12

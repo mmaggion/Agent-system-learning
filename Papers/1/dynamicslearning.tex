@@ -145,7 +145,7 @@ For any compact set $K \subset \R^d$ and for every $x,y \in K$ it holds
 \begin{align*}
 |(F[a]*\mu)(x) - (F[a]*\mu)(y)| &= \left|\int_{\R^d}a(|x-z|)(x-z)d\mu(z) - \int_{\R^d}a(|y-z|)(y-z)d\mu(z)\right| \\
 &\leq \int_{\R^d}|a(|x-z|)-a(|y-z|)|x-z|d\mu(z)\\
-&\quad+ \int_{\R^d}a(|y-z|)|x-y|d\mu(z) \\
+&\quad+ \int_{\R^d}|a(|y-z|)||x-y|d\mu(z) \\
 &\leq \Lip_{\widehat{K}}(a)|x-y| \int_{\R^d}|x-z|d\mu(z) + \|a\|_{L_{\infty}(\R_+)}|x-y| \\
 &\leq \left(\Lip_{\widehat{K}}(a)(|x| + 1)+ \|a\|_{L_{\infty}(\R_+)}\right)|x-y| \\
 & \leq \left(C\Lip_{\widehat{K}}(a) + \|a\|_{L_{\infty}(\R_+)} \right)|x-y|,
@@ -159,11 +159,17 @@ where $C$ is a constant depending on $K$, and $\widehat{K}$ is a compact set con
 If $a \in X$ then system \eqref{eq:discrdyn} admits a unique global solution in $[0,T]$ for every initial datum $x^{N}_0 \in \R^{dN}$.
 \end{proposition}
 \begin{proof}
-Rewriting system \eqref{eq:discrdyn} in the form of \eqref{eq:discr1}, from Lemma \ref{p-Fmuloclip} follows trivially that the function $G:\R^{dN} \rightarrow \R^{dN}$ defined for every $(x_1, \ldots, x_N)\in \R^{dN}$ as
+Rewriting system \eqref{eq:discrdyn} in the form of \eqref{eq:discr1}, follows easily that the function $G:\R^{dN} \rightarrow \R^{dN}$ defined for every $(x_1, \ldots, x_N)\in \R^{dN}$ as
 \begin{align*}
 G(x_1, \ldots, x_N) = ((F[a]*\mu^N)(x_1),\ldots,(F[a]*\mu^N)(x_N)),
 \end{align*}
-where $\mu^N$ is the empirical measure given by \eqref{eq:empmeas}, satisfies $G \in \Lip_\loc(\R^{dN})$. The Cauchy-Lipschitz Theorem for ODE systems then yields the desired result.
+where $\mu^N$ is the empirical measure given by \eqref{eq:empmeas}, satisfies $G \in \Lip_\loc(\R^{dN})$. Indeed, for any $x_1, \ldots, x_N, y_1, \ldots, y_N \in K$ compact subset of $\R^d$, denoting with $\nu^N$ the empirical measure given by $y_1, \ldots, y_N$, it simply suffices to write
+\begin{align*}
+|G(x_1, \ldots, x_N) - G(y_1,\ldots,y_N)| &\leq \sum^N_{i = 1} |(F[a]*\mu^N)(x_i) - (F[a]*\nu^N)(y_i)| \\
+&\leq \sum^N_{i = 1} \Bigg( |(F[a]*\mu^N)(x_i) - (F[a]*\mu^N)(y_i)| \\
+&\quad \quad \quad \quad +|(F[a]*\mu^N)(y_i) - (F[a]*\nu^N)(y_i)| \Bigg).
+\end{align*}
+Applying Lemma \ref{p-Fmuloclip} to the first term and performing similar calculations to the ones in the proof of Lemma \ref{p-Floclip} on the second one, gives the desired result. The Cauchy-Lipschitz Theorem for ODE systems then yields the statement.
 \end{proof}
 
 Variants of the following result are \cite[Lemma 6.7]{MFOC} and \cite[Lemma 4.7]{CanCarRos10}
@@ -225,8 +231,8 @@ This, in turn, implies that $\mu^N(\cdot)$ is Lipschitz continuous with Lipschit
 \end{align*}
 We have thus found a sequence $(\mu^N)_{N \in \N} \subset \mathcal{C}^0([0,T],\mathcal{P}_1(B(0,R)))$ for which the following holds:
 \begin{itemize}
-\item $(\mu^N)_{N \in \N}$ is equicontinuous and closed, because of the uniform Lipschitz constant $2R\|a\|_{L_{\infty}(\R_+)}$;
-\item for every $t \in [0,T]$, the sequence $(\mu^N(t))_{N \in \N}$ is relatively compact in $\mathcal{P}_1(B(0,R))$. This holds because $(\mu^N(t))_{N \in \N}$ is a tight sequence, since $B(0,R)$ is compact, and hence relatively compact due to Prokhorov's Theorem.
+\item $(\mu^N)_{N \in \N}$ is equicontinuous and is contained in a closed subset of $\mathcal{P}_1(B(0,R))$ equipped with the $\W_1$ metric, because of the uniform Lipschitz constant $2R\|a\|_{L_{\infty}(\R_+)}$;
+\item for every $t \in [0,T]$, the sequence $(\mu^N(t))_{N \in \N}$ is relatively compact in $\mathcal{P}_1(B(0,R))$ equipped with the $\W_1$ metric. This holds because $(\mu^N(t))_{N \in \N}$ is a tight sequence, since $B(0,R)$ is compact, and hence relatively compact w.r.t. weak convergence due to Prokhorov's Theorem. By \cite[Proposition 7.1.5]{AGS} and the uniform integrability of the first moments of the family $(\mu^N(t))_{N \in \N}$ follows relative compactness also in the metric space $(\mathcal{P}_1(B(0,R)),\W_1)$.
 \end{itemize}
 Therefore, we can apply the Ascoli-Arzel\'{a} Theorem for functions with values in a metric space (see for instance, \cite[Chapter 7, Theorem 18]{KelleyTop}) to infer the existence of a subsequence $(\mu^{N_k})_{k \in \N}$ of $(\mu^N)_{N \in \N}$ such that
 \begin{align}\label{eq:unifconv}

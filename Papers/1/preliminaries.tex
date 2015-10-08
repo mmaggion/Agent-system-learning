@@ -13,7 +13,7 @@ f_{\#}\mu(B) := \mu(f^{-1}(B)) \quad \text{ for every Borel set } B \text{ of } 
 \end{align*}
 In particular, if one considers the projection operators $\pi_1$ and $\pi_2$ defined on the product space $\R^{n_1} \times \R^{n_2}$, for every $\rho \in \mathcal{P}(\R^{n_1} \times \R^{n_2})$ we call {\it first} (resp., {\it second}) {\it marginal} of $\rho$ the probability measure $\pi_{1\#}\rho$ (resp., $\pi_{2\#}\rho$). Given $\mu \in \mathcal{P}(\R^{n_1})$ and $\nu \in \mathcal{P}(\R^{n_2})$, we denote with $\Gamma(\mu, \nu)$ the subset of all probability measures in $\mathcal{P}(\R^{n_1} \times \R^{n_2})$ with first marginal $\mu$ and second marginal $\nu$.
 
-On the set $\mathcal{P}_p(\R^n)$ we shall consider the following distance, called the {\it Wasserstein or Monge-Kantorovich-Rubinstein distance},
+On the set $\mathcal{P}_p(\R^n)$ we shall consider the following distance, called the Wasserstein or Monge-Kantorovich-Rubinstein distance,
 \begin{align}  \label{e_Wp}
 \W^p_p(\mu,\nu)=\inf \left \{ \int_{\R^{2n}} |x-y|^p d \rho(x,y) : \rho \in \Gamma(\mu,\nu) \right \}.
 \end{align}
@@ -74,7 +74,7 @@ by means of the \textit{empirical measure} $\mu^N:[0,T]\rightarrow\PC(\R^d)$ def
 \begin{align}\label{eq:empmeas}
 \mu^N(t) = \frac{1}{N}\sum^N_{i = 1} \delta_ {x^N_i(t)}.
 \end{align}
-In the followingas we restrict our attention to interaction kernels belonging to the following \textit{set of admissible kernels}
+As already explained in the introducion, we shall restrict our attention to interaction kernels belonging to the following \textit{set of admissible kernels}
 \begin{align*}
 	X=\bigl\{b:\R_+\rightarrow\R\,|\ b \in L_{\infty}(\R_+) \cap W^{1}_{\infty,\loc}(\R_+) \bigr \}.
 \end{align*}
@@ -92,7 +92,7 @@ Let $\mu_0 \in \PC(\R^d)$ be given. Let $(\mu^{N}_0)_{N \in \N} \subset \PC(\R^d
 \end{align*}
 satisfying $\lim_{N \rightarrow \infty} \W_1(\mu_0,\mu^{N}_0) = 0$. For every $N \in \N$, denote with $\mu^N:[0,T] \rightarrow \PP(\R^{d})$ the curve given by \eqref{eq:empmeas} where $(x^N_1,\ldots,x^N_N)$ is the unique solution of system \eqref{eq:discrdyn}.
 
-Then, the sequence $(\mu^N)_{N \in \N}$ converges, up to subsequences, to a solution $\mu$ of \eqref{eq:contdyn} with initial datum $\mu_0$. Moreover, there exists $R > 0$ depending only on $T,a$, and $\supp(\mu_0)$ such that it holds
+Then, there exists $R > 0$ depending only on $T,a$, and $\supp(\mu_0)$ such that the sequence $(\mu^N)_{N \in \N}$ converges in $\mathcal{P}_1(B(0,R))$ equipped with the Wasserstein metric $\W_1$, up to subsequences, to a solution $\mu$ of \eqref{eq:contdyn} with initial datum $\mu_0$ satisfying
 \begin{align*}
 \supp(\mu^N(t)) \cup \supp(\mu(t)) \subseteq B(0,R), \quad \text{ for every } N \in \N \text{ and } t \in [0,T].
 \end{align*}
@@ -111,7 +111,7 @@ Another way for building a solution of equation \eqref{eq:contdyn} is by means o
 \end{align}
 where $\xi$ is a mapping from $[0,T]$ to $\R^d$ and $a \in X$. Here $\mu:[0,T]\rightarrow\PP(\R^d)$ is a continuous map with respect to the Wasserstein distance $\W_1$ satisfying $\mu(0) = \mu_0$ and $\supp(\mu(t)) \subseteq B(0,R)$, where $R$ is given by \eqref{Rest} from the choice of $T$, $a$ and $\mu_0$. 
 
-We consider now the family of flow maps $\mathcal{T}^{\mu}_t:\R^d \rightarrow\R^d$, indexed by $t \in [0,T]$ and the choice of the mapping $\mu$, defined by
+By Theorem \ref{cara-global} and Lemma \ref{le:uniquecara}, we can consider the family of flow maps $\mathcal{T}^{\mu}_t:\R^d \rightarrow\R^d$, indexed by $t \in [0,T]$ and the choice of the mapping $\mu$, defined by
 \begin{align*}
 \mathcal{T}^{\mu}_t(\xi_0) = \xi(t),
 \end{align*}
