@@ -73,7 +73,7 @@ with $a$ as the interaction kernel. We already mentioned that the  most immediat
 \end{align}
 among all functions $\widehat a \in X$. As we show in Proposition \ref{trajapprox}, if both $a, \widehat a \in X$ then there exist a constant $C>0$ depending on $T, \widehat a, \mu_0^N$ and a compact set $K \subset \R_+$ such that
 $$
-\| x[a](t) -x[a](t) \| \leq C (\|\widehat a\|_\infty + \operatorname{Lip}_K(\widehat a)) \sqrt{\mathcal E_N(\widehat a)}, 
+\| x[a](t) -x[a](t) \| \leq C \sqrt{\mathcal E_N(\widehat a)}, 
 $$
 for all $t \in [0,T]$. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.) Hence, minimizing $\mathcal E_N(\widehat a)$ with respect to $\widehat a$ in turn implies an accurate approximation of the trajectory $t \to x[a](t)$ at finite time as well. Moreover,
 notice that, contrary to the optimal control approach, the functional $\mathcal E_N$ has the remarkable property of being easily computable from the knowledge of $x_i$ and $\dot{x}_i$. Of course, we can consider to approximate the time derivative $\dot{x}_i$ by finite differences $\frac{x_i(t+\delta t)- x_i(t)}{\delta t}$ and we can assume that the data of the problem can be fully defined on observations of $x_i(t)$ for $t \in [0,T]$ for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space. In particular, given a finite dimensional space $V \subset X$, we consider the minimizer:
