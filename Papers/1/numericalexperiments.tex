@@ -58,15 +58,15 @@ We shall numerically implement the constrained minimization with the software CV
 \end{align*}
 using only the minimization variable of the problem, which is the vector of coefficients of the B-spline basis $\vec{a}$. Notice that the property of being a linear B-spline basis implies that, for every $\lambda = 1, \ldots, D(N)-1$, the property $\supp(\varphi_{\lambda}) \cap \supp(\varphi_{\lambda + j}) \not= \emptyset$ holds if and only if $j = 1$. Hence, for every $a \in V_N$ we have
 \begin{align*}
-\|a\|_{L_{\infty}([0,R])} &= \max_{r \in [0,R]} \left|\sum^{D(N)}_{\lambda = 1} a_{\lambda} \varphi_{\lambda}(r)\right| \\
-& \leq \max_{r \in [0,R]} \sum^{D(N)}_{\lambda = 1} \left|a_{\lambda} \varphi_{\lambda}(r)\right| \\
-& \leq \max_{\lambda = 1, \ldots, D(N)-1} \left(|a_{\lambda}| + |a_{\lambda+1}|\right) \\
-& \leq 2 \|\vec{a}\|_{\infty},
+\|a\|_{L_{\infty}([0,R])} &= \max_{r \in [0,R]} \left|\sum^{D(N)}_{\lambda = 1} a_{\lambda} \varphi_{\lambda}(r)\right|
+% \leq \max_{r \in [0,R]} \sum^{D(N)}_{\lambda = 1} \left|a_{\lambda} \varphi_{\lambda}(r)\right| 
+ \leq \max_{\lambda = 1, \ldots, D(N)-1} \left(|a_{\lambda}| + |a_{\lambda+1}|\right) 
+ \leq 2 \|\vec{a}\|_{\infty},
 \end{align*}
 \begin{align*}
-\|a'\|_{L_{\infty}([0,R])} &= \max_{r \in [0,R]} \left|\sum^{D(N)}_{\lambda = 1} a_{\lambda} \varphi'_{\lambda}(r)\right| \\
-& \leq \max_{\lambda = 1, \ldots, D(N)-1} |a_{\lambda+1} - a_{\lambda}| \\
-& = \|D\vec{a}\|_{\infty},
+\|a'\|_{L_{\infty}([0,R])} &= \max_{r \in [0,R]} \left|\sum^{D(N)}_{\lambda = 1} a_{\lambda} \varphi'_{\lambda}(r)\right| 
+ \leq \max_{\lambda = 1, \ldots, D(N)-1} |a_{\lambda+1} - a_{\lambda}|
+ = \|D\vec{a}\|_{\infty},
 \end{align*}
 where, in the last line, $D$ is the matrix
 \begin{align*}
@@ -78,7 +78,7 @@ D = \begin{bmatrix}
     0       & 0 & 0 & \dots & 0 & 0
 \end{bmatrix}.
 \end{align*}
-Therefore, we numerically implement the constrained minimization problem
+We numerically implement the constrained minimization problem
 \begin{align*}
 \min_{\widehat{a} \in V_N} \mathcal{E}_N(\widehat{a}) \quad \text{ subject to } \quad \|\widehat{a}\|_{L_{\infty}([0,R])} + \|\widehat{a}'\|_{L_{\infty}([0,R])} \leq M,
 \end{align*}
@@ -86,7 +86,7 @@ in the following way
 \begin{align}\label{problem2}
 \min_{\vec{a} \in \R^{D(N)}} \frac{1}{mN} \left\| C \vec{a} - v \right\|^2_{2} \quad \text{ subject to } \quad 2\|\vec{a}\|_{\infty} + \|D\vec{a}\|_{\infty} \leq M.
 \end{align}
-The byproduct of the time discretization and the reformulation of the constraint is that minimizers of problem \eqref{problem2} may not be minimizers of the original one. This is the price to pay for the numerical implementation of the theoretical result. However, we will see how in practice the modifications we made are so mild that we always obtain a very satisfactory reconstruction of the unknown potential, and moreover we still observe the approximation properties proved in the previous sections.
+The byproduct of the time discretization and the reformulation of the constraint is that minimizers of problem \eqref{problem2} may not be minimizers of the original one. This is the price to pay for the numerical implementation of the theoretical result. However, we will see how in practice the modifications we made are so mild that we obtain very satisfactory reconstructions of the unknown potential, and moreover we still observe the approximation properties proved in the previous sections.
 
 \subsection{Varying $N$}
 
@@ -131,7 +131,7 @@ It is clearly visible how the the piecewise linear approximant (displayed in blu
 
 \subsection{The coercivity constant}
 
-We now turn our attention to the coercivity constant $c_T$ appearing in \eqref{coercivity} and thoroughly discussed in Section \ref{sec:coerc}. In Figure \ref{errorN} we see a comparison between the evolution of the value of the error functional $\overline{\mathcal{E}}_N(\widehat{a}_N)$ and of the $L_2(\R_+,\rho)$-error $\|a-\widehat{a}_N\|^2_{L_2(\R_+,\rho)}$ for different values of $N$. 
+We now turn our attention to the coercivity constant $c_T$ appearing in \eqref{eq-coercive} and thoroughly discussed in Section \ref{sec:coerc}. In Figure \ref{errorN} we see a comparison between the evolution of the value of the error functional $\overline{\mathcal{E}}_N(\widehat{a}_N)$ and of the $L_2(\R_+,\rho)$-error $\|a-\widehat{a}_N\|^2_{L_2(\R_+,\rho)}$ for different values of $N$. 
 
 \begin{figure}[h]
 \hspace{-1.2cm}
@@ -139,14 +139,14 @@ We now turn our attention to the coercivity constant $c_T$ appearing in \eqref{c
 \begin{center}
 \includegraphics[width=1\textwidth]{figErrorN.eps}
 \end{center}
-\caption{Plot of $\overline{\mathcal{E}}_N(\widehat{a}_N)$ and $\frac{1}{10}\|a-\widehat{a}_N\|^2_{L_2(\R_+,\rho)}$ for different values of $N$. In this experiment, we can estimate the constant $c_T$ with the value $\frac{1}{10}$.}\label{errorN}
+\caption{Plot of $\overline{\mathcal{E}}_N(\widehat{a}_N)$ and $\frac{1}{10}\|a-\widehat{a}_N\|^2_{L_2(\R_+,\rho)}$ for different values of $N$. In this experiment, we can estimate the constant $c_T$ with the value $\frac{1}{10}$. \MMcomment{I would make this a $\log$ plot, i.e. with teh $y$-axis in $\log_{10}$ (or $\log_2$) scale}}\label{errorN}
 \end{minipage}
 \hspace{0.4cm}
 \begin{minipage}{0.55\textwidth}
 \begin{center}
 \includegraphics[width=1\textwidth]{figM.eps}
 \end{center}
-\caption{Values of $\overline{\mathcal{E}}_N$ for fixed $N = 50$ for different values of $M \in [0,200]$.}\label{Mconstr}
+\caption{Values of $\overline{\mathcal{E}}_N$ for fixed $N = 50$ for different values of $M \in [0,200]$.\MMcomment{I would make this a $\log$ plot, i.e. with teh $y$-axis in $\log_{10}$ (or $\log_2$) scale}}\label{Mconstr}
 \end{minipage}
 \end{figure}
 
@@ -204,7 +204,7 @@ Figure \ref{Mconstr1} shows what happens when we modify the value of $M$ in prob
 \includegraphics[width=0.53\textwidth]{figPotfun61}
 \includegraphics[width=0.37\textwidth]{figTrajfun61}
 \end{center}
-\caption{Iterative reconstruction of a potential with different values of $M$. On the left column: the true kernel in white and its reconstructions for different $M$; the brighter the curve, the larger the $M$. On the right column: the true trajectories of the agents in white, the trajectories associated to the reconstructed potentials with the same color.}\label{Mconstr1}
+\caption{Iterative reconstruction of a potential with different values of $M$. On the left column: the true kernel in white and its reconstructions for different $M$; the brighter the curve, the larger the $M$. On the right column: the true trajectories of the agents in white, the trajectories associated to the reconstructed potentials with the same color.\MMcomment{This pictures appear on gray/dark background when I compile, instead of white...}}\label{Mconstr1}
 \end{figure}
 
 Until now, we have no criteria to sieve those values of $M$ which enable a successful reconstruction of a potential $a \in X$. To carry out such an analysis, we fix all the parameters of our problem as in Table \ref{tab:fig4} and again take $a$ to be the truncated Lennard-Jones type potential of Figure \ref{variableN}. From what we said in the previous section regarding the continuous-time error functional $\mathcal{E}_N$, we can expect two things from the discrete-time one $\overline{\mathcal{E}}_N$ if we keep $N$ fixed:

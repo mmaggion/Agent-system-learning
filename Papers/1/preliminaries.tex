@@ -3,42 +3,42 @@
 \section{Preliminaries}\label{meanfield}
 
 
-The space $\mathcal{P}(\R^n)$ is the set of probability measures which take values on $\R^n$, while the space\footnote{We follow the notation of \cite{AGS}.} $\mathcal{P}_p(\R^n)$ is the subset of $\mathcal{P}(\R^n)$ whose elements have finite $p$-th moment, i.e.,
-$$\int_{\R^n} |x|^p d\mu(x) < +\infty.$$
+The space $\mathcal{P}(\R^n)$ is the set of probability measures on $\R^n$, while the space %\footnote{We follow the notation of \cite{AGS}.} 
+$\mathcal{P}_p(\R^n)$ is the subset of $\mathcal{P}(\R^n)$ whose elements have finite $p$-th moment, i.e.,
+$\int_{\R^n} |x|^p d\mu(x) < +\infty$.
 We denote by $\mathcal{P}_c(\R^n)$ the subset of $\mathcal{P}_1(\R^n)$ which consists of all probability measures with compact support. %Notice that, if $(\mu_{\ell})_{\ell \in \N}$ is a sequence in $\mathcal{P}_c(\R^n)$ and it exists $R>0$ such that $\supp(\mu_{\ell}) \subseteq B(0, R)$ for all $\ell\in\N$, then $(\mu_{\ell})_{\ell \in \N}$ is compact in $\mathcal{P}_p(\R^n)$ for all $p \geq 1$.
-
-For any $\mu \in \mathcal{P}(\R^{n_1)}$ and any Borel function $f: \R^{n_1} \to \R^{n_2}$, we denote by $f_{\#}\mu \in \mathcal{P}(\R^{n_2})$ the {\it push-forward of $\mu$ through $f$}, defined by
+For any $\mu \in \mathcal{P}(\R^{n_1})$ and Borel function $f: \R^{n_1} \to \R^{n_2}$, we denote by $f_{\#}\mu \in \mathcal{P}(\R^{n_2})$ the {\it push-forward of $\mu$ through $f$}, defined by
 \begin{align*}
 f_{\#}\mu(B) := \mu(f^{-1}(B)) \quad \text{ for every Borel set } B \text{ of } \R^{n_2}.
 \end{align*}
-In particular, if one considers the projection operators $\pi_1$ and $\pi_2$ defined on the product space $\R^{n_1} \times \R^{n_2}$, for every $\rho \in \mathcal{P}(\R^{n_1} \times \R^{n_2})$ we call {\it first} (resp., {\it second}) {\it marginal} of $\rho$ the probability measure $\pi_{1\#}\rho$ (resp., $\pi_{2\#}\rho$). Given $\mu \in \mathcal{P}(\R^{n_1})$ and $\nu \in \mathcal{P}(\R^{n_2})$, we denote with $\Gamma(\mu, \nu)$ the subset of all probability measures in $\mathcal{P}(\R^{n_1} \times \R^{n_2})$ with first marginal $\mu$ and second marginal $\nu$.
+In particular, if one considers the projection operators $\pi_1$ and $\pi_2$ defined on the product space $\R^{n_1} \times \R^{n_2}$, for every $\rho \in \mathcal{P}(\R^{n_1} \times \R^{n_2})$ we call {\it first} (resp., {\it second}) {\it marginal} of $\rho$ the probability measure $\pi_{1\#}\rho$ (resp., $\pi_{2\#}\rho$). Given $\mu \in \mathcal{P}(\R^{n_1})$ and $\nu \in \mathcal{P}(\R^{n_2})$, we denote with $\Gamma(\mu, \nu)$ the family of couplings between $\mu$ and $\nu$, i.e. the subset of all probability measures in $\mathcal{P}(\R^{n_1} \times \R^{n_2})$ with first marginal $\mu$ and second marginal $\nu$.
 
 On the set $\mathcal{P}_p(\R^n)$ we shall consider the following distance, called the Wasserstein or Monge-Kantorovich-Rubinstein distance,
 \begin{align}  \label{e_Wp}
-\W^p_p(\mu,\nu)=\inf \left \{ \int_{\R^{2n}} |x-y|^p d \rho(x,y) : \rho \in \Gamma(\mu,\nu) \right \}.
+\W^p_p(\mu,\nu)=\inf_{\rho \in \Gamma(\mu,\nu)} \int_{\R^{2n}} |x-y|^p d \rho(x,y)\,.
 \end{align}
 If $p = 1$, we have the following equivalent expression for the Wasserstein distance:
 \begin{align*}
 \W_1(\mu,\nu)=\sup \left \{ \int_{\R^n} \varphi(x) d (\mu-\nu)(x)  : \varphi \in \Lip(\R^n), \; \Lip_{\R^n}(\varphi) \leq 1 \right \},
 \end{align*}
-where $\Lip_{\R^n}(\varphi)$ stands for the Lipschitz constant of $\varphi$ on $\R^n$. We denote by $\Gamma_o(\mu,\nu)$ the set of optimal plans for which the minimum is attained, i.e.,
+where $\Lip_{\R^n}(\varphi)$ stands for the Lipschitz constant of $\varphi$ on $\R^n$. We denote by $\Gamma_o(\mu,\nu)$ the set of optimal couplings for which the minimum is attained, i.e.,
 \begin{align*}
 \rho \in \Gamma_o(\mu, \nu) \iff \rho \in \Gamma(\mu, \nu) \text{ and } \int_{\R^{2n}} | x - y |^p d \rho(x,y) = \W^p_p(\mu,\nu).
 \end{align*}
 It is well-known that $\Gamma_o(\mu, \nu)$ is non-empty for every $(\mu,\nu) \in \mathcal{P}_p(\R^n)\times\mathcal{P}_p(\R^n)$, hence the infimum in \eqref{e_Wp} is actually a minimum. For more details, see e.g. \cite{AGS,villani}.
 
-For any $\mu \in \PP(\R^d)$ and $f: \R^d \to \R^d$, the notation $f * \mu$ stands for the convolution of $f$ and $\mu$, i.e.,
+For any $\mu \in \PP(\R^d)$ and $f: \R^d \to \R^d$, the notation $f * \mu$ stands for the convolution of $f$ and $\mu$:
 \begin{align*}
-(f * \mu)(x) = \int_{\R^d} f(x-y) d\mu(y);
+(f * \mu)(x) = \int_{\R^d} f(x-y) d\mu(y)\,.
 \end{align*}
-this function is continuous and finite valued whenever $f$ is continuous and \emph{sublinear}, i.e., there exists a constant $C > 0$ such that $| f(\xi) | \leq C (1 + |\xi|)$ for all $\xi \in \R^d$.
+This function is continuous and finite-valued whenever $f$ is continuous and \emph{sublinear}, i.e., there exists a constant $C > 0$ such that $| f(\xi) | \leq C (1 + |\xi|)$ for all $\xi \in \R^d$.
 
 \subsection{The mean-field limit equation and existence of solutions}
 
 As already stated in the introduction, our learning approach is based on the following underlying \textit{finite time horizon initial value problem}: given $T > 0$ and $\mu_0 \in \PC(\R^d)$, consider a probability measure valued trajectory $\mu:[0,T]\rightarrow \PP(\R^d)$ satisfying 
 \begin{align}\label{eq:contdyn}
 \left\{\begin{aligned}
-\frac{\partial \mu}{\partial t}(t) &= -\nabla \cdot ((F[a]*\mu(t))\mu(t)) \quad \text{ for } t \in (0,T],\\
+\frac{\partial \mu}{\partial t}(t) &= -\nabla \cdot ((\Fun{a}*\mu(t))\mu(t)) \quad \text{ for } t \in (0,T],\\
 \mu(0) &=\mu_0.
 \end{aligned}\right.
 \end{align}
@@ -51,36 +51,35 @@ We say that a map $\mu:[0,T]\rightarrow\PP(\R^d)$ is a solution of \eqref{eq:con
 \item $\mu$ is continuous with respect to the Wasserstein distance $\W_1$;
 \item $\mu$ satisfies \eqref{eq:contdyn} in the weak sense, i.e., for every $\phi \in \mathcal{C}^{\infty}_c(\R^d;\R)$ it holds
 \begin{align*}
-\frac{d}{dt} \int_{\R^d} \phi(x) d\mu(t)(x) = \int_{\R^d} \nabla \phi(x) \cdot (F[a]*\mu(t))(x) d\mu(t)(x).
+\frac{d}{dt} \int_{\R^d} \phi(x) d\mu(t)(x) = \int_{\R^d} \nabla \phi(x) \cdot (\Fun{a}*\mu(t))(x) d\mu(t)(x).
 \end{align*}
 \end{enumerate}
 \end{definition}
 
-As we recall in a moment, system \eqref{eq:contdyn} is closely related to the family of ODEs indexed by $N \in \N$ given by
+The system \eqref{eq:contdyn} is closely related to the family of ODE's, indexed by $N \in \N$,
 \begin{align}\label{eq:discrdyn}
 \left\{\begin{aligned}
-\dot{x}^N_i(t) &= \frac{1}{N}\sum^N_{j = 1}F[a](x^N_i(t) - x^N_j(t)) \quad \text{ for } t \in (0,T],\\
+\dot{x}^N_i(t) &= \frac{1}{N}\sum^N_{j = 1}\Fun{a}(x^N_i(t) - x^N_j(t)) \quad \text{ for } t \in (0,T],\\
 x_i^N(0) &= x^N_{0,i},
 \end{aligned} \quad i = 1, \ldots, N, \right.
 \end{align}
-which can be more conveniently rewritten as follows
+which may be rewritten as 
 \begin{align}\label{eq:discr1}
 \left\{\begin{aligned}
-\dot{x}^N_i(t) &= (F[a]*\mu^N(t))(x^N_i(t)) \quad \text{ for } t \in (0,T],\\
+\dot{x}^N_i(t) &= (\Fun{a}*\mu^N(t))(x^N_i(t)) \\
 x^N_i(0) &= x^N_{0,i},
 \end{aligned} \quad i = 1, \ldots, N, \right.
 \end{align}
-by means of the \textit{empirical measure} $\mu^N:[0,T]\rightarrow\PC(\R^d)$ defined as
+for $t\in(0,T]$, by means of the \textit{empirical measure} $\mu^N:[0,T]\rightarrow\PC(\R^d)$ defined as
 \begin{align}\label{eq:empmeas}
 \mu^N(t) = \frac{1}{N}\sum^N_{i = 1} \delta_ {x^N_i(t)}.
 \end{align}
-As already explained in the introducion, we shall restrict our attention to interaction kernels belonging to the following \textit{set of admissible kernels}
+As already explained in the introduction, we shall restrict our attention to interaction kernels belonging to the following \textit{set of admissible kernels}
 \begin{align*}
 	X=\bigl\{b:\R_+\rightarrow\R\,|\ b \in L_{\infty}(\R_+) \cap W^{1}_{\infty,\loc}(\R_+) \bigr \}.
 \end{align*}
-The well-posedness of \eqref{eq:discr1} is rather standard under the assumption $a \in X$ and for reader's convenience we report its proof in Appendix \ref{ap3}. The well-posedness of system \eqref{eq:contdyn} and several crucial properties that it enjoys can be proved as soon as $a \in X$ as well.
-\\
-We may refer to \cite{AGS} for by now standard results on existence and uniqueness of solutions for \eqref{eq:contdyn} and to  \cite{13-Carrillo-Choi-Hauray-MFL} for generalizations in case of interaction kernels not belonging to the class $X$. In the following we report the main results, whose proofs are collected in the Appendix for the sake of self-containedness and to allow explicit reference to constants.
+The well-posedness of \eqref{eq:discr1} is rather standard under the assumption $a \in X$. The well-posedness of system \eqref{eq:contdyn} and several crucial properties enjoyed by its solutions may also be proved as soon as $a \in X$.
+We refer the reader to \cite{AGS} for results on existence and uniqueness of solutions for \eqref{eq:contdyn}, and to  \cite{13-Carrillo-Choi-Hauray-MFL} for generalizations in case of interaction kernels not belonging to the class $X$. In the following we report the main results, whose proofs are collected in the Appendices in order to keep this work self-contained and to allow explicit reference to constants.
  
 
 %The following result provides a strong link between solutions of system \eqref{eq:discrdyn} and those of system \eqref{eq:contdyn}, one that in the end enables us to state an existence result for the latter ones. 
@@ -102,10 +101,10 @@ Then, there exists $R > 0$ depending only on $T,a$, and $\supp(\mu_0)$ such that
 
 \subsection{The transport map and  uniqueness of mean-field solutions}
 
-Another way for building a solution of equation \eqref{eq:contdyn} is by means of the so-called \textit{transport map}, i.e., the function describing the evolution in time of the initial measure $\mu_0$. The transport map can be constructed by considering the following one-agent version of system \eqref{eq:discr1},
+Another way for building a solution of equation \eqref{eq:contdyn} is by means of the so-called \textit{transport map}, i.e., the function describing the evolution in time of the initial measure $\mu_0$. The transport map can be constructed by considering the following single-agent version of system \eqref{eq:discr1},
 \begin{align}\label{eq:transpdyn}
 \left\{\begin{aligned}
-\dot{\xi}(t) &= (F[a]*\mu(t))(\xi(t)) \quad \text{ for } t \in (0,T],\\
+\dot{\xi}(t) &= (\Fun{a}*\mu(t))(\xi(t)) \quad \text{ for } t \in (0,T],\\
 \xi(0) &= \xi_0,
 \end{aligned}\right.
 \end{align}
@@ -123,7 +122,7 @@ where $\xi:[0,T]\rightarrow\R^d$ is the unique solution of \eqref{eq:transpdyn} 
 A relevant, basic property of the transport map is proved in the following
 
 \begin{proposition}\label{p-transportlip}
-$\ct^\mu_t$ is a locally bi-Lipschitz map, i.e. it is a bijective locally Lipschitz map, with locally Lipschitz inverse.
+$\ct^\mu_t$ is a locally bi-Lipschitz map, i.e. it is a locally Lipschitz map, with locally Lipschitz inverse.
 \end{proposition}
 \begin{proof}
 %Bijectivity is a consequence of the uniqueness of the solution to the corresponding ODE.
@@ -136,29 +135,28 @@ $\ct^\mu_t$ is a locally bi-Lipschitz map, i.e. it is a bijective locally Lipsch
  The choice $r = R$ in Lemma \ref{le:uniquecara} and the inequality \eqref{eq:uniquecara} trivially implies the following stability estimate
 	\begin{align}\label{eq:liptrans}
 		\bigl|\ct^\mu_t(x_0)-\ct^\mu_t(x_1)\bigr|
-			\leq e^{T\,\Lip_{B(0,R)}(F[a])}|x_0-x_1|,\quad \text{ for } |x_i|\leq R\,,\quad i=0,1\,.
+			\leq e^{T\,\Lip_{B(0,R)}(\Fun{a})}|x_0-x_1|,\quad \text{ for } |x_i|\leq R\,,\quad i=0,1\,.
 	\end{align}
 	i.e., $\ct^\mu_t$ is locally Lipschitz.
 	
-	In view of the uniqueness of the solutions to the ODE \eqref{eq:transpdyn}, it is furthermore clear that, for any $t_0\in [0,T]$, the inverse of $\ct^\mu_{t_0}$ is
+	In view of the uniqueness of the solutions to the ODE \eqref{eq:transpdyn}, it is also clear that, for any $t_0\in [0,T]$, the inverse of $\ct^\mu_{t_0}$ is
 	given by the transport map associated to the backward-in-time ODE
 \begin{align*}
 \left\{\begin{aligned}
-\dot{\xi}(t) &= (F[a]*\mu(t))(\xi(t)) \quad \text{ for } t \in [0,t_0),\\
+\dot{\xi}(t) &= (\Fun{a}*\mu(t))(\xi(t)) \quad \text{ for } t \in [0,t_0),\\
 \xi(t_0) &= \xi_0.
 \end{aligned}\right.
 \end{align*}
-%\dot \(t)=\bigl(F[a]\ast\mu\bigr)(x)\,,\quad x(t_0)=x_0\,.
+%\dot \(t)=\bigl(\Fun{a}\ast\mu\bigr)(x)\,,\quad x(t_0)=x_0\,.
 	However, this problem in turn can be cast into the form of an usual IVP simply by considering the reverse trajectory $\nu_t=\mu_{t_0-t}$. Then
 	$y(t)=\xi(t_0-t)$ solves
 	\begin{align*}
 	\left\{\begin{aligned}
-		\dot y(t)&=-\bigl(F[a]\ast\nu(t)\bigr)(y(t))  \quad \text{ for } t \in (0,t_0], \\
+		\dot y(t)&=-\bigl(\Fun{a}\ast\nu(t)\bigr)(y(t))  \quad \text{ for } t \in (0,t_0], \\
 		y(0) &= \xi(t_0).
 	\end{aligned}\right.
 	\end{align*}
-	The corresponding stability estimate for this problem then yields that the inverse of $\ct^\mu_t$ is indeed
-	locally Lipschitz too (with the same local Lipschitz constant).
+	The corresponding stability estimate for this problem then yields that the inverse of $\ct^\mu_t$ exists and is locally Lipschitz (with the same local Lipschitz constant as $\ct^\mu_t$).
 \end{proof}
 
 
@@ -183,7 +181,7 @@ $\ct^\mu_t$ is a locally bi-Lipschitz map, i.e. it is a bijective locally Lipsch
 %\end{proof}
 
 
-The following result shows uniqueness and continuous dependence on the initial data for \eqref{eq:contdyn}. Although it is a well-known result, for the sake of self-containedness and to have explicit reference to constants, we report a proof of it in Appendix \ref{ap4}.
+It is also known \cite{CanCarRos10} that we have uniqueness and continuous dependence on the initial data for \eqref{eq:contdyn} (we report a proof of it in Appendix \ref{ap4} for completeness):
 
 \begin{theorem}\label{uniq}
 Fix $T>0$  and let $\mu:[0,T]\rightarrow\mathcal{P}_1(\R^d)$ and $\nu:[0,T]\rightarrow\mathcal{P}_1(\R^d)$ be two equi-compactly supported solutions  of \eqref{eq:contdyn}, for $\mu(0)=\mu_0$ and $\nu(0)=\nu_0$ respectively. Consider $R>0$ such that
