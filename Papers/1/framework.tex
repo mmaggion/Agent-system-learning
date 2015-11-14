@@ -60,7 +60,7 @@ Let us consider the framework of the example in Section \ref{sec:gradflow}. We r
 	X=\bigl\{b:\R_+\rightarrow\R\,|\ b \in L_{\infty}(\R_+) \cap W^{1}_{\infty,\loc}(\R_+) \bigr \}.
 \end{align*}
 In particular every $a \in X$ is weakly differentiable, and its local Lipschitz constant $\Lip_{K}(a)$ is finite for every compact set $K \subset \R_+$.
-Our goal is to learn the unknown influence function $a \in X$ from the observation of the dynamics of the empirical measure $\mu_N$, defined by $\mu_N(t)=\frac{1}{N} \sum_{i=1}^N \delta_{\x_i(t)}$, where $\x a_i(t)$ are driven by the interaction kernel $a$ according to the equations of motion
+Our goal is to learn the unknown influence function $a \in X$ from the observation of the dynamics of the empirical measure $\mu_N$, defined by $\mu_N(t)=\frac{1}{N} \sum_{i=1}^N \delta_{\x_i(t)}$, where $\x_i(t)$ are driven by the interaction kernel $a$ according to the equations of motion
 \begin{equation}\label{fdgradientflow2}
 \dotx_i(t) = \frac{1}{N} \sum_{j \neq i} a(| \x_i -  \x_j |) (\x_j - \x_i), \quad i=1,\dots,N.
 \end{equation}
@@ -73,14 +73,12 @@ We consider a minimizer of the following \textit{discrete error functional}
 			\left(\widehat a(|\x_i(t)-\x_j(t)|)(\x_i(t) - \x_j(t))-\dotx_i(t)\right)\biggr|^2 dt,
 	\end{split}
 \end{align}
-<<<<<<< HEAD
-among all functions $\widehat a \in X$. As we show in Proposition \ref{trajapprox}, if both $a, \widehat a \in X$ then there exist a constant $C>0$ depending on $T, \widehat a, \mu_0^N$ and a compact set $K \subset \R_+$ such that
-$$
-\| x[a](t) -x[a](t) \| \leq C \sqrt{\mathcal E_N(\widehat a)}, 
-$$
-for all $t \in [0,T]$. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.) Hence, minimizing $\mathcal E_N(\widehat a)$ with respect to $\widehat a$ in turn implies an accurate approximation of the trajectory $t \to x[a](t)$ at finite time as well. Moreover,
-notice that, contrary to the optimal control approach, the functional $\mathcal E_N$ has the remarkable property of being easily computable from the knowledge of $x_i$ and $\dot{x}_i$. Of course, we can consider to approximate the time derivative $\dot{x}_i$ by finite differences $\frac{x_i(t+\delta t)- x_i(t)}{\delta t}$ and we can assume that the data of the problem can be fully defined on observations of $x_i(t)$ for $t \in [0,T]$ for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space. In particular, given a finite dimensional space $V \subset X$, we consider the minimizer:
-=======
+%among all functions $\widehat a \in X$. As we show in Proposition \ref{trajapprox}, if both $a, \widehat a \in X$ then there exist a constant $C>0$ depending on $T, \widehat a, \mu_0^N$ and a compact set $K \subset \R_+$ such that
+%$$
+%\| x[a](t) -x[a](t) \| \leq C \sqrt{\mathcal E_N(\widehat a)}, 
+%$$
+%for all $t \in [0,T]$. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.) Hence, minimizing $\mathcal E_N(\widehat a)$ with respect to $\widehat a$ in turn implies an accurate approximation of the trajectory $t \to x[a](t)$ at finite time as well. Moreover,
+%notice that, contrary to the optimal control approach, the functional $\mathcal E_N$ has the remarkable property of being easily computable from the knowledge of $x_i$ and $\dot{x}_i$. Of course, we can consider to approximate the time derivative $\dot{x}_i$ by finite differences $\frac{x_i(t+\delta t)- x_i(t)}{\delta t}$ and we can assume that the data of the problem can be fully defined on observations of $x_i(t)$ for $t \in [0,T]$ for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space. In particular, given a finite dimensional space $V \subset X$, we consider the minimizer:
 among all functions $\widehat a \in X$. 
 The minimization of $\Eahatn$ has a close connection to the optimal control problem \eqref{optcontr}:
 \begin{proposition}\label{trajapprox}
@@ -98,8 +96,7 @@ for all $t \in [0,T]$, and $\x , \xahat  $ are the solutions to \eqref{eq:discrd
 %$$
 %for all $t \in [0,T]$. Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$ \MMcomment{isn't it: $\| x \|^2 := \frac{1}{N} \sum_{i=1}^N |x_i|^2$?}, for $x \in \mathbb R^{d \times N}$. 
 Therefore if $\widehat a$ makes $\Eahatn$ small, the trajectories $t\to \xahat(t)$ of the system \eqref{fdgradientflow2} with interaction kernel $\widehat a$ instead of $a$ are an approximation of the trajectories $t \to \x(t)$ at finite time. 
-Moreover, contrary to the optimal control approach, the functional $\Ean$ can be easily computed from witnessed trajectories $\x_i(t)$ and $\dotx_i(t)$. We may consider discrete-time approximations the time derivative $\dotx_i$ (e.g. by finite differences) and we shall assume that the data of the problem is the full set of observations $\x_i(t)$ for $t \in [0,T]$, for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space: given a finite dimensional space $V \subset X$, we let:
->>>>>>> 58339eadbd0400193ef283a364ed6322ed806c6c
+Moreover, contrary to the optimal control approach, the functional $\Ean$ can be easily computed from witnessed trajectories $\x_i(t)$ and $\dotx_i(t)$. We may consider discrete-time approximations the time derivative $\dotx_i$ (e.g. by finite differences) and we shall assume that the data of the problem is the full set of observations $\x_i(t)$ for $t \in [0,T]$, for a prescribed finite time horizon $T>0$. Furthermore, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space: given a finite dimensional space $V \subset X$, we let
 \begin{equation}\label{fdproxy}
 \widehat a_{N,V} = \argmin_{\widehat a \in V} \Eahatn.
 \end{equation}
