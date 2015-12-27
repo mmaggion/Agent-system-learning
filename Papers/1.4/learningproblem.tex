@@ -1,0 +1,514 @@
+% !TEX root = dynamicslearning.tex
+
+\section{The learning problem for the kernel function}\label{sec:learn}
+
+As already explained in the introduction, our goal is to learn $a \in X$ from observation of the dynamics of $\mu^N$ corresponding to system \eqref{eq:discrdyn} with $a$ as interaction kernel, $\mu_0^N$ as initial datum and $T$ as finite time horizon.
+
+We pick $\widehat a$ among those functions in $X$ which would give rise to a dynamics close to $\mu^N$: we choose $\widehat a \in X$ as a minimizer of the following \textit{discrete error functional}
+\begin{align}\label{eq-def-error}
+	\begin{split}
+	\Eahatn = \frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl|\frac{1}{N}\sum_{j=1}^N
+			\left(\widehat a(|\x_i(t)-\x_j(t)|)(\x_i(t) - \x_j(t))-\dot{x}^{[a]}_i(t)\right)\biggr|^2 dt.
+	\end{split}
+\end{align}
+
+Let us clarify that this optimization will guarantee that any minimizer $\widehat a_N$ produces very good trajectory approximations $x^{[\widehat a_N]}(t)$ to the
+"true" ones $\x(t)$ at least at finite time $t \in [0,T]$.
+
+\begin{proof}[Proof of Proposition \ref{trajapprox}]
+Let us denote $x=\x $ and $\widehat x =\xahat  $ and we estimate by Jensen or H\"older inequalities
+\begin{align*}
+\|x(t) - \widehat x(t) \|^2 & = \left \| \int_0^t ( \dot x(s) - \dot{\widehat x}(s)) ds \right \|^2 \leq  t \int_0^t \| \dot x(s) - \dot{\widehat x}(s) \|^2 ds \\
+&=  t \int_0^t \frac{1}{N} \sum_{i=1}^N \left | (\Fun{a} * \mu^N(x_i)- \Fun{\widehat a} * \widehat \mu^N(\widehat x_i)) \right |^2 ds\\
+&\leq 2 t \int_0^t \Bigg[  \frac{1}{N} \sum_{i=1}^N \left| (\Fun{a} - \Fun{\widehat a}) *  \mu^N( x_i)) \right |^2 \\
+&\quad +\Bigg| \frac{1}{N} \sum_{j=1}^N \widehat a(|x_i-x_j|)( (\widehat x_j - x_j) + (x_i-\widehat x_i))  \\
+&\quad+ \left(\widehat a(| \widehat x_i-\widehat x_j|) -  \widehat a(| x_i- x_j |)\right) (\widehat x_j - \widehat x_i) \Bigg|^2  \Bigg ] ds \\
+&\leq 2 T^2 \Eahatn +  \int_0^t 8 T( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2 )\|x(s) - \widehat x(s) \|^2  ds,
+\end{align*}
+for $K=[0,2 R]$ and $R>0$ is as in Proposition \ref{pr:exist} for $a$ substituted by $\widehat a$.
+An application of Gronwall's inequality yields the estimate
+$$
+\|x(t) - \widehat x(t) \|^2 \leq 2 T^2   e^{8 T^2( \|\widehat a\|_{L_\infty(K)}^2 + (R \operatorname{Lip}_K(\widehat a) ) ^2)} \Eahatn,
+$$
+which is the desired bound.
+\end{proof}
+
+
+%We clarify in the following in detail how the coercivity assumption \eqref{eq-coercive} arises. The trivial inequality % By Proposition \ref{pr:exist} it follows that $\supp(\mu(t)) \subseteq B(0,R)$, where $R$ is given by \eqref{Rest}. The estimate
+%\begin{align*}
+%|\Fun{\widehat a}(x-y) - \Fun{a}(x-y)|\leq |\widehat a(|x-y|) - a(|x-y|)| |x-y|
+%\end{align*}
+%implies
+%\begin{align*}
+%	 \Eahat
+%		&\leq\frac{1}{T}\int_0^T\int_{\R^d}\biggl(\int_{\R^d}\bigl|\widehat a(|x-y|)-a(|x-y|) |x-y|\bigr|
+%			d\mu(t)(y)\biggr)^2 d\mu(t)(x) dt \\
+%%\end{align*}
+%%Now observe that for any $\nu\in \mathcal{P}_1(\R^d)$ and  by H\"older's inequality we have
+%%\begin{align*}
+%%	\int_{\R^d}|f(x)|d\nu(x)\leq\biggl(\int_{\R^d}|f(x)|^2 d\nu(x)\biggr)^{1/2}.
+%%\end{align*}
+%%Hence, $\mathcal E$ can be bounded from above as
+%%\begin{align*}
+%%	\Eahat
+%&\leq\frac{1}{T}\int_0^T\int_{\R^d}\int_{\R^d}\bigl|\widehat a(|x-y|)-a(|x-y|)
+%		\bigr|^2  |x-y|^2 d\mu(t)(y) d\mu(t)(x) dt
+%\end{align*}
+%by H\"older's inequality.
+%Using the distance map
+%\begin{align*}
+%	d:\R^d\times\R^d\rightarrow\R_+\,,\qquad (x,y)\mapsto d(x,y)=|x-y|\,,
+%\end{align*}
+%we define by push-forward the probability measure-valued mapping $\varrho:[0,T]\rightarrow \mathcal{P}_1(\R_+)$ defined for every Borel set $A\subset\R_+$ as
+%\begin{align*}
+%	\varrho(t)(A)=(\mu(t)\otimes\mu(t))\bigl(d^{-1}(A)\bigr).
+%\end{align*}
+%With the introduction of $\varrho$ we rewrite the estimate as follows
+%\begin{align}\label{midpoint}
+%	\Eahat\leq\frac{1}{T}\int_0^T\int_{\R_+}\bigl|\widehat a(s)-a(s)\bigr|^2 s^2d\varrho(t)(s) dt.
+%\end{align}
+
+%\begin{equation}\label{eq-rho}
+%	\varrho(t)=d_{\#} (\mu(t)\otimes\mu(t))\,,
+%\end{equation}
+
+\subsection{The measure $\prerho$}
+
+In order to rigorously introduce the coercivity condition \eqref{eq-coercive}, we need to explore finer properties of the family of measures $(\varrho(t))_{t \in [0,T]}$, where we recall that 
+$\varrho(t)(A)=(\mu(t)\otimes\mu(t))\bigl(d^{-1}(A)\bigr)$ for $A$ a Borel set of $\mathbb{R}_+$.
+
+\begin{lemma}\label{rhosc}
+	For every open set $A\subseteq\R_+$ the mapping $t \in [0,T] \mapsto\varrho(t)(A)$ is lower semi-continuous, whereas for
+	any compact set $A$ it is upper semi-continuous.
+\end{lemma}
+
+\begin{proof}As a first step we show that for every given sequence $(t_n)_{n \in \N}$ converging to $t\in [0,T]$ we have the weak
+	convergence $\varrho(t_n)\rightharpoonup\varrho(t)$ for $n \rightarrow +\infty$. 
+	%For this, in turn we first prove the weak convergence of the product measure $\mu(t_n)\otimes\mu(t_n)\rightharpoonup\mu(t)\otimes\mu(t)$.
+	We first note that $\mu(t_n)\otimes\mu(t_n)\rightharpoonup\mu(t)\otimes\mu(t)$, since $\mu(t_n)\rightharpoonup\mu(t)$ because of the continuity of $\mu(t)$ in the Wasserstein metric $\W_1$.	
+%	A well-known property of the space $\mathcal{C}(\R^d\times\R^d)$ is that it coincides with the inductive tensor product
+%	$\mathcal{C}(\R^d)\otimes_\varepsilon \mathcal{C}(\R^d)$. In particular, functions of the form $h=\sum_{j=1}^J f_j\otimes g_j$ with
+%	$f_j,g_j\in \mathcal{C}(\R^d)$, for $j=1,\ldots,J$ and $J\in\N$, are a dense subspace of $\mathcal{C}(\R^{2d})$. Hence, to prove the weak
+%	convergence of measures on $\R^{2d}$, we can restrict the proof to functions of this form. Due to linearity of
+%	integrals, this can be further reduced to simple tensor products of the form $h=f\otimes g$.
+%	
+%	For such tensor products we can directly apply Fubini's Theorem and the weak convergence
+%	$\mu(t_n)\rightharpoonup\mu(t)$ (which is a consequence of the continuity of $\mu$ w.r.t. the
+%	Wasserstein metric $\W_1$), and find
+%	\[
+%		\int_{\R^{2d}}f\otimes g\, d(\mu(t_n)\otimes\mu(t_n))
+%			=\int_{\R^d}f d\mu(t_n)\cdot\int_{\R^d}g d\mu(t_n)
+%			\stackrel{n\rightarrow\infty}{\longrightarrow}\int_{\R^d}f d\mu(t)\cdot\int_{\R^d}g d\mu(t).
+%	\]
+	This implies the claimed weak convergence $\varrho(t_n)\rightharpoonup\varrho(t)$, since for any
+	function $f\in \mathcal{C}(\R_+)$, $f\circ d\in\mathcal{C}(\R^d\times\R^d)$, and hence
+	\begin{align*}
+		\int_{\R_+}f\,d\varrho(t_n)
+			&=\int_{\R^{2d}}(f\circ d)(x,y)d(\mu(t_n)\otimes\mu(t_n))(x,y)\\
+			&\stackrel{n\rightarrow\infty}{\longrightarrow}
+				\int_{\R^{2d}}(f\circ d)(x,y)d(\mu(t)\otimes\mu(t))(x,y)
+			=\int_{\R_+}f\,d\varrho(t).
+	\end{align*}
+	The claim now follows from general results for weakly* convergent sequences of Radon measures, see e.g. \cite[Proposition 1.62]{AFP00}.
+\end{proof}
+
+Lemma \ref{rhosc} justifies the following
+\begin{definition}
+The probability measure $\prerho$ on the Borel $\sigma$-algebra on $\R_+$ is defined for any Borel set $A \subseteq \R_+$ as follows
+\begin{align}\label{eq-rho-4}
+	\prerho(A):=\frac{1}{T}\int_0^T\varrho(t)(A)dt.
+\end{align}
+\end{definition}
+Notice that Lemma \ref{rhosc} shows that \eqref{eq-rho-4} is well-defined only for sets $A$ that are open or compact in $\R_+$. This directly implies that $\prerho$ can be extended to any Borel set $A$, since both families of sets provide a basis for the Borel $\sigma$-algebra on $\R_+$. Moreover $\prerho$ is a regular measure on $\R_+$, since Lemma \ref{rhosc} also implies that for any Borel set $A$
+\begin{align*}
+	\prerho(A) =  \sup\{\prerho(F) : F \subseteq A, \;F \text{ compact}\} = \inf\{\prerho(G) : A \subseteq G, \;G \text{ open}\}\,.
+\end{align*}
+
+\vspace{0.3cm}
+
+The measure $\prerho$ measures which - and how much - regions of $\R_+$ (the set of inter-point distances) are explored during the dynamics of the system. Highly explored regions are where our learning process ought to be successful, since these are the areas where we do have enough samples from the dynamics to reconstruct the function $a$.
+
+We now show the absolute continuity of $ \prerho$ w.r.t. the Lebesgue measure on $\R_+$. First of all we observe the following:
+
+\begin{lemma}\label{lemma-AC-1}
+	Let $\mu_0$ be absolutely continuous w.r.t. the $d$-dimensional Lebesgue measure $\cl_d$. Then $\mu(t)$ is absolutely continuous w.r.t. $\cl_d$ for every $t\in [0,T]$.
+\end{lemma}
+
+\begin{proof}
+Both $\mu_0$ and $\mu(t)$ are supported in $B(0,R)$, with $R$ as in \eqref{Rest}. The measure $\mu(t)$ is the pushforward of $\mu_0$ under the locally bi-Lipschitz map $\ct^\mu_t$. Since $\ct^\mu_t$ has Lipschitz inverse on $B(0,R)$, this inverse maps $\cl_d$-null sets to $\cl_d$-null sets, so $\mu_0$-null sets are not only $\cl_d$-null sets by assumption, but are also $\mu(t)$-null sets.
+\end{proof}
+%%	{\bf Step 1:} As a first step, we note that the transport map $\ct^\mu_t$ is locally Bi-Lipschitz, i.e. it is a bijective
+%%	locally Lipschitz map, and its inverse is locally Lipschitz as well. Bijectivity is a consequence of the uniqueness of
+%%	the solution to the corresponding ODE.
+%%	
+%%	Note that with $a$ being bounded on $\R_+$ also $\Fun{a}$ is bounded on $\R^d$, which in turn yields boundedness
+%%	of $\Fun{a}\ast\mu_t$ (uniformly in $t$; see \cite[Lemma 6.4]{MFOC}). Moreover, for fixed $t$ this
+%%	function is locally Lipschitz continuous, thus $g(t,x)=(\Fun{a}\ast\mu_t)(x)$ is a Carath\'eodory function. In particular,
+%%	we have
+%%	\[
+%%		|g(t,x_1)-g(t,x_2)|\leq C_{a,\mu}|x_1-x_2|
+%%	\]
+%%	for almost every $t$ and $x_1,x_2$ with $|x_i|\leq c_{r,a,T}=(r+T\|a\|_\infty)\exp(T\|a\|_\infty)$. This ultimately
+%%	implies the stability estimate
+%%	\[
+%%		\bigl|\ct^\mu_t x_0-\ct^\mu_t x_1\bigr|
+%%			\leq\exp\bigl(TC_{a,\mu}\bigr)|x_0-x_1|\,,\qquad |x_i|\leq r\,,\quad i=0,1\,,
+%%	\]
+%%	shown e.g. in \cite[Lemma 6.3]{MFOC}, i.e. $\ct^\mu_t$ is locally Lipschitz.
+%%	
+%%	In view of the uniqueness of the solutions to the ODE, it is furthermore clear that the inverse of $\ct^\mu_{t_0}$ is
+%%	given by the transport map associated to the backward ODE
+%%	\[
+%%		\dot x(t)=\bigl(\Fun{a}\ast\mu\bigr)(x)\,,\quad x(t_0)=x_0\,.
+%%	\]
+%%	However, this problem in turn can be cast into the form of an IVP simply by putting $\nu_t=\mu_{t_0-t}$. Then
+%%	$y(t)=x(t_0-t)$ solves
+%%	\[
+%%		\dot y(t)=-\bigl(\Fun{a}\ast\nu\bigr)(x)\,,\quad y(0)=x(t_0)\,.
+%%	\]
+%%	The corresponding stability estimate for this problem then yields that the inverse of $\ct^\mu_t$ is indeed
+%%	locally Lipschitz (with the same local constants).
+%
+%	Let a Lebesgue null-set $A\subset\R^d$ be given. Put $B=(\ct^\mu_t)^{-1}(A)$,
+%	the image of $A$ under the inverse of the transport map $(\ct^\mu_t)^{-1}$, which by Proposition \ref{p-transportlip} is a locally Lipschitz map. The claim now follows from showing $\cl_d(B)=0$,
+%	since by assumption we have $\mu_0(B)=0$, which by definition gives us
+%	\begin{align*}
+%		0=\mu_0(B)=\mu_0\bigl((\ct^\mu_t)^{-1}(A)\bigr) = \mu(t)(A)\,.
+%	\end{align*}
+%	Moreover, we can reduce this further to consider only $B\cap B(0,R)$ with $R$ as in
+%	\eqref{Rest}, since $\mu(t)(B\setminus B(0,R))=0$ for all $t \in [0,T]$ by Proposition \ref{pr:exist}. Hence we no longer need to distinguish
+%	between local and global Lipschitz maps.
+%	
+%	It thus remains to show that the image of a Lebesgue null-set under a Lipschitz map is again a Lebesgue null-set. To see this,
+%	recall that a measurable set $A$ has Lebesgue measure zero if and only if for every $\varepsilon>0$ there exists a
+%	family of balls $B_1,B_2,\ldots$ (or, equivalently, of cubes) such that
+%	\begin{align*}
+%		A\subset\bigcup_n B_n\qquad\text{and}\qquad\sum_n\cl_d(B_n)<\varepsilon\,.
+%	\end{align*}
+%	Let $L$ be the Lipschitz constant of $(\ct^\mu_t)^{-1}$, and $\diam(B_n)$ the diameter. Then clearly the image of
+%	$B_n$ under $(\ct^\mu_t)^{-1}$ is contained in a ball of diameter at most $L\diam(B_n)$. Denote those balls by
+%	$\widetilde B_n$.
+%	Then it immediately follows
+%	\begin{align*}
+%		(\ct^\mu_t)^{-1}(A)\subset\bigcup_n\widetilde B_n\qquad\text{as well as}\qquad
+%		\sum_n\cl_d(\widetilde B_n)\leq L\sum_n\cl_d(B_n)<L\varepsilon\,.
+%	\end{align*}
+%	Thus we have found a cover for $(\ct^\mu_t)^{-1}(A)$ whose measure is bounded from above by (a multiple of) $\varepsilon$, which finally
+%	yields $\cl_d((\ct^\mu_t)^{-1}(A))=0$.
+%\end{proof}
+%
+
+\begin{lemma}\label{le-abs}
+	Let $\mu_0$ be absolutely continuous w.r.t. $\cl_d$. Then, for all $t\in [0,T]$, the measures $\varrho(t)$ and $\prerho$ are absolutely
+	continuous w.r.t. $\cl_1\llcorner_{\R_+}$ (Lebesgue measure in $\R$ restricted to $\R_+$).
+\end{lemma}
+
+\begin{proof}
+	Fix $t\in [0,T]$. By Lemma \ref{lemma-AC-1} we already know that $\mu(t)$ is absolutely continuous w.r.t.
+	$\cl_d$, and so $\mu(t)\otimes\mu(t)$ is absolutely continuous w.r.t. $\cl_{2d}$. It hence
+	remains to show that $\cl_{2d}$ is absolutely continuous w.r.t. $\cl_1\llcorner_{\R_+}$, where $d$ is the distance function,
+	but this follows easily by observing that $d^{-1}(A)=0$ for every $\cl_1\llcorner_{\R_+}$-null set $A$, and an application of Fubini's theorem.	
+%	Let $A\subset\R_+$ be a Lebesgue null-set, and put $B=d^{-1}(A)\subset\R^{2d}$. Moreover, we denote by
+%	$B_x=\{y\in\R^d:|x-y|\in A\}$. Then clearly $B_{x+z}=z+B_x$. Moreover, using Fubini's Theorem we obtain
+%	\begin{align*}
+%		\cl_{2d}(B)=\int_{\R^d}\cl_d(B_x)d\cl_d(x)\,.
+%	\end{align*}
+%	It thus remains to show that $\cl_d(B_x)=0$ for one single $x\in\R^d$ (and thus for all, due to translation invariance of $\cl_d$).
+%	However, to calculate $\cl_d(B_0)$, we can pass to polar coordinates, and once again using Fubini's Theorem
+%	we obtain
+%	\begin{align*}
+%		\cl_d(B_x)=\int_{\R^d}\chi_{B_0}(y)d\cl_d(y)
+%			=\int_{S^d}\int_{\R_+}\chi_A(r)dr d\omega=\Omega_d\cl_1(A)=0\,,
+%	\end{align*}
+%	where $\Omega_d$ is the surface measure of the unit sphere $S_d$. This proves the absolute continuity of
+%	$\varrho(t)$, since
+%	\begin{align*}
+%		\cl_1(A)=0\Longrightarrow\cl_{2d}(d^{-1}(A))
+%			\Longrightarrow (\mu(t)\otimes\mu(t))(d^{-1}(A))=0\iff\varrho(t)(A)=0\,.
+%	\end{align*}
+	The absolute continuity of $\prerho$ now follows immediately from the one of $\varrho(t)$ for every $t$ and its
+	definition as an integral average \eqref{eq-rho-4}.
+\end{proof}
+
+As an easy consequence of the fact that the dynamics of our system has support uniformly bounded in time, we get the following crucial properties of the measure $\prerho$.
+
+\begin{lemma}\label{rhocompact}
+	The measure $\prerho$ is finite and has compact support.
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+\begin{split}
+\prerho(\R_+)&= \frac{1}{T}\int_0^T \varrho(t)(\R_+)dt 
+%&= \frac{1}{T}\int_0^T (\mu(t) \otimes \mu(t))(d^{-1}(\R_+))dt \\
+= \frac{1}{T}\int_0^T \int_{\R^d \times \R^d} |x - y| d\mu(t)(x) d \mu(t)(y)dt
+<+\infty,
+\end{split}
+\end{align*}
+since the distance function is continuous and the support of $\mu$ is uniformly bounded in time. This shows that $\prerho$ is bounded.
+Since the supports of the measures $\varrho(t)$ are the subsets of
+$K=\{|x-y|:x,y\in B(0,R)\} = [0,2R]$, where $R$ is given by \eqref{Rest}, by construction we also have $\supp \prerho\subseteq K$.
+\end{proof}
+
+\begin{remark}
+	While absolute continuity of $\mu_0$ implies the same for $\prerho$, the situation is different for purely atomic
+	measures $\mu_0^N$: then $\mu^N(t)$ is also purely atomic for every $t$, and so it is
+	$\varrho^N(t) = d_\# (\mu^N(t) \otimes \mu^N(t))$. However $\prerho$ is in general not purely atomic, due to the averaging in time in its definition \eqref{eq-rho-4}. 
+	(For
+	example, one obtains
+	\begin{align*}
+		\frac{1}{T}\int_0^T\delta(t) dt=\frac{1}{T}\cl_1\llcorner_{[0,T]}\,,
+	\end{align*}
+	as becomes immediately clear when integrating a continuous function against those kind of measures.)
+\end{remark}
+
+
+\subsection{On the coercivity assumption}\label{sec:coerc}
+
+With the measure $\prerho$ at disposal we define, as in \eqref{rho},  $\rho(A) = \int_{A} s^2 d\prerho(s)$ for all Borel sets $A \subset \R_+$.  An easy consequence of Lemma \ref{rhocompact} is that if $a\in X$, then
+\begin{align}\label{eq:inftyimplyl2}
+\|a\|^2_{L_2(\R_+,\rho)} = \int_{\R_+} \bigl|a(s)\bigr|^2 d\rho(s) \leq \operatorname{diam}(\supp(\rho))\|a\|^2_{L_{\infty}(\supp(\rho))}\,,
+\end{align}
+and therefore $X\subseteq L_2(\R_+,\rho)$.  
+As already mentioned in the introduction, for $N \to \infty$ a natural mean-field approximation to the learning functional is given by
+\begin{align*}
+	\Eahat=\frac{1}{T}\int_0^T \int_{\R^d} \biggl|\bigl((\Fun{\widehat a}-\Fun{a})\ast\mu(t)\bigr)(x)\biggr|^2d\mu(t)(x)dt,
+\end{align*}
+where $\mu(t)$ is a weak solution to \eqref{eq:contdyn}. 
+By means of $\rho$, we recall the estimate from the introdcution
+\begin{align}
+\begin{split}\label{eq-rho-3}
+	\Eahat&\leq\frac{1}{T}\int_0^T\int_{\R_+}\bigl|\widehat a(s)-a(s)\bigr|^2 s^2 d\varrho(t)(s) dt = \|\widehat a-a\|^2_{L_2(\R_+,\rho)}.
+\end{split}
+\end{align}
+This suggested as well the coercivity condition \eqref{eq-coercive}: 
+\begin{align*}
+	\Eahat\geq c_T\|\widehat a-a\|^2_{L_2(\R_+,\rho)}.
+\end{align*}
+The main reason this condition is of interest to us is:
+
+\begin{proposition}\label{uniquemin}
+Assume $a \in X$ and that the coercivity condition \eqref{eq-coercive} holds. Then any minimizer of $\mathcal E$ in $X$ coincides $\rho$-a.e. with $a$.
+\end{proposition}
+\begin{proof}
+Notice that $\mathcal E^{[a]}(a)=0$, and since $\Eahat\geq 0$ for all $\widehat a\in X$ this implies that $a$ is a minimizer of $\mathcal E^{[a]}$. Now suppose that $ \Eahat=0$ for some $\widehat a\in X$. By \eqref{eq-coercive} we obtain that $\widehat a=a$ in $L_2(\R_+,\rho)$, and therefore they coincide $\rho$-almost everywhere. %by \eqref{eq:inftyimplyl2} follows that $\widehat a=a$ also in $X$.
+\end{proof}
+
+
+\subsubsection{Coercivity is ``generically'' satisfied}\label{randomod}
+We make the case that while ``degeneracies'' would cause our coercivity condition to fail, i.e., $c_T=0$, but in a ``generic'' case the coercivity inequality holds.
+In the following we argue that if we could model the misfit $\mathcal K(r)=(a(r)- \widehat a(r))r$ to behave randomly over a finite set of trajectory distances, then
+the coercivity condition holds with high probability. Unfortunately to argue this way, we need to make rather strong independence assumptions of
+the trajectory distances which are to a certain extent not always applicable. Hence, in the successive section we also present a more rigorous deterministic argument
+to verify the coercivity condition. \\
+
+With the notation of the misfit just introduced the coercivity condition reads
+\begin{align*}
+\frac1T\int_0^T\int_{\R^d}&\left|\int_{\R^d} \mathcal K(|x-y|)\frac{x-y}{|x-y|}d\mu(t)(x)\right|^2d\mu(t)(y) \\
+&\ge\frac{c_T}{T}\int_0^T\int_{\R^d}\int_{\R^d}\left| \mathcal K(|x-y|)\right|^2d\mu(t)(x)d\mu(t)(y)\,.
+\end{align*}
+If the inequality holds without the time average for a fixed $t_0$,
+\begin{align*}
+\int_{\R^d}\left|\int_{\R^d} \mathcal K(|x-y|)\frac{x-y}{|x-y|}d\mu(t_0)(x)\right|^2d\mu(t_0)(y)
+\ge c_{t_0}'\int_{\R^d}\int_{\R^d}\left| \mathcal K(|x-y|)\right|^2d\mu(t_0)(x)d\mu(t_0)(y)\,,
+\end{align*}
+then by a continuity argument it can be extended to a nontrivial time interval. 
+Additionally we restrict for the moment our attention to the case where $\mu(t_0)$ is a discrete measure $\mu^N=\frac1N\sum_{i=1}^N\delta_{x_i}$ (we drop $t_0$ since $t_0$ is fixed), so that the inequality reads
+\begin{align}
+\frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2\ge \frac{c'_T}{N^2}\sum_{i=1}^N\sum_{j=1}^N\left| \mathcal K(|x_i-x_j|)\right|^2\,.
+\label{e:coercivitydiscrete}
+\end{align}
+We argue now that the instantaneous inequality holds with high probability as soon as the matrix $\mathbf{K}:=(\mathcal K(|x_i-x_j|))_{i,j=1,\dots,N}$ could be modeled as a random matrix.
+Although it is not completely plausible to argue statistical independence of the entries of such a matrix because it comes from evaluating a smooth function over distances of points, this model is not unreasonable, after all $\mathbf K$ involves the difference of our estimator $\widehat a$ and the target influence function $a$: for such least squares estimators this difference is likely random with the samples used to construct the estimator, with fluctuations that are likely to behave nearly Gaussianly. For the moment  and for the sake of simplicity let us assume that $\mathbf K$ has Gaussian rows with independent entries, and, without loss of generality, we assume $\mathbb E  \left [ \mathbf K_{i,j}^2  \right ] =1$ for all $i,j$. 
+
+We introduce now the tensor $\mathbf X$ described as a matrix $\mathbf X = ( \mathbf X_1 | \dots | \mathbf X_N)$ whose columns are defined by $ \mathbf X_i =\left (\frac{x_i-x_1}{|x_i-x_1|}, \dots, \frac{x_N-x_1}{|x_N-x_1| }\right )$.
+We additionally indicate with $\mathbf K_i = ( \mathbf K_{i,1}, \dots, \mathbf K_{i,N})$ any row of the matrix $\mathbf K$. With this notation we can rewrite
+$$
+\sum_{j=1}^N \mathbf K_{i,j} \frac{x_i-x_j}{|x_i-x_j|} =\mathbf K_i^T \mathbf X_i \in \mathbb R^d.
+$$
+Hence the discrete coercivity inequality \eqref{e:coercivitydiscrete}  may be re-written in terms of the matrices above as:
+\begin{align}
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}_i^T \mathbf{X}_i\right|^2\ge\frac{c'_{t_0}}{N^2}||\mathbf{K}||^2_{\mathbb{F}}\,.
+\label{e:coermatrix}
+\end{align}
+We compute now the expected value of the quantity on the left, assuming the randomness and independence over $\mathbf K_i$, while $\mathbf X$  is deterministic: first of all compute the estimated value of the argument
+\begin{eqnarray*}
+\mathbb E  | \mathbf K_i^T \mathbf X_i|^2 &=&  \mathbb E \left  | \sum_{j=1}^N \mathbf K_{i,j} \frac{x_i-x_j}{|x_i-x_j|}  \right |^2 \\
+&=&\sum_{\ell=1}^d \sum_{j=1}^N \sum_{m=1}^N  \mathbb E  \left [ \mathbf K_{i,j} \frac{(x_i-x_j)_\ell}{|x_i-x_j|} \mathbf K_{i,m} \frac{(x_i-x_m)_\ell}{|x_i-x_j|} \right ] \\
+&=& \sum_{\ell=1}^d \sum_{j=1}^N \mathbb E  \left [ \mathbf K_{i,j}^2  \right ] \frac{(x_i-x_j)_\ell^2}{|x_i-x_j|} \\
+&=& \sum_{j=1}^N \mathbb E  \left [ \mathbf K_{i,j}^2  \right ] \sum_{\ell=1}^d  \frac{(x_i-x_j)_\ell^2}{|x_i-x_j|} = \sum_{j=1}^N \mathbb E  \left [ \mathbf K_{i,j}^2  \right ] =N.
+\end{eqnarray*}
+This implies that
+$$
+\mathbb E  \left [ \frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2 \right ] =  \frac1N\sum_{i=1}^N  \frac{1}{N^2 } \mathbb E  | \mathbf K_i^T \mathbf X_i|^2  = \frac{1}{N}.
+$$
+
+
+In view of the Gaussianity of the entries we can additionally argue that the random variable  $\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}_i^T \mathbf{X}_i\right|^2$actually concentrates around its expected value and the deviation can be additionally controlled in probability, leading to the validity of
+$$
+  \frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2 \geq  \frac{1-\varepsilon}{N}
+$$
+with high probability for $0<\varepsilon<1$ large enough.
+One the other hand, under our assumption that $\mathbb{E}[|\mathbf{K}_{i,j}|^2]=1$ for all $i,j,$ we have $\mathbb{E}[||\mathbf{K}||^2_{\mathbb{F}}] = N^2$, and in fact one can also
+argue that $||\mathbf{K}||^2_{\mathbb{F}} \leq (1+\delta) N^2$ with high probability as soon as $\delta>0$ is large enough. By choosing $c_{t_0}'  \leq \frac{1-\varepsilon}{(1+ \delta) N}$ we obtain that \eqref{e:coermatrix}
+needs to hold with high probability \cite{Vershynin:NARMT}.
+The argument  may be generalized to other models of random matrices $\mathbf{K}$, for example with sub-Gaussian rows. One may also consider $\mathbf{X}_i$ random, and obtain similar results. Also, the  case of diffuse measures is not substantially different from the case of empirical measures, as it may be derived by smoothing argument (as we clarify in mode detail in the following section). We do not pursue these generalizations, as our purpose here is to argue that the coercivity assumption is satisfied ``generically''.
+
+
+Let us remark again that for such an explicit and simple computation we needed the independence of the entries of the row $\mathbf K_i$. We admit that it could be arguably considered a bit stretched as an assumption,
+in view of the continuity of $\mathcal K$. For this reason we also present below a deterministic construction to verify the coercivity condition.
+
+\subsubsection{The deterministic case}
+We construct now  deterministic examples of trajectories $t \to \mu(t)$ which can be arguably obtained by special choices of kernels $a$, for which the  coercivity condition \eqref{eq-coercive} holds.\\
+We start with the simple case of two particles, i.e., $N=2$, for which no specific assumptions on $a,\widehat a$ are required to verify \eqref{eq-coercive} other than their boundedness in $0$. Again it is convenient to write $\mathcal K(r) = (a(r) - \widehat a(r)) r$ so that the coercivity condition in this case can be formulated as 
+\begin{equation}\label{coercN2}
+\frac{1}{T} \int_0^T \frac{1}{N} \sum_{i=1}^N \left | \frac{1}{N} \sum_{j=1}^N \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \geq \frac{c_T}{N^2T} \int_0^T  \sum_{i=1}^N \sum_{j=1}^N |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{equation}
+Now, let us observe more closely the integrand on the left-hand-side and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
+\begin{eqnarray*}
+\frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j=1}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 &=& \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j\neq i}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
+&=&  \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \frac{x_i-x_{\widehat i}}{|x_i-x_{\widehat i}|} \right |^2\\
+&=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2\\
+&=&\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
+\end{eqnarray*}
+Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \to x_i(t)$. However, the case of two particles might be perceived too simple and we may want to extend our arguments to multiple particles. Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible cases is an involved exercise. (We circumvented this problem in the random model in Subsection \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
+For this reason we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
+$$
+\frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+$$
+Notice that it holds also
+\begin{equation}\label{maxbound}
+\frac{1}{9 T} \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+\end{equation}
+A direct computation in this case of particles disposed at the vertexes of a equilateral triangle shows that 
+$$
+ \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2,
+$$
+and therefore
+$$ 
+\frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \geq \frac{1}{18}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2.
+$$
+Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles forms precisely the triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to be coming from a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant. (Actually, later we will restrict our attention  to functions in $X_{M,K}$ which is precisely of this type!)
+Under this equi-continuity assumption, there exist $\varepsilon>0$ and a constant $c_{T,\varepsilon}>0$ independent of $\mathcal K$ (but perhaps depending only on its modulus of continuity) such that
+\begin{eqnarray*}\label{coercint}
+&&\frac{1}{T} \int_0^T \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \\\
+&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
+&\geq & \frac{c_{T,\varepsilon}}{3}  \mathcal K(r_0) \geq \frac{c_{T,\varepsilon}}{18T } \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{eqnarray*}
+In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one can construct examples for which the coercivity assumption is verifiable. Actually this construction can be extended to any group of $N$ particles disposed on the vertexes of regular polygons. As an example of how one should proceed, let us consider the case of $N=4$ particles disposed instantanously at the vertexes of a square of side length $\sqrt{2} r>0$. In this case one directly verfies that
+\begin{equation}\label{coerN4}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 = \frac{1}{16} ( \mathcal K(2 r) +  \sqrt 2 \mathcal K(\sqrt 2 r) )^2.
+\end{equation}
+Let us assume that the maximal absolute value of $\mathcal K$ in absolute value is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
+the case where $\mathcal K(2 r)  = -  \mathcal K(\sqrt 2 r)$ yielding the following estimate from below
+\begin{eqnarray*}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  &\geq& \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
+\end{eqnarray*}
+Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible, perhaps not surprisingly, to conclude the coercivity condition for the uniform distribution over the circle.
+\\
+
+All the examples presented so far are based on discrete measures $\mu^N=\frac{1}{N} \sum_{i=1}^N\delta_{x_i}$ supported on particles lying on the vertexes of polytopes. However, one can consider an approximated convolution identity $g_\varepsilon$ for which $g_\varepsilon \to \delta_0$ for $\varepsilon \to 0$, where $\delta_0$ is a Dirac delta in $0$, and  the regularized probability measure
+$$
+\mu_\varepsilon(x) = g_\varepsilon * \mu^N (x)= \frac{1}{N} \sum_{i=1}^N g_\varepsilon (x-x_i).
+$$
+This diffuse measure approximates $\mu^N$ in the sense that $\mathcal W_1(\mu_\varepsilon,\mu^N) \to 0$ for $\varepsilon \to 0$, hence in particular integrals against Lipschitz functions can be well-approximated, i.e.,
+$$
+\left | \int_{\mathbb R^d} \varphi(x) d \mu^N(x) -\int_{\mathbb R^d}  \varphi(x) d \mu_\varepsilon(x) \right | \leq \Lip(\varphi) \mathcal W_1(\mu_\varepsilon,\mu^N) .
+$$
+Under the additional assumption that $\Lip_K(\widehat a) \sim \| \widehat a \|_{L_\infty(K)}$ (and this is true whenever $\widehat a$ is a piecewise polynomial function over a finite partition of $\R_+$, with the constant of the equivalence depending on the particular partition) one can extend the validity of the coercivity condition for $\mu^N$ \eqref{coercN2} 
+to $\mu_\varepsilon$ as follows
+\begin{align*}
+&\frac{1}{T} \int_0^T \int_{\mathbb R^d}  \left | \int_{\mathbb R^d}  \mathcal K(|x-y|) \frac{y-x}{|y-x|} d \mu_\varepsilon(x) \right |^2 d\mu_\varepsilon(y) dt \\
+& \geq  \frac{c_{T,\varepsilon }}{T} \int_0^T  \int_{\mathbb R^d}  \int_{\mathbb R^d}  |\mathcal K(|x-y|)|^2    d\mu_\varepsilon(x) d\mu_\varepsilon(y)dt,
+\end{align*}
+for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
+\\
+
+We hope that these examples convince the reader that the coercivity condition is verifiable in many cases and from now on we assume it without further concerns. 
+
+
+
+
+\subsection{Existence of minimizers of $\mathcal E^{[a],N}$}
+The following proposition, which is a straightforward consequence of Ascoli-Arzel\'a Theorem, indicates the right ambient space where to state an existence result for the minimizers of $\mathcal E^{[a],N}$.
+
+\begin{proposition}\label{XMdef}
+Fix $M > 0$ and $K=[0,2R] \subset  \mathbb R_+$ for any $R>0$. Recall the set
+\begin{align*}
+X_{M,K} = \left\{b \in W^{1}_{\infty}(K) :
+ \|b\|_{L_{\infty}(K)} + \|b'\|_{L_{\infty}(K)} \leq M
+ \right\}.
+\end{align*}
+The space $X_{M,K}$ is relatively compact with respect to the uniform convergence on $K$.
+\end{proposition}
+\begin{proof}
+Consider $(\widehat a_n)_{n \in \N} \subset X_{M,K}$. The Fundamental Theorem of Calculus (which is applicable for functions in $W^{1}_{\infty}$, see \cite[Theorem 2.8]{AFP00}) 
+%tells us that, for any $r_1,r_2 \in K$ it holds
+%	\begin{align*}
+%		a_n(r_1)-a_n(r_2)=\int_{r_1}^{r_2}a_n'(r)dr.
+%	\end{align*}
+%	This implies
+%	\begin{align*}
+%		\bigl|a_n(r_1)-a_n(r_2)\bigr|\leq\int_{r_1}^{r_2}|a_n'(r)|dr
+%			\leq \|a_n'\|_{L_\infty(K)}|r_2-r_1|.
+%	\end{align*}
+%	In particular, 
+implies that the functions $\widehat a_n$ are all Lipschitz continuous with Lipschitz constant uniformly bounded by
+	$M$, which in turn implies equi-continuity. They are moreover pointwise uniformly equibounded.
+Ascoli-Arzel\'a Theorem then implies the existence of a subsequence converging uniformly on $K$ to some $\widehat a \in X_{M,K}$.
+\end{proof}
+
+\begin{proposition}\label{ENmin}
+Assume $a \in X$. Fix $M > 0$ and $K=[0,2R] \subset  \mathbb R_+$ for $R>0$ as in Proposition \ref{pr:exist}. Let $V$ be a closed subset of $X_{M,K}$ w.r.t. the uniform convergence. Then, the optimization problem
+\begin{align*}
+	\mbox{minimize } \Eahatn \mbox{ among all } \widehat a \in V
+\end{align*}
+admits a solution.
+\end{proposition}
+\begin{proof}
+Since $\inf \mathcal E^{[a],N} \geq 0$, we can consider a minimizing sequence $(\widehat a_n)_{n \in \N} \subset V$, i.e., such that $\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) = \inf_{V}  \mathcal E^{[a],N} $. By Proposition \ref{XMdef} there exists a subsequence of $(\widehat a_n)_{n \in \N}$ (labelled again $(\widehat a_n)_{n \in \N}$) converging uniformly on $K$ to a function $\widehat a \in V$ (since $V$ is closed). We now show that $\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) =  \mathcal E^{[a],N} (\widehat a)$, from which it follows  that $ \mathcal E^{[a],N} $ attains its minimum in $V$. 
+%First, notice that, since from Lemma \ref{le-abs} we have that $\rho$ is absolutely continuous w.r.t. the Lebesgue measure $\cl_1\llcorner_{\R_+}$, we have
+%\begin{align*}
+%\|\widehat a_n - \widehat a\|_{L_{\infty}(\supp(\rho))} \leq \|\widehat a_n - \widehat a\|_{L_{\infty}(\R_+,\rho)},
+%\end{align*}
+%which implies $\|\widehat a_n - \widehat a\|_{L_{\infty}(\R_+,\rho)}\rightarrow0$ as $n\rightarrow+\infty$. This means that the sequence of functions $(\Fun{\widehat a_n})_{n \in \N}$ converges uniformly to $\Fun{\widehat a}$ in $L_{\infty}(\R_+,\rho)$. Furthermore, the fact that the measures $\mu^N(t)$ are compactly supported in $B(0,R)$ uniformly in time (where $R$ is as in \eqref{Rest}) implies that
+
+As a first step, notice that the uniform convergence of $(\widehat a_n)_{n \in \N}$ to $\widehat a$ on $K$ and the compactness of $K$ imply that the functionals $\Fun{\widehat a_n}(x-y)$ converge uniformly to $\Fun{\widehat a}(x-y)$ on $B(0,R)\times B(0,R)$ (where $R$ is as in \eqref{Rest}). Moreover, we have the uniform bound
+\begin{align}
+\begin{split}\label{Faest}
+\sup_{x,y\in B(0,R)}|\Fun{\widehat a_n}(x-y) - \Fun{a}(x-y)| &= \sup_{x,y\in B(0,R)}|\widehat a_n(|x-y|) -  a(|x-y|)| |x-y| \\
+&\leq 2R \sup_{r\in K} |\widehat a_n(r) -  a(r)| \\
+& \leq 2R(M + \|a\|_{L_{\infty}(K)}).
+\end{split}
+\end{align}
+As the measures $\mu^N(t)$ are compactly supported in $B(0,R)$ uniformly in time, the boundedness \eqref{Faest} allows us to apply three times the dominated convergence theorem to yield
+\begin{align*}
+\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) &= \lim_{n \rightarrow \infty}\frac{1}{T}\int_0^T\int_{\R^d} \left| \int_{\R^d}
+			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\lim_{n \rightarrow \infty}\int_{\R^d} \left| \int_{\R^d}
+			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\int_{\R^d} \left| \lim_{n \rightarrow \infty}\int_{\R^d}
+			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\int_{\R^d} \left| \int_{\R^d}
+			\left(\Fun{\widehat a}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
+&=  \Eahatn,
+\end{align*}
+which proves the statement.
+
+%Actually, the convergence is also in $L_2(\R_+,\rho)$ by \eqref{eq:inftyimplyl2}. Furthermore, notice that $E_N(\widehat a) \leq 2R\|\widehat a - a\|_{L_2(\R_+,\rho)} < +\infty$ from \eqref{eq-rho-3}, while applying \eqref{eq-coercive} and \eqref{eq-rho-3} in sequence we can bound $E_N(\widehat a_n)$ from below as
+%\begin{align*}
+%E_N(\widehat a_n) & \geq c \|a - \widehat a_n\|_{L_2(\R_+,\rho)} \\
+%&\geq c \left(\|a - \widehat a\|_{L_2(\R_+,\rho)} - \|\widehat a - \widehat a_n\|_{L_2(\R_+,\rho)} \right)\\
+%& \geq \frac{c}{2R} E_N(\widehat a) - c \|\widehat a - \widehat a_n\|_{L_2(\R_+,\rho)}.
+%\end{align*}
+%Since $c = 2R$, this eventually gives us the sequence of inequalities
+%\begin{align*}
+%\inf E_N = \lim_{n \rightarrow +\infty}E_N(\widehat a_n) \geq E_N(\widehat a) \geq \inf E_N,
+%\end{align*}
+%which shows that $E_N(\widehat a) = \inf E_N$, i.e., $E_N$ attains its minimum in $\widehat X \cap X$. If now $a \in \widehat X$, to prove the uniqueness of the minimizer we can argue as in the proof of Proposition \ref{uniquemin}.
+\end{proof}
+%
+%\begin{remark}
+%The requirement to search for the minimizer inside the set $X_M$ is indeed very strong, since it implies that one not only needs to know an upper bound for the target function $a$ but also of its derivative. It is however true that such upper bounds need not be sharp, as they are only required as part of a compactness argument. Moreover, in real-life applications, these quantities may be preliminary computed thanks to a statistical analysis of the trajectories of the system under study.
+%\end{remark}

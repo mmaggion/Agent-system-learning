@@ -1,0 +1,126 @@
+\begin{thebibliography}{10}
+
+\bibitem{AFP00}
+L.~Ambrosio, N.~Fusco, and D.~Pallara.
+\newblock {\em {Functions of Bounded Variation and Free Discontinuity
+  Problems.}}, volume 254.
+\newblock Clarendon Press Oxford, 2000.
+
+\bibitem{AGS}
+L.~Ambrosio, N.~Gigli, and G.~Savar{\'e}.
+\newblock {\em {G}radient {F}lows in {M}etric {S}paces and in the {S}pace of
+  {P}robability {M}easures}.
+\newblock Lectures in Mathematics ETH Z\"urich. Birkh\"auser Verlag, Basel,
+  second edition, 2008.
+
+\bibitem{MR2327596}
+P.~Binev, A.~Cohen, W.~Dahmen, and R.~DeVore.
+\newblock Universal algorithms for learning theory. {II}. {P}iecewise
+  polynomial functions.
+\newblock {\em Constr. Approx.}, 26(2):127--152, 2007.
+
+\bibitem{MR2249856}
+P.~Binev, A.~Cohen, W.~Dahmen, R.~DeVore, and V.~Temlyakov.
+\newblock Universal algorithms for learning theory. {I}. {P}iecewise constant
+  functions.
+\newblock {\em J. Mach. Learn. Res.}, 6:1297--1321, 2005.
+
+\bibitem{bofohamaXX}
+M.~Bongini, M.~Fornasier, M.~Hansen, and M.~Maggioni.
+\newblock Inferring interaction rules from observations of evolutive systems
+  {II}: The universal learning approach.
+\newblock {\em in preparation}, 2016.
+
+\bibitem{brpi07}
+A.~Bressan and B.~Piccoli.
+\newblock {\em Introduction to the mathematical theory of control}, volume~2 of
+  {\em AIMS Series on Applied Mathematics}.
+\newblock American Institute of Mathematical Sciences (AIMS), Springfield, MO,
+  2007.
+
+\bibitem{CanCarRos10}
+J.~{Ca\~nizo}, J.~{Carrillo}, and J.~{Rosado}.
+\newblock {A well-posedness theory in measures for some kinetic models of
+  collective motion.}
+\newblock {\em {Math. Models Methods Appl. Sci.}}, 21(3):515--539, 2011.
+
+\bibitem{13-Carrillo-Choi-Hauray-MFL}
+J.~A. Carrillo, Y.-P. Choi, and M.~Hauray.
+\newblock The derivation of swarming models: Mean-field limit and {W}asserstein
+  distances.
+\newblock In {\em Collective Dynamics from Bacteria to Crowds: An Excursion
+  Through Modeling, Analysis and Simulation Series}, volume 553, pages 1--46.
+  CISM International Centre for Mechanical Sciences, 2014.
+
+\bibitem{cafotove10}
+J.~A. Carrillo, M.~Fornasier, G.~Toscani, and F.~Vecil.
+\newblock Particle, kinetic, and hydrodynamic models of swarming.
+\newblock In {\em Mathematical modeling of collective behavior in
+  socio-economic and life sciences}, pages 297--336. Springer, 2010.
+
+\bibitem{CucSma07}
+F.~Cucker and S.~Smale.
+\newblock Emergent behavior in flocks.
+\newblock {\em IEEE Trans. Automat. Control}, 52(5):852--862, 2007.
+
+\bibitem{MR1201152}
+G.~Dal~Maso.
+\newblock {\em An introduction to {$\Gamma$}-convergence}.
+\newblock Progress in Nonlinear Differential Equations and their Applications,
+  8. Birkh\"auser Boston, Inc., Boston, MA, 1993.
+
+\bibitem{descsc13}
+S.~Dereich, M.~Scheutzow, and R.~Schottstedt.
+\newblock Constructive quantization: approximation by empirical measures.
+\newblock {\em Ann. Inst. Henri Poincar\'e (B)}, 49(4):1183--1203, 2013.
+
+\bibitem{Fil}
+A.~{Filippov}.
+\newblock {\em {Differential equations with discontinuous right-hand sides}}.
+\newblock Kluwer Academic Publishers, 1988.
+
+\bibitem{fornahuetter}
+M.~{Fornasier} and J.-C. {H\"utter}.
+\newblock Consistency of probability measure quantization by means of power
+  repulsion-attraction potentials.
+\newblock Submitted, 2015.
+
+\bibitem{MFOC}
+M.~Fornasier and F.~Solombrino.
+\newblock Mean-field optimal control.
+\newblock {\em ESAIM Control Optim. Calc. Var.}, 20(4):1123--1152, 2014.
+
+\bibitem{heoemascszwa11}
+J.~E. Herbert-Reada, A.~Pernab, R.~P. Mannb, T.~M. Schaerfa, D.~J.~T. Sumpterb,
+  and A.~J.~W. Warda.
+\newblock Inferring the rules of interaction of shoaling fish.
+\newblock {\em PNAS}, 108(46):18726?18731, 2011.
+
+\bibitem{KelleyTop}
+J.~L. {Kelley}.
+\newblock {\em {General topology}}.
+\newblock Springer-Verlag, 1955.
+
+\bibitem{mann11}
+R.~Mann.
+\newblock Bayesian inference for identifying interaction rules in moving animal
+  groups.
+\newblock {\em PLoS ONE}, 6(8):e22827. doi:10.1371/journal.pone.0022827, 2011.
+
+\bibitem{Vershynin:NARMT}
+R.~Vershynin.
+\newblock Introduction to the non-asymptotic analysis of random matrices.
+\newblock arXiv preprint arXiv:1011.3027, 2010.
+
+\bibitem{VCBCS95}
+A.~T. Vicsek, E.~Czir\'ok, O.~Ben-Jacob, and O.~Shochet.
+\newblock Novel type of phase transition in a system of self-driven particles.
+\newblock {\em Phys. Rev. Lett.}, 75(6):1226--1229, 1995.
+
+\bibitem{villani}
+C.~Villani.
+\newblock {\em {Topics in Optimal Transportation}}, volume~58 of {\em Graduate
+  Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 2003.
+
+\end{thebibliography}
