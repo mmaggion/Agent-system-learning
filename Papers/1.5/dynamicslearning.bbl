@@ -69,6 +69,12 @@ G.~Dal~Maso.
 \newblock Progress in Nonlinear Differential Equations and their Applications,
   8. Birkh\"auser Boston, Inc., Boston, MA, 1993.
 
+\bibitem{deboor}
+{De Boor, Carl}.
+\newblock {B(asic)-Spline Basics.}
+\newblock Technical report, Wisconsin University--Madison Mathematics Research
+  Center, August 1986.
+
 \bibitem{descsc13}
 S.~Dereich, M.~Scheutzow, and R.~Schottstedt.
 \newblock Constructive quantization: approximation by empirical measures.

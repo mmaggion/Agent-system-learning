@@ -35,23 +35,23 @@ where $\Fun{a}(z) =-a(|z|)z=-A'(|z|)/|z|$, for $z \in \mathbb R^{d}$. In fact th
 $$
 \mathcal J (\mu) = \int_{\mathbb R^{d\times d}} A(| x-  y |) d \mu(x) d\mu(y),
 $$
-on the metric space $\mathcal H =\mathcal P_c(\mathbb R^d)$ endowed with the so-called Wasserstein distance. Continuity equations of the type \eqref{eq:meanfield} with nonlocal interaction kernels are currently the subject of intensive research  towards the modeling of the biological and social behavior of microorganisms, animals, humans, etc. We refer to the  articles \cite{cafotove10,13-Carrillo-Choi-Hauray-MFL} for recent overviews on this subject. Despite the tremendous theoretical success of such research direction in terms of mathematical results, as we shall stress below in more detail, one of the issues which is so far scarcely addressed in the study of models of the type \eqref{fdgradientflow} or \eqref{eq:meanfield} is their actual applicability. Most of the results are addressing a purely {\it qualitative analysis} given certain smoothness and asymptotic properties of the kernels $A$ or $a$ at the origin or at infinity, in terms of well-posedness or in terms of asymptotic behavior of the solution for $t \to \infty$.  Certainly such results are of great importance, as such interaction functions, if ever they can really describe social dynamics,  are likely to differ significantly from well-known models from physics and it is reasonable and legitimate to consider a large variety of classes of such functions.
+on the metric space $\mathcal H =\mathcal P_c(\mathbb R^d)$ endowed with the so-called Wasserstein distance. Continuity equations of the type \eqref{eq:meanfield} with nonlocal interaction kernels are currently the subject of intensive research  towards the modeling of the biological and social behavior of microorganisms, animals, humans, etc. We refer to the  articles \cite{13-Carrillo-Choi-Hauray-MFL,cafotove10} for recent overviews on this subject. Despite the tremendous theoretical success of such research direction in terms of mathematical results on well-posedness and asymptotic behavior of solutions, as we shall stress below in more detail, one of the issues which is so far scarcely addressed in the study of models of the type \eqref{fdgradientflow} or \eqref{eq:meanfield} is their actual applicability. Most of the results are addressing a purely {\it qualitative analysis} given certain smoothness and asymptotic properties of the kernels $A$ or $a$ at the origin or at infinity, in terms of well-posedness or in terms of asymptotic behavior of the solution for $t \to \infty$.  Certainly such results are of great importance, as such interaction functions, if ever they can really describe social dynamics,  are likely to differ significantly from well-known models from physics and it is reasonable and legitimate to consider a large variety of classes of such functions.
 However, a solid mathematical framework which establishes the conditions of ``learnability'' of the interaction kernels from observations of the dynamics is currently not available and it will be the main subject of this paper.
 
 \subsection{Parametric energies and their identifications}
 
-Let us now consider again an abstract energy $\mathcal J[a]$ and let us assume that it is dependent on a parameter function $a$. As in the example mentioned above, $a$ may be defining a nonlocal interaction kernel as in  \eqref{intker}. The parameter function $a$ not only determines the abstract energy, but also the corresponding evolutions  $t \to \x(t)$ driven according to \eqref{gradientflow}, for fixed initial conditions $\x(0)=x_0$. (Here we assume that the class of $a$ is such that the evolutions exist and they are essentially well-posed; we explicitly stress the dependency on $a$ with a superscript $[a]$, which below we may remove as soon as such dependency is clear from the context.)
+Let us now consider again an abstract energy $\mathcal J^{[a]}$ and let us assume that it is dependent on a parameter function $a$, as indicated in the superscript. As in the example mentioned above, $a$ may be defining a nonlocal interaction kernel as in  \eqref{intker}. The parameter function $a$ not only determines the abstract energy, but also the corresponding evolutions  $t \to \x(t)$ driven according to \eqref{gradientflow}, for fixed initial conditions $\x(0)=x_0$. (Here we assume that the class of $a$ is such that the evolutions exist and they are essentially well-posed; we explicitly stress again the dependency on $a$ with a superscript $[a]$, which below we may remove as soon as such dependency is clear from the context.)
 The fundamental question to be here addressed is: can we recover $a$ with high accuracy given some observations of the realized evolutions? This question is prone to several specifications, for instance, we may want to assume that the initial conditions are generated according to a certain probability distribution or they are chosen deterministically ad hoc to determine at best $a$, that the observations are complete or incomplete, etc. As one  quickly realizes, this is a very broad field to explore with many possible developments. Surprisingly, there are no results in this direction at this level of generality, and very little is done in the specific directions we mentioned in the example above. We can only refer, for instance,  to \cite{mann11,heoemascszwa11} for studies on the inference of social rules in collective behavior. 
 \subsection{The optimal control approach and its drawbacks}
 Let us introduce an approach, which would perhaps naturally be considered at a first instance and focus for a moment on the gradient flow model \eqref{gradientflow}. Given a certain gradient flow evolution $t \to \x(t)$ depending on the unknown parameter function $a$, one might decide to design the recovery of $a$ as an optimal control problem \cite{brpi07}: for instance, we may seek a parameter function $\widehat a$ which minimizes
 \begin{equation}\label{optcontr}
 \Eahat = \frac{1}{T}\int_0^T \left [ \operatorname{dist}_{\mathcal H}(\x(s) - \xahat(s))^2 + \mathcal R(\widehat a) \right ] d s ,
 \end{equation}
-being $t \to \xahat(t)$ the solution of gradient flow \eqref{gradientflow} for $\mathcal J = \mathcal J[\widehat a]$, i.e.,
+being $t \to \xahat(t)$ the solution of gradient flow \eqref{gradientflow} for $\mathcal J = \mathcal J[^{\widehat a]}$, i.e.,
 \begin{equation}\label{gradientflow2}
-\dotxahat(t) \in - \partial_x J(x^{[\widehat a]}(t),t),
+\dotxahat(t) \in - \partial_x \mathcal J(x^{[\widehat a]}(t),t),
 \end{equation}
-and $\mathcal R(\cdot)$ is a suitable regularization function, which restricts the possible minimizers of \eqref{optcontr} to a specific class. The first fundamental problem one immediately encounters with this formulation is the strongly nonlinear dependency of $t \to \xahat(t)$ on $\widehat a$, which results in a strong non-convexity of the functional \eqref{optcontr}. This also implies that a direct minimization of \eqref{optcontr} would risk to lead to suboptimal solutions, and even the computation of a first order optimality condition in terms of Pontryagin's minimum principle would not characterize uniquely the minimal solutions. Besides this fundamental hurdles, the numerical implementation of either strategy (direct optimization or solution of the first order optimality conditions) is expected to be computationally unfeasible to reasonable degree of accuracy as soon as the underlying discretization dimension grows.
+and $\mathcal R(\cdot)$ is a suitable regularization functional, which restricts the possible minimizers of \eqref{optcontr} to a specific class. The first fundamental problem one immediately encounters with this formulation is the strongly nonlinear dependency of $t \to \xahat(t)$ on $\widehat a$, which results in a strong non-convexity of the functional \eqref{optcontr}. This also implies that a direct minimization of \eqref{optcontr} would risk to lead to suboptimal solutions, and even the computation of a first order optimality condition in terms of Pontryagin's minimum principle would not characterize uniquely the minimal solutions. Besides these fundamental hurdles, the numerical implementation of either strategy (direct optimization or solution of the first order optimality conditions) is expected to be computationally unfeasible to reasonable degree of accuracy as soon as the underlying discretization dimension grows.
 
 \subsection{A variational approach towards learning parameter functions in nonlocal energies}\label{sec:wp2}
 
@@ -66,7 +66,7 @@ Our goal is to learn the unknown influence function $a \in X$ from the observati
 \end{equation}
 %We already mentioned that the most immediate approach of formulating the learning of $a$ in terms of an optimal control problem is not efficient and likely will not give optimal solutions due to the strong non-convexity. 
 Instead of the nonconvex optimal control problem above, we propose an alternative, direct approach which is both computationally very efficient and guarantees accurate approximations under reasonable assumptions.
-In particular, we consider a minimizer of the following \textit{discrete error functional}
+In particular, we consider as an estimator of the kernel $a$ a minimizer of the following \textit{discrete error functional}
 \begin{align}\label{eq-def-error1}
 	\begin{split}
 	\Eahatn = \frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl|\frac{1}{N}\sum_{j=1}^N
@@ -80,7 +80,7 @@ In particular, we consider a minimizer of the following \textit{discrete error f
 %for all $t \in [0,T]$. (Here $\| x \| = \frac{1}{N} \sum_{i=1}^N |x_i|$, for $x \in \mathbb R^{d \times N}$.) Hence, minimizing $\mathcal E_N(\widehat a)$ with respect to $\widehat a$ in turn implies an accurate approximation of the trajectory $t \to x[a](t)$ at finite time as well. Moreover,
 %notice that, contrary to the optimal control approach, the functional $\mathcal E_N$ has the remarkable property of being easily computable from the knowledge of $x_i$ and $\dot{x}_i$. Of course, we can consider to approximate the time derivative $\dot{x}_i$ by finite differences $\frac{x_i(t+\delta t)- x_i(t)}{\delta t}$ and we can assume that the data of the problem can be fully defined on observations of $x_i(t)$ for $t \in [0,T]$ for a prescribed finite time horizon $T>0$. Moreover, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space. In particular, given a finite dimensional space $V \subset X$, we consider the minimizer:
 among all competitor functions $\widehat a \in X$. 
-Actully, the minimization of $\mathcal E^{[a],N}$ has a close connection to the optimal control problem, as it also promotes the minimization of the discrepancy $ \operatorname{dist}_{\mathcal H}(\x(s) - \xahat(s))^2$ in  \eqref{optcontr} (here we remind that in this setting $\mathcal H$ is the Euclidean space $\mathbb R^{d \times N}$):
+Actually, the minimization of $\mathcal E^{[a],N}$ has a close connection to the optimal control problem, as it also promotes the minimization of the discrepancy $ \operatorname{dist}_{\mathcal H}(\x(s) - \xahat(s))^2$ in  \eqref{optcontr} (here we remind that in this setting $\mathcal H$ is the Euclidean space $\mathbb R^{d \times N}$):
 \begin{proposition}\label{trajapprox}
 If $a,\widehat a \in X$ then there exist a constant $C>0$ depending on $T, a$, and $\x(0)$ such that
 \begin{equation}\label{eq:trajapprox}
@@ -91,7 +91,7 @@ for all $t \in [0,T]$, and $\x , \xahat  $ are the solutions to \eqref{fdgradien
 Therefore if $\widehat a$ makes $\Eahatn$ small, the trajectories $t\to \xahat(t)$ of the system \eqref{fdgradientflow2} with interaction kernel $\widehat a$ instead of $a$ are an approximation of the trajectories $t \to \x(t)$ at finite time. 
 The proof of this statement follows by Jensen's inequality and an application of Gronwall's lemma, and we report it in deatil below in Section \ref{sec:learn}. \\
 
- For simplicity of notations, we may choose to ignore below the dependence on $a$ of the trajectories, we may simply write $x \equiv \x$ when we can easily assume that such a dependence  is clear from the context. Additionally, whenever we consider the limit $N \to \infty$,  we may denote the dependency of the trajectory on the number of particles $N \in \mathbb N$ by setting $x^N\equiv x \equiv \x$.
+ For simplicity of notations, we may choose to ignore below the dependence on $a$ of the trajectories, we may simply write $x \equiv \x$ when we can easily assumed that such a dependence  is clear from the context. Additionally, whenever we consider the limit $N \to \infty$,  we may denote the dependency of the trajectory on the number of particles $N \in \mathbb N$ by setting $x^N\equiv x \equiv \x$.
 \\
 
 Contrary to the optimal control approach, the functional $\Ean$ is convex and can be easily computed from witnessed trajectories $x_i(t)$ and $\dot x_i(t)$. We may even consider discrete-time approximations of the time derivatives $\dot x_i$ (e.g. by finite differences) and we shall assume that the data of the problem is the full set of observations $x_i(t)$ for $t \in [0,T]$, for a prescribed finite time horizon $T>0$. Furthermore, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space: given a finite dimensional space $V \subset X$, we let
@@ -197,7 +197,7 @@ where $M>0$ is some predetermined constant and $K \subset \mathbb R_+$ is a suit
 
 
 
-We now introduce the key property that a family of approximation spaces $V_N$ must possess in order to ensure that the minimizers of the functionals  $\mathcal E^{[a],N}$ converge to minimizers of $\mathcal E^{[a]}$.
+We now introduce the key property that a family of approximation spaces $V_N$ must possess in order to ensure that the minimizers of the functionals  $\mathcal E^{[a],N}$ over $V_N$ converge to minimizers of $\mathcal E^{[a]}$.
 
 \begin{definition}\label{VNdef}
 Let $M > 0$ and $K=[0,2R]$ interval in $\R_+$  be given. We say that a family of closed subsets $V_N \subset X_{M,K}$, $N \in \N$ has the \emph{uniform approximation property} in $L_{\infty}(K)$ if for all $b\in X_{M,K}$ there exists a sequence $(b_N)_{N \in \N}$ converging uniformly to $b$ on $K$ and such that $b_N\in V_N$ for every $N \in \N$.
@@ -232,7 +232,7 @@ and
 \end{equation}
 then there exists a constant $C_3>0$ such that 
 \begin{equation}\label{rateapprox}
- \| a - \widehat a_N \|_{L_2(R_+,\rho)}^2 \leq C_3 N^{-\min\{ \alpha, \beta\}},
+ \| a - \widehat a_N \|_{L_2(\R_+,\rho)}^2 \leq C_3 N^{-\min\{ \alpha, \beta\}},
 \end{equation}
 for all $N \in \mathbb N$.
 
@@ -249,22 +249,23 @@ concerning such rates and we refer to \cite{descsc13} and references therein.
 
 
 The strength of the result from the variational approach followed in Section \ref{sec:wp2} is the total arbitrariness of the sequence $V_N$ except
-for the assumed {\it uniform approximation property} and that the result holds - deterministically - with respect to uniform convergence, which is quite strong. 
-The condition that the spaces $V_N$ are to be picked as subsets of $X_{M,K}$ requires knowledge of $M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}$. While this may be reasonable in some applications, when this information is not available 
-the finite dimensional optimization \eqref{fdproxy} is not anymore a simple {\it unconstrained} least squares (as claimed in \eqref{fdproxy}),
+for the assumed {\it uniform approximation property} and that the result holds - deterministically - with respect to the uniform convergence, which is quite strong.  However,
+the condition that the spaces $V_N$ are to be picked as subsets of $X_{M,K}$ requires knowledge of $M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}$. While this may be reasonable in some applications, when this information is not available 
+the finite dimensional optimization \eqref{fdproxy} is not anymore a simple {\it unconstrained} least squares (as claimed in the paragraph before \eqref{fdproxy}),
 but a problem constrained by a uniform bound on both the solution and its gradient. 
 As we clarify in Section \ref{sec:num}, for $M>0$ fixed and choosing $V_N$ made of piecewise linear continuous functions, imposing the uniform $L_\infty$ bounds in the least square problem does not constitute a severe difficulty.
-Also the tuning of the parameter $M>0$ turns out to be rather easy. In fact, for $N$ fixed the minimizers $\widehat a_N = \widehat a_{N,M}$ have the property that the map
+Also the tuning of the parameter $M>0$ turns out to be rather easy. In fact, for $N$ fixed the minimizers $\widehat a_N \equiv \widehat a_{N,M}$ have the property that the map
 $$
  M \mapsto   \mathcal E^{[a],N}(\widehat a_{N,M})
 $$
-is monotonically decreasing and it becomes constant for $M\geq M^*$, for $M^*>0$ which does not depend on $N$. This special value $M^*$ is indeed the "right" parameter for the $L_\infty$ bound. For such a choice, we show that, as expected, if we let $N$ grow, the minimizers $\widehat{a}_N$ approximates better and better the unknown potential $a$. 
+is monotonically decreasing as a function of the contraint parameter $M$ and it becomes constant for $M\geq M^*$, for $M^*>0$ which does not depend on $N$. This special value $M^*$ is indeed the "right" parameter for the $L_\infty$ bound. For such a choice, we show that, as expected, if we let $N$ grow, the minimizers $\widehat{a}_N$ approximates better and better the unknown potential $a$. 
 \\
 
-Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$ without any specific constraint. In our follow-up paper \cite{bofohamaXX} we are following the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. In this setting we allow ourselves not to impose the $L_\infty$ bounds. This has a price to pay, i.e., that now the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  More precisely, one of our results reads as follows: with high probability, and for suitable choices of approximating spaces $V_N$, we obtain that for every $\beta>0$
+Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requiring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$ without any specific constraint. In our follow-up paper \cite{bofohamaXX} we are following the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. In this setting we allow ourselves not to impose the $L_\infty$ bounds. This has a price to pay, i.e., that now the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  More precisely, one of our results reads as follows: with high probability, and for suitable choices of approximating spaces $V_N$, we obtain that for every $\beta>0$
 	\begin{equation}\label{finalestimate}
 		\mathcal P_{\mu_0} \Bigl(\|a- \widehat a_{N}\|_{L_2(\R_+,\rho)}
 			>(c_3\|a\|_\infty+|a|_{\mathcal{A}^s_\mu})\bigl(\tfrac{\log N}{N^3}\bigr)^{\frac{s}{2s+1}}\Bigr)
 			\leq c_4 N^{-\beta}\,,
 	\end{equation}
 	if $c_3$ is chosen sufficiently large (depending on $\beta$), where $\mathcal{A}^s_\mu$ is a suitable functional class indicating how efficiently $a$ can be approximated by piecewise polynomial functions in  $L_2(\R_+,\rho)$.
+For the development of the latter results, we need to address several variational and measure theoretical properties of the model which are considered in details in this first paper as reported below.

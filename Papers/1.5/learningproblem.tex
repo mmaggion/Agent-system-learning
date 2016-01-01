@@ -135,7 +135,7 @@ We now show the absolute continuity of $ \prerho$ w.r.t. the Lebesgue measure on
 \end{lemma}
 
 \begin{proof}
-Both $\mu_0$ and $\mu(t)$ are supported in $B(0,R)$, with $R$ as in \eqref{Rest}. The measure $\mu(t)$ is the pushforward of $\mu_0$ under the locally bi-Lipschitz map $\ct^\mu_t$. Since $\ct^\mu_t$ has Lipschitz inverse on $B(0,R)$, this inverse maps $\cl_d$-null sets to $\cl_d$-null sets, so $\mu_0$-null sets are not only $\cl_d$-null sets by assumption, but are also $\mu(t)$-null sets.
+Both $\mu_0$ and $\mu(t)$ are supported in $B(0,R)$, with $R$ as in \eqref{Rest}. The measure $\mu(t)$ is the pushforward of $\mu_0$ under the locally bi-Lipschitz map $\ct^\mu_t$, see Proposition \ref{p-transportlip}. Since $\ct^\mu_t$ has Lipschitz inverse on $B(0,R)$, this inverse maps $\cl_d$-null sets to $\cl_d$-null sets, so $\mu_0$-null sets are not only $\cl_d$-null sets by assumption, but are also $\mu(t)$-null sets.
 \end{proof}
 %%	{\bf Step 1:} As a first step, we note that the transport map $\ct^\mu_t$ is locally Bi-Lipschitz, i.e. it is a bijective
 %%	locally Lipschitz map, and its inverse is locally Lipschitz as well. Bijectivity is a consequence of the uniqueness of
@@ -232,8 +232,8 @@ Both $\mu_0$ and $\mu(t)$ are supported in $B(0,R)$, with $R$ as in \eqref{Rest}
 
 As an easy consequence of the fact that the dynamics of our system has support uniformly bounded in time, we get the following crucial properties of the measure $\prerho$.
 
-\begin{lemma}\label{rhocompact}
-	The measure $\prerho$ is finite and has compact support.
+\begin{lemma}\label{rhocompact} Let $\mu_0 \in \mathcal P_c(\mathbb R^d)$. Then
+	the measure $\prerho$ is finite and has compact support.
 \end{lemma}
 
 \begin{proof}
@@ -289,7 +289,7 @@ This suggested as well the coercivity condition \eqref{eq-coercive}:
 The main reason this condition is of interest to us is:
 
 \begin{proposition}\label{uniquemin}
-Assume $a \in X$ and that the coercivity condition \eqref{eq-coercive} holds. Then any minimizer of $\mathcal E$ in $X$ coincides $\rho$-a.e. with $a$.
+Assume $a \in X$ and that the coercivity condition \eqref{eq-coercive} holds. Then any minimizer of $\mathcal E^{[a]}$ in $X$ coincides $\rho$-a.e. with $a$.
 \end{proposition}
 \begin{proof}
 Notice that $\mathcal E^{[a]}(a)=0$, and since $\Eahat\geq 0$ for all $\widehat a\in X$ this implies that $a$ is a minimizer of $\mathcal E^{[a]}$. Now suppose that $ \Eahat=0$ for some $\widehat a\in X$. By \eqref{eq-coercive} we obtain that $\widehat a=a$ in $L_2(\R_+,\rho)$, and therefore they coincide $\rho$-almost everywhere. %by \eqref{eq:inftyimplyl2} follows that $\widehat a=a$ also in $X$.
@@ -314,13 +314,13 @@ If the inequality holds without the time average for a fixed $t_0$,
 \ge c_{t_0}'\int_{\R^d}\int_{\R^d}\left| \mathcal K(|x-y|)\right|^2d\mu(t_0)(x)d\mu(t_0)(y)\,,
 \end{align*}
 then by a continuity argument it can be extended to a nontrivial time interval. 
-Additionally we restrict for the moment our attention to the case where $\mu(t_0)$ is a discrete measure $\mu^N=\frac1N\sum_{i=1}^N\delta_{x_i}$ (we drop $t_0$ since $t_0$ is fixed), so that the inequality reads
+Additionally we restrict for the moment our attention to the case where $\mu(t_0)$ is a discrete measure $\mu^N=\frac1N\sum_{i=1}^N\delta_{x_i}$ (we drop $t_0$ since it is now fixed), so that the inequality reads
 \begin{align}
 \frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2\ge \frac{c'_T}{N^2}\sum_{i=1}^N\sum_{j=1}^N\left| \mathcal K(|x_i-x_j|)\right|^2\,.
 \label{e:coercivitydiscrete}
 \end{align}
 We argue now that the instantaneous inequality holds with high probability as soon as the matrix $\mathbf{K}:=(\mathcal K(|x_i-x_j|))_{i,j=1,\dots,N}$ could be modeled as a random matrix.
-Although it is not completely plausible to argue statistical independence of the entries of such a matrix because it comes from evaluating a smooth function over distances of points, this model is not unreasonable, after all $\mathbf K$ involves the difference of our estimator $\widehat a$ and the target influence function $a$: for such least squares estimators this difference is likely random with the samples used to construct the estimator, with fluctuations that are likely to behave nearly Gaussianly. For the moment  and for the sake of simplicity let us assume that $\mathbf K$ has Gaussian rows with independent entries, and, without loss of generality, we assume $\mathbb E  \left [ \mathbf K_{i,j}^2  \right ] =1$ for all $i,j$. 
+Although it is not completely plausible to argue statistical independence of the entries of such a matrix because it comes from evaluating a smooth function over distances of points, this model is not unreasonable, after all $\mathbf K$ involves the difference of our estimator $\widehat a$ and the target influence function $a$: for such least squares estimators this difference is likely random with the samples used to construct the estimator, with fluctuations that are likely to behave nearly Gaussianly. For the moment  and for the sake of simplicity let us assume that $\mathbf K$ has Gaussian rows with independent entries, and, without loss of generality, we can assume $\mathbb E  \left [ \mathbf K_{i,j}^2  \right ] =1$ for all $i,j$ in view of the homogeneity of the inequality \eqref{e:coercivitydiscrete}.
 
 We introduce now the tensor $\mathbf X$ described as a matrix $\mathbf X = ( \mathbf X_1 | \dots | \mathbf X_N)$ whose columns are defined by $ \mathbf X_i =\left (\frac{x_i-x_1}{|x_i-x_1|}, \dots, \frac{x_N-x_1}{|x_N-x_1| }\right )$.
 We additionally indicate with $\mathbf K_i = ( \mathbf K_{i,1}, \dots, \mathbf K_{i,N})$ any row of the matrix $\mathbf K$. With this notation we can rewrite
@@ -329,10 +329,10 @@ $$
 $$
 Hence the discrete coercivity inequality \eqref{e:coercivitydiscrete}  may be re-written in terms of the matrices above as:
 \begin{align}
-\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}_i^T \mathbf{X}_i\right|^2\ge\frac{c'_{t_0}}{N^2}||\mathbf{K}||^2_{\mathbb{F}}\,.
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}_i^T \mathbf{X}_i\right|^2\ge\frac{c'_{t_0}}{N^2}\|\mathbf{K}\|^2_{\mathbb{F}}\,.
 \label{e:coermatrix}
 \end{align}
-We compute now the expected value of the quantity on the left, assuming the randomness and independence over $\mathbf K_i$, while $\mathbf X$  is deterministic: first of all compute the estimated value of the argument
+We compute now the expected value of the quantity on the left, assuming the randomness and independence over $\mathbf K_i$, while $\mathbf X$  is deterministic: first of all compute the estimated value of the argument of the sum:
 \begin{eqnarray*}
 \mathbb E  | \mathbf K_i^T \mathbf X_i|^2 &=&  \mathbb E \left  | \sum_{j=1}^N \mathbf K_{i,j} \frac{x_i-x_j}{|x_i-x_j|}  \right |^2 \\
 &=&\sum_{\ell=1}^d \sum_{j=1}^N \sum_{m=1}^N  \mathbb E  \left [ \mathbf K_{i,j} \frac{(x_i-x_j)_\ell}{|x_i-x_j|} \mathbf K_{i,m} \frac{(x_i-x_m)_\ell}{|x_i-x_j|} \right ] \\
@@ -350,8 +350,8 @@ $$
   \frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2 \geq  \frac{1-\varepsilon}{N}
 $$
 with high probability for $0<\varepsilon<1$ large enough.
-One the other hand, under our assumption that $\mathbb{E}[|\mathbf{K}_{i,j}|^2]=1$ for all $i,j,$ we have $\mathbb{E}[||\mathbf{K}||^2_{\mathbb{F}}] = N^2$, and in fact one can also
-argue that $||\mathbf{K}||^2_{\mathbb{F}} \leq (1+\delta) N^2$ with high probability as soon as $\delta>0$ is large enough. By choosing $c_{t_0}'  \leq \frac{1-\varepsilon}{(1+ \delta) N}$ we obtain that \eqref{e:coermatrix}
+One the other hand, under our assumption that $\mathbb{E}[|\mathbf{K}_{i,j}|^2]=1$ for all $i,j,$ we have $\mathbb{E}[\|\mathbf{K}\|^2_{\mathbb{F}}] = N^2$, and in fact one can also
+argue that $\|\mathbf{K}\|^2_{\mathbb{F}} \leq (1+\delta) N^2$ with high probability as soon as $\delta>0$ is large enough. By choosing $c_{t_0}'  \leq \frac{1-\varepsilon}{(1+ \delta) N}$ we obtain that \eqref{e:coermatrix}
 needs to hold with high probability \cite{Vershynin:NARMT}.
 The argument  may be generalized to other models of random matrices $\mathbf{K}$, for example with sub-Gaussian rows. One may also consider $\mathbf{X}_i$ random, and obtain similar results. Also, the  case of diffuse measures is not substantially different from the case of empirical measures, as it may be derived by smoothing argument (as we clarify in mode detail in the following section). We do not pursue these generalizations, as our purpose here is to argue that the coercivity assumption is satisfied ``generically''.
 
@@ -365,19 +365,19 @@ We start with the simple case of two particles, i.e., $N=2$, for which no specif
 \begin{equation}\label{coercN2}
 \frac{1}{T} \int_0^T \frac{1}{N} \sum_{i=1}^N \left | \frac{1}{N} \sum_{j=1}^N \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \geq \frac{c_T}{N^2T} \int_0^T  \sum_{i=1}^N \sum_{j=1}^N |\mathcal K(|x_i-x_j|)|^2  dt.
 \end{equation}
-Now, let us observe more closely the integrand on the left-hand-side and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
+Now, let us observe more closely the integrand on the left-hand-side, and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
 \begin{eqnarray*}
 \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j=1}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 &=& \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j\neq i}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
 &=&  \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \frac{x_i-x_{\widehat i}}{|x_i-x_{\widehat i}|} \right |^2\\
 &=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2\\
 &=&\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
 \end{eqnarray*}
-Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \to x_i(t)$. However, the case of two particles might be perceived too simple and we may want to extend our arguments to multiple particles. Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible cases is an involved exercise. (We circumvented this problem in the random model in Subsection \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
-For this reason we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
+Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \to x_i(t)$. However, the case of two particles might be perceived too simple and we may want to extend our arguments to multiple particles. Let us then consider the instructive case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. (Notice that we circumvented this problem in the random model in Subsection \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
+To simplify the problem we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
 $$
 \frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
 $$
-Notice that it holds also
+Notice that, independently of the behavior of the particles at any other time $t \in [0,T]$, it holds also
 \begin{equation}\label{maxbound}
 \frac{1}{9 T} \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
 \end{equation}
@@ -389,11 +389,11 @@ and therefore
 $$ 
 \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \geq \frac{1}{18}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2.
 $$
-Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles forms precisely the triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to be coming from a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant. (Actually, later we will restrict our attention  to functions in $X_{M,K}$ which is precisely of this type!)
+Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal absolute value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles forms precisely the equilateral triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to be coming from a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant. (Actually, later we will restrict our attention  to functions in $X_{M,K}$ which is precisely of this type!)
 Under this equi-continuity assumption, there exist $\varepsilon>0$ and a constant $c_{T,\varepsilon}>0$ independent of $\mathcal K$ (but perhaps depending only on its modulus of continuity) such that
 \begin{eqnarray*}\label{coercint}
 &&\frac{1}{T} \int_0^T \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \\\
-&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
+&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt\\
 &\geq & \frac{c_{T,\varepsilon}}{3}  \mathcal K(r_0) \geq \frac{c_{T,\varepsilon}}{18T } \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt.
 \end{eqnarray*}
 In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one can construct examples for which the coercivity assumption is verifiable. Actually this construction can be extended to any group of $N$ particles disposed on the vertexes of regular polygons. As an example of how one should proceed, let us consider the case of $N=4$ particles disposed instantanously at the vertexes of a square of side length $\sqrt{2} r>0$. In this case one directly verfies that
@@ -425,7 +425,7 @@ to $\mu_\varepsilon$ as follows
 for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
 \\
 
-We hope that these examples convince the reader that the coercivity condition is verifiable in many cases and from now on we assume it without further concerns. 
+We hope that these examples convince the reader that the coercivity condition is actually verifiable in most of the cases. Indeed we showed that it holds for generic cases as well as for highly structured deterministic ones. In parctice we can numerically verify it to hold for any "intermediate" situation as well, see Section \ref{numcoer}, and from now on we assume it without further concerns. 
 
 
 

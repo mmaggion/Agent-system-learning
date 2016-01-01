@@ -135,7 +135,7 @@ As a corollary, we now immediately obtain the following convergence result.
 
 \begin{proof}
 	This follows immediately from the estimate \eqref{approxestimate}, upon noticing
-	$\W_1(\mu^0,\mu^N_0) \rightarrow 0$ for $N \rightarrow \infty$ as a consequence of the Glivenko-Cantelli theorem,
+	$\W_1(\mu_0,\mu^N_0) \rightarrow 0$ for $N \rightarrow \infty$ as a consequence of the Glivenko-Cantelli theorem,
 see for instance \cite[Lemma 3.3]{fornahuetter}.
 \end{proof}
 
@@ -168,9 +168,9 @@ We are now ready to present the proof of our main result Theorem \ref{thm}.
 	\begin{align*}
 		0=\mathcal E^{[a]} (a)\geq \mathcal E^{[a]} (\widehat a)\geq 0\Longrightarrow \mathcal E^{[a]} (\widehat a)=0,
 	\end{align*}
-	showing that $\widehat a$ is also a minimizer of $\mathcal E$. When the coercivity condition \eqref{eq-coercive} holds, by Proposition \ref{uniquemin} it follows $\widehat a=a$ in  $L_2(\R_+,\rho)$.
+	showing that $\widehat a$ is also a minimizer of $\mathcal E^{[a]}$. When the coercivity condition \eqref{eq-coercive} holds,  it follows $\widehat a=a$ in  $L_2(\R_+,\rho)$.
 Assume now that \eqref{rate1} and \eqref{rate2} hold together with  \eqref{eq-coercive}. Then, by these latter conditions, two applications of \eqref{approxestimate}, the minimality of $\widehat a_N$, and the optimality of
-$a$ in the sense that $\mathcal E^{[a]}=0$ we obtain the following chain of estimates
+$a$ in the sense that $\mathcal E^{[a]}=0$, we obtain the following chain of estimates
 \begin{eqnarray*}
 \| \widehat a_N - a \|_{L_2(\R_+,\rho)}^2 &\leq& \frac{1}{c_T}  \mathcal E^{[a]}(\widehat a_N) \\
 &\leq& \frac{1}{c_T} \left ( \mathcal E^{[a],N}(\widehat a_N) + ( \mathcal E^{[a]}(\widehat a_N)- \mathcal E^{[a],N}(\widehat a_N))  \right )\\
