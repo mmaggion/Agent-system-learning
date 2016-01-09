@@ -89,9 +89,9 @@ If $a,\widehat a \in X$ then there exist a constant $C>0$ depending on $T, a$, a
 for all $t \in [0,T]$, and $\x , \xahat  $ are the solutions to \eqref{fdgradientflow2} for the interaction kernels $a$ and $\widehat a$ respectively. (Here $\| x \|^2 = \frac{1}{N} \sum_{i=1}^N |x_i|^2$, for $x \in \mathbb R^{d \times N}$.)
 \end{proposition}
 Therefore if $\widehat a$ makes $\Eahatn$ small, the trajectories $t\to \xahat(t)$ of the system \eqref{fdgradientflow2} with interaction kernel $\widehat a$ instead of $a$ are an approximation of the trajectories $t \to \x(t)$ at finite time. 
-The proof of this statement follows by Jensen's inequality and an application of Gronwall's lemma, and we report it in deatil below in Section \ref{sec:learn}. \\
+The proof of this statement follows by Jensen's inequality and an application of Gronwall's lemma (see Section \ref{sec:learn} for details). \\
 
- For simplicity of notations, we may choose to ignore below the dependence on $a$ of the trajectories, we may simply write $x \equiv \x$ when we can easily assumed that such a dependence  is clear from the context. Additionally, whenever we consider the limit $N \to \infty$,  we may denote the dependency of the trajectory on the number of particles $N \in \mathbb N$ by setting $x^N\equiv x \equiv \x$.
+ For simplicity of notations, we may choose to ignore below the dependence on $a$ of the trajectories, we may simply write $x \equiv \x$ when such dependence is clear from the context. Additionally, whenever we consider the limit $N \to \infty$,  we may denote the dependency of the trajectory on the number of particles $N \in \mathbb N$ by setting $x^N\equiv x \equiv \x$.
 \\
 
 Contrary to the optimal control approach, the functional $\Ean$ is convex and can be easily computed from witnessed trajectories $x_i(t)$ and $\dot x_i(t)$. We may even consider discrete-time approximations of the time derivatives $\dot x_i$ (e.g. by finite differences) and we shall assume that the data of the problem is the full set of observations $x_i(t)$ for $t \in [0,T]$, for a prescribed finite time horizon $T>0$. Furthermore, being a simple quadratic functional, its minimizers can be efficiently numerically approximated on a finite element space: given a finite dimensional space $V \subset X$, we let
@@ -120,8 +120,8 @@ where $\mu$ is a weak solution to the mean-field equation \eqref{meanfield}, as 
 distributed according to a compactly supported probability measure $\mu(0)=\mu_0$. 
 
 Although all of this is very natural, several issues  need to be addressed at this point.
-The first one is to establish the space where a result of $\Gamma$-convergence may hold and the idenditication of $a$ can take place.
-As the trajectories $t\to x(t)$ do not explore the whole  space in finite time, we expect that such a space may {\it not} be independent of the initial probability measure $\mu_0$, as we clarify immediately.\\
+The first one is to establish the space where a result of $\Gamma$-convergence may hold and the identification of $a$ can take place.
+As the trajectories $t\to x(t)$ do not explore the whole  space in finite time, we expect that such a space may {\it not} be independent of the initial probability measure $\mu_0$, as we clarify immediately.
 %We clarify this issue immediately, but let us stress that this feature of the problem makes it of particular interest and novelty. 
 By Jensen inequality we have
 \begin{eqnarray}
@@ -135,7 +135,7 @@ where $\varrho(t)$ is the pushforward of $\mu(t)\otimes\mu(t)$ by the Euclidean 
 %\end{align*}
 In other words, $\varrho:[0,T]\rightarrow \mathcal{P}_1(\R_+)$ is defined for every Borel set $A\subset\R_+$ as $\varrho(t)(A)=(\mu(t)\otimes\mu(t))\bigl(d^{-1}(A)\bigr)$.
 The mapping $t \in [0,T] \mapsto\varrho(t)(A)$ is lower semi-continuous for every open set $A\subseteq\R_+$, and it is upper semi-continuous (see Lemma \ref{rhosc}) for any compact set $A$.
-We may therefore define a "mean" probability measure $\prerho$ on the Borel $\sigma$-algebra of $\R_+$ by averaging $\varrho(t)$ over $t \in [0,T]$: for any open set $A \subseteq \R_+$ we define
+We may therefore define a time-averaged probability measure $\prerho$ on the Borel $\sigma$-algebra of $\R_+$ by averaging $\varrho(t)$ over $t \in [0,T]$: for any open set $A \subseteq \R_+$ we define
 \begin{align}\label{finallyrho}%\label{eq-rho-4}
 	\prerho(A):=\frac{1}{T}\int_0^T\varrho(t)(A)dt,
 \end{align}
@@ -163,7 +163,7 @@ and one has to pick the initial distribution so that \eqref{eq-coercive} can hol
 In Section \ref{sec:coerc} we show that for some specific choices of $a$ and rather general choices of $\widehat a \in X$ one can construct probability measure valued trajectories $t \to \mu(t)$ which allow to validate
 \eqref{eq-coercive}.\\
 %Notice also that \eqref{eq-coercive} implies that $a$ is the unique minimizer of $\mathcal E$ in $X \cap  L_2(\mathbb R_+,\rho)$, which is an important condition for the well-posedness of the variational problem. 
-In order to ensure compactness of the sequence of minimizers of $\mathcal E^{[a],N}$, we actually need to restrict the sets of possible solutions to classes of the type
+In order to ensure compactness of the sequence of minimizers of $\mathcal E^{[a],N}$, we shall need to restrict the sets of possible solutions to classes of the type
 \begin{align*}
 X_{M,K} = \left\{b \in W^{1}_{\infty}(K) :
  \|b\|_{L_{\infty}(K)} + \|b'\|_{L_{\infty}(K)} \leq M
@@ -220,9 +220,9 @@ We are ready to state the main result of the paper:
 	\end{align*}
 	%(notice that $\widehat a_N\in V_N$ and that $\|\widehat a_N\|_{W^{1,\infty}(\supp(\rho))}\leq\|a\|_{W^{1,\infty}(\supp(\rho))}$ by definition).
 	
-	Then the sequence $(\widehat a_{N})_{N \in \N}$ posses subsequences converging uniformly on $K$ to some continuous function $\widehat a \in X_{M,K}$ such that
-	$\mathcal E(\widehat a)=0$. \\
- If we additionally assume the coercivity condition \eqref{eq-coercive}, then it holds $\widehat a=a$ in $L_2(\R_+,\rho)$. Moreover, in this case, if there exist  rates $\alpha,\beta >0$, constants $C_1,C_2>0$, and a sequence $(a_N)_{N \in \mathbb N}$ of elements $a_N \in V_N$ such that 
+Then the sequence $(\widehat a_{N})_{N \in \N}$ has a subsequence converging uniformly on $K$ to some continuous function $\widehat a \in X_{M,K}$ such that
+$\mathcal E(\widehat a)=0$. \\
+ If we additionally assume the coercivity condition \eqref{eq-coercive}, then $\widehat a=a$ in $L_2(\R_+,\rho)$. Moreover, in this case, if there exist  rates $\alpha,\beta >0$, constants $C_1,C_2>0$, and a sequence $(a_N)_{N \in \mathbb N}$ of elements $a_N \in V_N$ such that 
 \begin{equation}\label{rate1}
  \| a - a_N \|_{L_\infty(K)} \leq C_1 N^{-\alpha},
 \end{equation}
@@ -241,8 +241,9 @@ for all $N \in \mathbb N$.
 
 Notice that this result, under the validity of the coercivity condition, not only ensures the identification of $a$ on the support of $\rho$, but it also provides a prescribed rate of convergence.
 For functions $a$ in $X_{M,K}$ and for finite element spaces $V_N$ of continuous piecewise linear functions constructed on regular meshes of size $N^{-1}$ a simple sequence $(a_N)_{N \in \mathbb N}$  realizing \eqref{rate1} with $C_1=M$ is the piecewise linear approximation to $a$ which interpolates $a$ on the mesh nodes. Concerning the rate of convergence \eqref{rate2} there are plenty of results
-concerning such rates and we refer to \cite{descsc13} and references therein.
+concerning such rates and we refer to \cite{descsc13} and references therein. Very roughly speaking, for $\mu_0^N$ the empirical measure obtained by sampling $N$ times independently from $\mu_0$, one expects $\beta$ to be of order $1/d$, which is a manifestation of the curse of dimensionality. While it is in general relatively easy to increase $\alpha$ as the smoothness $a$ increases, and doing so independently of $d$, since $a$ is a function of one variable only, obtaining $\beta>1/d$ is in general impossible unless $\mu_0$ has very special properties.
 
+We also remark that the $L_2(\R_+,\rho)$ used in our results is useful when $\rho$ has positive density on large intervals of $\R_+$. That is not the case if, for example, $\mu_0$ is a fixed point of the evolution.
 
 
 \subsection{Numerical implementation of the variational approach }\label{sec:wp3}
@@ -261,11 +262,11 @@ $$
 is monotonically decreasing as a function of the contraint parameter $M$ and it becomes constant for $M\geq M^*$, for $M^*>0$ which does not depend on $N$. This special value $M^*$ is indeed the "right" parameter for the $L_\infty$ bound. For such a choice, we show that, as expected, if we let $N$ grow, the minimizers $\widehat{a}_N$ approximates better and better the unknown potential $a$. 
 \\
 
-Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requiring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$ without any specific constraint. In our follow-up paper \cite{bofohamaXX} we are following the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. In this setting we allow ourselves not to impose the $L_\infty$ bounds. This has a price to pay, i.e., that now the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  More precisely, one of our results reads as follows: with high probability, and for suitable choices of approximating spaces $V_N$, we obtain that for every $\beta>0$
-	\begin{equation}\label{finalestimate}
-		\mathcal P_{\mu_0} \Bigl(\|a- \widehat a_{N}\|_{L_2(\R_+,\rho)}
-			>(c_3\|a\|_\infty+|a|_{\mathcal{A}^s_\mu})\bigl(\tfrac{\log N}{N^3}\bigr)^{\frac{s}{2s+1}}\Bigr)
-			\leq c_4 N^{-\beta}\,,
-	\end{equation}
-	if $c_3$ is chosen sufficiently large (depending on $\beta$), where $\mathcal{A}^s_\mu$ is a suitable functional class indicating how efficiently $a$ can be approximated by piecewise polynomial functions in  $L_2(\R_+,\rho)$.
-For the development of the latter results, we need to address several variational and measure theoretical properties of the model which are considered in details in this first paper as reported below.
+%Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requiring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$ without any specific constraint. In our follow-up paper \cite{bofohamaXX} we are following the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. In this setting we allow ourselves not to impose the $L_\infty$ bounds. This has a price to pay, i.e., that now the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  More precisely, one of our results reads as follows: with high probability, and for suitable choices of approximating spaces $V_N$, we obtain that for every $\beta>0$
+%	\begin{equation}\label{finalestimate}
+%		\mathcal P_{\mu_0} \Bigl(\|a- \widehat a_{N}\|_{L_2(\R_+,\rho)}
+%			>(c_3\|a\|_\infty+|a|_{\mathcal{A}^s_\mu})\bigl(\tfrac{\log N}{N^3}\bigr)^{\frac{s}{2s+1}}\Bigr)
+%			\leq c_4 N^{-\beta}\,,
+%	\end{equation}
+%	if $c_3$ is chosen sufficiently large (depending on $\beta$), where $\mathcal{A}^s_\mu$ is a suitable functional class indicating how efficiently $a$ can be approximated by piecewise polynomial functions in  $L_2(\R_+,\rho)$.
+%For the development of the latter results, we need to address several variational and measure theoretical properties of the model which are considered in details in this first paper as reported below.
