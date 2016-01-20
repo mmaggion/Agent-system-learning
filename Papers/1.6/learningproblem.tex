@@ -4,7 +4,7 @@
 
 As already explained in the introduction, our goal is to learn $a \in X$ from observation of the dynamics of $\mu^N$ corresponding to system \eqref{eq:discrdyn} with $a$ as interaction kernel, $\mu_0^N$ as initial datum and $T$ as finite time horizon.
 
-We pick $\widehat a$ among those functions in $X$ which would give rise to a dynamics close to $\mu^N$: we choose $\widehat a \in X$ as a minimizer of the following \textit{discrete error functional}
+We pick $\widehat a$ among those functions in $X$ which would give rise to a dynamics close to $\mu^N$: roughly speaking we choose $\widehat a_N \in X$ as a minimizer of the following \textit{discrete error functional}
 \begin{align}\label{eq-def-error}
 	\begin{split}
 	\Eahatn = \frac{1}{T}\int_0^T\frac{1}{N}\sum_{i=1}^N\biggl|\frac{1}{N}\sum_{j=1}^N
@@ -255,12 +255,12 @@ $K=\{|x-y|:x,y\in B(0,R)\} = [0,2R]$, where $R$ is given by \eqref{Rest}, by con
 	While absolute continuity of $\mu_0$ implies the same for $\prerho$, the situation is different for purely atomic
 	measures $\mu_0^N$: then $\mu^N(t)$ is also purely atomic for every $t$, and so it is
 	$\varrho^N(t) = d_\# (\mu^N(t) \otimes \mu^N(t))$. However $\prerho$ is in general not purely atomic, due to the averaging in time in its definition \eqref{eq-rho-4}. 
-	(For
+	For
 	example, one obtains
 	\begin{align*}
 		\frac{1}{T}\int_0^T\delta(t) dt=\frac{1}{T}\cl_1\llcorner_{[0,T]}\,,
 	\end{align*}
-	as becomes immediately clear when integrating a continuous function against those kind of measures.)
+	as becomes immediately clear when integrating a continuous function against those kind of measures.
 \end{remark}
 
 
@@ -450,7 +450,7 @@ to $\mu_\varepsilon$ as follows
 for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
 \\
 
-We hope that these examples convince the reader that the coercivity condition is actually verifiable in most of the cases. Indeed we showed that it holds for generic cases as well as for highly structured deterministic ones. In parctice we can numerically verify that it holds for any ``intermediate" situation as well, see Section \ref{numcoer}, and from now on we assume it without further concerns. 
+In these latter sections we showed that the coercivity condition holds for ``generic" cases as well as for highly structured deterministic ones. In practice we can numerically verify that it holds in many situations, see Section \ref{numcoer}, and from now on we assume it without further concerns. 
 
 
 
@@ -490,7 +490,7 @@ Assume $a \in X$. Fix $M > 0$ and $K=[0,2R] \subset  \mathbb R_+$ for $R>0$ as i
 \end{align*}
 admits a solution.
 \end{proposition}
-\begin{proof}
+\begin{proof} For proving the statement we apply the direct method of calculus of variations.
 Since $\inf \mathcal E^{[a],N} \geq 0$, we can consider a minimizing sequence $(\widehat a_n)_{n \in \N} \subset V$, i.e., such that $\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) = \inf_{V}  \mathcal E^{[a],N} $. By Proposition \ref{XMdef} there exists a subsequence of $(\widehat a_n)_{n \in \N}$ (labelled again $(\widehat a_n)_{n \in \N}$) converging uniformly on $K$ to a function $\widehat a \in V$ (since $V$ is closed). We now show that $\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) =  \mathcal E^{[a],N} (\widehat a)$, from which it follows  that $ \mathcal E^{[a],N} $ attains its minimum in $V$. 
 %First, notice that, since from Lemma \ref{le-abs} we have that $\rho$ is absolutely continuous w.r.t. the Lebesgue measure $\cl_1\llcorner_{\R_+}$, we have
 %\begin{align*}

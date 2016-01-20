@@ -29,6 +29,24 @@ M.~Ballerini, N.~Cabibbo, R.~Candelier, A.~Cavagna, E.~Cisbani, I.~Giardina,
   collective animal behaviour.
 \newblock {\em Animal Behaviour}, 76(1):201--215, 2008.
 
+\bibitem{MR2327596}
+P.~Binev, A.~Cohen, W.~Dahmen, and R.~DeVore.
+\newblock Universal algorithms for learning theory. {II}. {P}iecewise
+  polynomial functions.
+\newblock {\em Constr. Approx.}, 26(2):127--152, 2007.
+
+\bibitem{MR2249856}
+P.~Binev, A.~Cohen, W.~Dahmen, R.~DeVore, and V.~Temlyakov.
+\newblock Universal algorithms for learning theory. {I}. {P}iecewise constant
+  functions.
+\newblock {\em J. Mach. Learn. Res.}, 6:1297--1321, 2005.
+
+\bibitem{bofohamaXX}
+M.~Bongini, M.~Fornasier, M.~Hansen, and M.~Maggioni.
+\newblock Inferring interaction rules from observations of evolutive systems
+  {II}: The universal learning approach.
+\newblock {\em in preparation}, 2016.
+
 \bibitem{brpi07}
 A.~Bressan and B.~Piccoli.
 \newblock {\em Introduction to the mathematical theory of control}, volume~2 of
