@@ -13,19 +13,19 @@
 \contentsline {subsection}{\numberline {3.1}The measure $\overline \rho $}{16}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}On the coercivity assumption}{18}{subsection.3.2}
 \contentsline {subsubsection}{\numberline {3.2.1}Coercivity is ``generically'' satisfied}{19}{subsubsection.3.2.1}
-\contentsline {subsubsection}{\numberline {3.2.2}The deterministic case}{20}{subsubsection.3.2.2}
-\contentsline {subsection}{\numberline {3.3}Existence of minimizers of $\mathcal E^{[a],N}$}{23}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.2.2}The deterministic case}{21}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Existence of minimizers of $\mathcal E^{[a],N}$}{24}{subsection.3.3}
 \contentsline {section}{\numberline {4}$\Gamma $-convergence of $ \mathcal E^{[a],N} $ to $ \mathcal E^{[a]} $}{25}{section.4}
 \contentsline {subsection}{\numberline {4.1}Uniform convergence estimates}{25}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Proof of the main result}{27}{subsection.4.2}
-\contentsline {section}{\numberline {5}Numerical experiments}{28}{section.5}
-\contentsline {subsection}{\numberline {5.1}Numerical framework}{28}{subsection.5.1}
+\contentsline {subsection}{\numberline {4.2}Proof of the main result}{28}{subsection.4.2}
+\contentsline {section}{\numberline {5}Numerical experiments}{29}{section.5}
+\contentsline {subsection}{\numberline {5.1}Numerical framework}{29}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}Varying $N$}{31}{subsection.5.2}
 \contentsline {subsection}{\numberline {5.3}Numerical validation of the coercivity condition}{31}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}Tuning the constraint $M$}{31}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Montecarlo-like reconstructions for $N$ fixed}{33}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.4}Tuning the constraint $M$}{32}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Montecarlo-like reconstructions for $N$ fixed}{34}{subsection.5.5}
 \contentsline {section}{\numberline {6}Appendix}{35}{section.6}
-\contentsline {subsection}{\numberline {6.1}Standard results on existence and uniqueness for ODE}{35}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.1}Standard results on existence and uniqueness for ODE}{37}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Technical results for the mean-field limit}{38}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Existence and uniqueness of solutions for \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:contdyn}\unskip \@@italiccorr )}} }{40}{subsection.6.3}
 \contentsline {section}{References}{46}{section*.3}
