@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JAN 2016 11:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JAN 2016 11:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -588,7 +588,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[30] <Figures1/figfun810agents.pdf, id=583, 862.22125pt x 496.85625pt>
+[30] <Figures1/figfun810agents.pdf, id=584, 862.22125pt x 496.85625pt>
 File: Figures1/figfun810agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun810agents.pdf>
@@ -606,7 +606,7 @@ ps-converted-to.pdf Figures1/figfun820agents.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun820agents-eps-converted-to.pdf, id=584, 862.22125pt x 496.85625
+<Figures1/figfun820agents-eps-converted-to.pdf, id=585, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun820agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun820agents-eps-converted-to.pdf>
@@ -614,7 +614,7 @@ Package pdftex.def Info: Figures1/figfun820agents-eps-converted-to.pdf used on
 input line 119.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 
-<Figures1/figfun840agents.pdf, id=585, 862.22125pt x 496.85625pt>
+<Figures1/figfun840agents.pdf, id=586, 862.22125pt x 496.85625pt>
 File: Figures1/figfun840agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun840agents.pdf>
@@ -632,7 +632,7 @@ ps-converted-to.pdf Figures1/figfun880agents.eps>
 (epstopdf)             \includegraphics on input line 121.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun880agents-eps-converted-to.pdf, id=586, 862.22125pt x 496.85625
+<Figures1/figfun880agents-eps-converted-to.pdf, id=587, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun880agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun880agents-eps-converted-to.pdf>
@@ -655,7 +655,7 @@ ps-converted-to.pdf Figures1/figfun610agents.eps>
 (epstopdf)             \includegraphics on input line 128.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun610agents-eps-converted-to.pdf, id=589, 862.22125pt x 496.85625
+<Figures1/figfun610agents-eps-converted-to.pdf, id=590, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun610agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun610agents-eps-converted-to.pdf>
@@ -674,7 +674,7 @@ ps-converted-to.pdf Figures1/figfun620agents.eps>
 (epstopdf)             \includegraphics on input line 129.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun620agents-eps-converted-to.pdf, id=590, 862.22125pt x 496.85625
+<Figures1/figfun620agents-eps-converted-to.pdf, id=591, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun620agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun620agents-eps-converted-to.pdf>
@@ -693,7 +693,7 @@ ps-converted-to.pdf Figures1/figfun640agents.eps>
 (epstopdf)             \includegraphics on input line 130.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun640agents-eps-converted-to.pdf, id=591, 862.22125pt x 496.85625
+<Figures1/figfun640agents-eps-converted-to.pdf, id=592, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun640agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun640agents-eps-converted-to.pdf>
@@ -701,7 +701,7 @@ Package pdftex.def Info: Figures1/figfun640agents-eps-converted-to.pdf used on
 input line 130.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 
-<Figures1/figfun680agents.pdf, id=592, 862.22125pt x 496.85625pt>
+<Figures1/figfun680agents.pdf, id=593, 862.22125pt x 496.85625pt>
 File: Figures1/figfun680agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun680agents.pdf>
@@ -723,7 +723,7 @@ o.pdf>
 (epstopdf)             \includegraphics on input line 144.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/fig61l10E2vsENlog-eps-converted-to.pdf, id=596, 1348.03625pt x 691.58
+<Figures1/fig61l10E2vsENlog-eps-converted-to.pdf, id=597, 1348.03625pt x 691.58
 376pt>
 File: Figures1/fig61l10E2vsENlog-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/fig61l10E2vsENlog-eps-converted-to.pdf>
@@ -742,7 +742,7 @@ onverted-to.pdf Figures1/figureM2log.eps>
 (epstopdf)             \includegraphics on input line 152.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figureM2log-eps-converted-to.pdf, id=597, 1348.03625pt x 691.58376pt>
+<Figures1/figureM2log-eps-converted-to.pdf, id=598, 1348.03625pt x 691.58376pt>
 File: Figures1/figureM2log-eps-converted-to.pdf Graphic file (type pdf)
 <use Figures1/figureM2log-eps-converted-to.pdf>
 Package pdftex.def Info: Figures1/figureM2log-eps-converted-to.pdf used on inpu
@@ -769,7 +769,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 186.
 
-[31] <Figures1/figPotfun8.pdf, id=621, 862.22125pt x 496.85625pt>
+[31] <Figures1/figPotfun8.pdf, id=622, 862.22125pt x 496.85625pt>
 File: Figures1/figPotfun8.pdf Graphic file (type pdf)
 
 <use Figures1/figPotfun8.pdf>
@@ -787,7 +787,7 @@ onverted-to.pdf Figures1/figTrajfun8.eps>
 (epstopdf)             \includegraphics on input line 210.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figTrajfun8-eps-converted-to.pdf, id=622, 561.09625pt x 421.575pt>
+<Figures1/figTrajfun8-eps-converted-to.pdf, id=623, 561.09625pt x 421.575pt>
 File: Figures1/figTrajfun8-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/figTrajfun8-eps-converted-to.pdf>
@@ -795,7 +795,7 @@ Package pdftex.def Info: Figures1/figTrajfun8-eps-converted-to.pdf used on inpu
 t line 210.
 (pdftex.def)             Requested size: 198.67303pt x 149.27098pt.
 
-<Figures1/figPotfun61.pdf, id=623, 862.22125pt x 458.71375pt>
+<Figures1/figPotfun61.pdf, id=624, 862.22125pt x 458.71375pt>
 File: Figures1/figPotfun61.pdf Graphic file (type pdf)
 
 <use Figures1/figPotfun61.pdf>
@@ -813,7 +813,7 @@ converted-to.pdf Figures1/figTrajfun61.eps>
 (epstopdf)             \includegraphics on input line 212.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figTrajfun61-eps-converted-to.pdf, id=624, 561.09625pt x 421.575pt>
+<Figures1/figTrajfun61-eps-converted-to.pdf, id=625, 561.09625pt x 421.575pt>
 File: Figures1/figTrajfun61-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/figTrajfun61-eps-converted-to.pdf>
@@ -839,7 +839,7 @@ onverted-to.pdf Figures1/DifferentM3.eps>
 (epstopdf)             \includegraphics on input line 226.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/DifferentM3-eps-converted-to.pdf, id=688, 862.22125pt x 496.85625pt>
+<Figures1/DifferentM3-eps-converted-to.pdf, id=689, 862.22125pt x 496.85625pt>
 File: Figures1/DifferentM3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/DifferentM3-eps-converted-to.pdf>
@@ -861,7 +861,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 [33 <./Figures1/figfun610agents-eps-converted-to.pdf> <./Figures1/figfun620agen
 ts-eps-converted-to.pdf> <./Figures1/figfun640agents-eps-converted-to.pdf> <./F
 igures1/figfun680agents.pdf>]
-<Figures1/figNfissofun8alias.pdf, id=739, 823.075pt x 592.2125pt>
+<Figures1/figNfissofun8alias.pdf, id=740, 823.075pt x 592.2125pt>
 File: Figures1/figNfissofun8alias.pdf Graphic file (type pdf)
 
 <use Figures1/figNfissofun8alias.pdf>
@@ -880,7 +880,7 @@ o.pdf>
 (epstopdf)             \includegraphics on input line 258.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figNfissofun8part-eps-converted-to.pdf, id=740, 823.075pt x 592.2125p
+<Figures1/figNfissofun8part-eps-converted-to.pdf, id=741, 823.075pt x 592.2125p
 t>
 File: Figures1/figNfissofun8part-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figNfissofun8part-eps-converted-to.pdf>
@@ -980,10 +980,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on dynamicslearning.pdf (46 pages, 1421356 bytes).
+Output written on dynamicslearning.pdf (46 pages, 1421417 bytes).
 PDF statistics:
- 1132 PDF objects out of 1200 (max. 8388607)
- 990 compressed objects within 10 object streams
+ 1133 PDF objects out of 1200 (max. 8388607)
+ 991 compressed objects within 10 object streams
  215 named destinations out of 1000 (max. 500000)
  334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
