@@ -32,7 +32,7 @@ It is also well-known, see \cite{AGS} and Proposition \ref{pr:exist} below, that
 \partial_t \mu(t) = - \nabla \cdot ((\Fun{a} * \mu(t)) \mu(t)), \quad \mu(0)=\mu_0,
 \end{equation}
 in weak sense, 
-where $\Fun{a}(z) =-a(|z|)z=-A'(|z|)/|z|$, for $z \in \mathbb R^{d}$. In fact the differential equation \eqref{eq:meanfield} corresponds again to a gradient flow of the ``energy''
+where $\Fun{a}(z) =-a(|z|)z=-A'(|z|)z/|z|$, for $z \in \mathbb R^{d}$. In fact the differential equation \eqref{eq:meanfield} corresponds again to a gradient flow of the ``energy''
 $$
 \mathcal J (\mu) = \int_{\mathbb R^{d\times d}} A(| x-  y |) d \mu(x) d\mu(y),
 $$
@@ -42,7 +42,7 @@ However, a solid mathematical framework which establishes the conditions of ``le
 \subsection{Parametric energies and their identifications}
 
 Let us now return to consider again an abstract energy $\mathcal J^{[a]}$ and let us assume that it is dependent on a parameter function $a$, as indicated in the superscript. As in the example mentioned above, $a$ may be defining a nonlocal interaction kernel as in  \eqref{intker}. The parameter function $a$ not only determines the abstract energy, but also the corresponding evolutions  $t \mapsto \x(t)$ driven according to \eqref{gradientflow}, for fixed initial conditions $\x(0)=x_0$. (Here we assume that the class of $a$ is such that the evolutions exist and they are essentially well-posed; we explicitly stress again the dependency on $a$ with a superscript $[a]$, which below we may remove as soon as such dependency is clear from the context.)
-The fundamental question to be here addressed is: can we recover $a$ with high accuracy given some observations of the realized evolutions? This question is prone to several specifications, for instance, we may want to assume that the initial conditions are generated according to a certain probability distribution or they are chosen deterministically ad hoc to determine at best $a$, that the observations are complete or incomplete, etc. As one  quickly realizes, this is a very broad field to explore with many possible developments. Surprisingly, there are no results in this direction at this level of generality, and relatively little is done in the specific directions we mentioned in the example above. We  refer, for instance,  to \cite{parisi08,parisi08-1,parisi08-2,Hildenbrandt01112010,mann11,heoemascszwa11} and references therein, for groundbreaking studies on the inference of social rules in collective behavior. 
+The fundamental question to be here addressed is: can we recover $a$ with high accuracy given some observations of the realized evolutions? This question is prone to several specifications, for instance, we may want to assume that the initial conditions are generated according to a certain probability distribution or they are chosen deterministically ad hoc to determine at best $a$, that the observations are complete or incomplete, etc. As one  quickly realizes, this is a very broad field to explore with many possible developments. Surprisingly, there are no results in this direction at this level of generality, and relatively little is done in the specific directions we mentioned in the example above. We  refer, for instance,  to \cite{parisi08,parisi08-1,parisi08-2,Hildenbrandt01112010,mann11,heoemascszwa11} and references therein, for groundbreaking statistical studies on the inference of social rules in collective behavior. 
 \subsection{The optimal control approach and its drawbacks}
 Let us introduce an approach, which  perhaps would be  naturally  considered at a first instance, and focus for a moment on the gradient flow model \eqref{gradientflow}. Given a certain gradient flow evolution $t \mapsto \x(t)$ depending on the unknown parameter function $a$, one might decide to design the recovery of $a$ as an optimal control problem \cite{brpi07}: for instance, we may seek a parameter function $\widehat a$ which minimizes
 \begin{equation}\label{optcontr}
@@ -50,7 +50,7 @@ Let us introduce an approach, which  perhaps would be  naturally  considered at 
 \end{equation}
 being $t \mapsto \xahat(t)$ the solution of gradient flow \eqref{gradientflow} for $\mathcal J = \mathcal J^{[\widehat a]}$, i.e.,
 \begin{equation}\label{gradientflow2}
-\dotxahat(t) \in - \partial_x \mathcal J(x^{[\widehat a]}(t),t),
+\dotxahat(t) \in - \partial_x \mathcal J^{[a]}(x^{[\widehat a]}(t),t),
 \end{equation}
 and $\mathcal R(\cdot)$ is a suitable regularization functional, which restricts the possible minimizers of \eqref{optcontr} to a specific class. The first fundamental problem one immediately encounters with this formulation is the strongly nonlinear dependency of $t \mapsto \xahat(t)$ on $\widehat a$, which results in a strong non-convexity of the functional \eqref{optcontr}. This also implies that a direct minimization of \eqref{optcontr} would risk to lead to suboptimal solutions, and even the computation of a first order optimality condition in terms of Pontryagin's minimum principle would not characterize uniquely the minimal solutions. Besides these fundamental hurdles, the numerical implementation of either strategy (direct optimization or solution of the first order optimality conditions) is expected to be computationally unfeasible to reasonable degree of accuracy as soon as the number of particles $N$ is significantly large (the well-known term {\it curse of dimensionality} conied by Richard E. Bellman for optimal control problems).
 
@@ -101,7 +101,7 @@ Contrary to the optimal control approach, the functional $\Ean$ is convex and ca
 \end{equation}
 The fundamental mathematical question addressed in this paper is
 \begin{itemize}
-\item[(Q)] For which choice of the approximating spaces $V \in \Lambda$ (we assume here that $\Lambda$ is a countable family of invading subspaces of $X$) does $\widehat a_{N,V} \to a$ for $N \to \infty$ and $V \to X$ and in which topology should convergence hold?
+\item[(Q)] For which choice of the approximating spaces $V \in \Lambda$ (we assume here that $\Lambda$ is a countable family of approximating subspaces of $X$) does $\widehat a_{N,V} \to a$ for $N \to \infty$ and $V \to X$ and in which topology should the convergence hold?
 \end{itemize}
 We show now how we address this issue in detail by a variational approach, seeking a limit functional, for which techniques of $\Gamma$-convergence \cite{MR1201152}, whose general aim is establishing the convergence of minimizers for a sequence of equi-coercive functionals to minimizers of a target functional, may provide a clear characterization of the limits for the sequence of minimizers $(\widehat a_{N,V})_{N \in \mathbb N, V \in \Lambda}$.
 Recalling again that $\Fun{a}(z) =-a(| z |)z$, for $z \in \mathbb R^{d}$, we rewrite the functional \eqref{eq-def-error1} as follows:
@@ -154,7 +154,7 @@ Then one can reformulate \eqref{midpoint1} in a very compact form as follows
 Notice that $\rho$ is defined through $\mu(t)$ which depends on the initial probability measure $\mu_0$. 
 
 To establish coercivity of the learning problem
-it is essential  to assume that there exists  $c_T>0$ such that also the following additional bound holds
+it is essential  to assume that there exists  $c_T>0$ such that also the following additional lower bound holds
 \begin{align}\label{eq-coercive}%\label{coercivity}
 	c_T \| \widehat a - a \|^2_{L_2(\mathbb R_+,\rho)} \leq \Eahat,
 \end{align}
@@ -251,17 +251,17 @@ concerning such rates and we refer to \cite{descsc13} and references therein. Ro
 
 The strength of the result from the variational approach followed in Section \ref{sec:wp2} is the total arbitrariness of the sequence $V_N$ except
 for the assumed {\it uniform approximation property} and that the result holds - deterministically - with respect to the uniform convergence, which is quite strong.  However,
-the condition that the spaces $V_N$ are to be picked as subsets of $X_{M,K}$ requires the prior knowledge of $M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}$. Hence, the finite dimensional optimization \eqref{fdproxy} is not anymore a simple {\it unconstrained} least squares (as claimed in the paragraph before \eqref{fdproxy}),
+the condition that the spaces $V_N$ are to be picked as subsets of $X_{M,K}$ requires the prior knowledge of $M \geq \|a\|_{L_{\infty}(K)} + \|a'\|_{L_{\infty}(K)}$. Hence, the finite dimensional optimization \eqref{fdproxy} is not anymore a simple {\it unconstrained} least squares (as implicitly claimed in the paragraph before \eqref{fdproxy}),
 but a problem constrained by a uniform bound on both the solution and its gradient. Nevertheless,
 as we clarify in Section \ref{sec:num}, for $M>0$ fixed and choosing $V_N$ made of piecewise linear continuous functions, imposing the uniform $L_\infty$ bounds in the least square problem does not constitute a severe difficulty.
 Also the tuning of the parameter $M>0$ turns out to be rather simple. In fact, for $N$ fixed the minimizers $\widehat a_N \equiv \widehat a_{N,M}$ have the property that the map
 $$
  M \mapsto   \mathcal E^{[a],N}(\widehat a_{N,M})
 $$
-is monotonically decreasing as a function of the constraint parameter $M$ and it becomes constant for $M\geq M^*$, for $M^*>0$ empirically not depending on $N$. We claim that this special value $M^*$ is indeed the "right" parameter for the $L_\infty$ bound. For such a choice, we show also numerically that, as expected, if we let $N$ grow, the minimizers $\widehat{a}_N$ approximates better and better the unknown potential $a$. 
+is monotonically decreasing as a function of the constraint parameter $M$ and it becomes constant for $M\geq M^*$, for $M^*>0$ empirically not depending on $N$. We claim that this special value $M^*$ is indeed the ``right" parameter for the $L_\infty$ bound. For such a choice, we show also numerically that, as expected, if we let $N$ grow, the minimizers $\widehat{a}_N$ approximates better and better the unknown potential $a$. 
 \\
 
-Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requiring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$. In our follow-up paper \cite{bofohamaXX} we extend the approach developed by DeVore et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. This extension presents several challenges including the lack of independence of the samples collected in our framework and the nonlocality of the scalar products of the corresponding least squares. This has a price to pay, i.e., that  the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  
+Despite the fact that both the tuning of $M>0$ and the constrained minimization over $X_{M,K}$  requiring $L_\infty$ bounds are not severe issues, it would be way more efficient to perform a unconstrained least squares over $X$. In our follow-up paper \cite{bofohamaXX} we extend the approach developed by Binev et al. in \cite{MR2249856,MR2327596} towards universal algorithms for learning regression functions from independent samples drawn according to an unknown probability distribution. This extension presents several challenges including the lack of independence of the samples collected in our framework and the nonlocality of the scalar products of the corresponding least squares. This has a price to pay, i.e., that  the spaces $V_N$ need to be carefully chosen and the result of convergence holds only with high probability.  
 %More precisely, one of our results reads as follows: with high probability, and for suitable choices of approximating %spaces $V_N$, we obtain that for every $\beta>0$
 %	\begin{equation}\label{finalestimate}
 %		\mathcal P_{\mu_0} \Bigl(\|a- \widehat a_{N}\|_{L_2(\R_+,\rho)}

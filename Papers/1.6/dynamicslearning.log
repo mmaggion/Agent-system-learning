@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 JAN 2016 13:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  31 JAN 2016 23:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -363,20 +363,20 @@ LaTeX Warning: Label `Mconstr' multiply defined.
 )
 \openout1 = `dynamicslearning.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
  (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
@@ -392,7 +392,7 @@ LaTeX Font Info:    ... okay on input line 95.
 \everyMPtoPDFconversion=\toks32
 )
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 95.
+Package hyperref Info: Link coloring OFF on input line 100.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -401,9 +401,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count125
 )
-LaTeX Info: Redefining \ref on input line 95.
-LaTeX Info: Redefining \pageref on input line 95.
-LaTeX Info: Redefining \nameref on input line 95.
+LaTeX Info: Redefining \ref on input line 100.
+LaTeX Info: Redefining \pageref on input line 100.
+LaTeX Info: Redefining \nameref on input line 100.
 
 (./dynamicslearning.out) (./dynamicslearning.out)
 \@outlinefile=\write3
@@ -444,15 +444,26 @@ LaTeX Info: Redefining \nameref on input line 95.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 97.
+LaTeX Font Info:    Try loading font information for U+msa on input line 102.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 97.
+LaTeX Font Info:    Try loading font information for U+msb on input line 102.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 102.
+
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <6> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
+
 (./dynamicslearning.toc [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
@@ -470,12 +481,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 95--97
 
  []
 
-[7] [8] [9]
+[7] [8] [9] [10]
 Underfull \hbox (badness 10000) in paragraph at lines 260--263
 
  []
 
-[10]) (./preliminaries.tex [11] [12] [13] [14]) (./learningproblem.tex [15]
+) (./preliminaries.tex [11] [12] [13] [14]) (./learningproblem.tex [15]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 75.
@@ -586,25 +597,25 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 95.
 
-<Figures1/figfun810agents.pdf, id=583, 862.22125pt x 496.85625pt>
+<Figures1/figfun810agents.pdf, id=584, 862.22125pt x 496.85625pt>
 File: Figures1/figfun810agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun810agents.pdf>
 Package pdftex.def Info: Figures1/figfun810agents.pdf used on input line 118.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 Package epstopdf Info: Source file: <Figures1/figfun820agents.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:58:56
 (epstopdf)                    size: 22213 bytes
 (epstopdf)             Output file: <Figures1/figfun820agents-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2016-01-28 11:29:55
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 15710 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figfun820agents-e
 ps-converted-to.pdf Figures1/figfun820agents.eps>
 (epstopdf)             \includegraphics on input line 119.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun820agents-eps-converted-to.pdf, id=584, 862.22125pt x 496.85625
+<Figures1/figfun820agents-eps-converted-to.pdf, id=585, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun820agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun820agents-eps-converted-to.pdf>
@@ -612,25 +623,25 @@ Package pdftex.def Info: Figures1/figfun820agents-eps-converted-to.pdf used on
 input line 119.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 
-<Figures1/figfun840agents.pdf, id=585, 862.22125pt x 496.85625pt>
+<Figures1/figfun840agents.pdf, id=586, 862.22125pt x 496.85625pt>
 File: Figures1/figfun840agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun840agents.pdf>
 Package pdftex.def Info: Figures1/figfun840agents.pdf used on input line 120.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 Package epstopdf Info: Source file: <Figures1/figfun880agents.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:59:07
 (epstopdf)                    size: 22094 bytes
 (epstopdf)             Output file: <Figures1/figfun880agents-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2016-01-28 11:29:55
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 15087 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figfun880agents-e
 ps-converted-to.pdf Figures1/figfun880agents.eps>
 (epstopdf)             \includegraphics on input line 121.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun880agents-eps-converted-to.pdf, id=586, 862.22125pt x 496.85625
+<Figures1/figfun880agents-eps-converted-to.pdf, id=587, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun880agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun880agents-eps-converted-to.pdf>
@@ -642,18 +653,18 @@ input line 121.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <Figures1/figfun610agents.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:55:23
 (epstopdf)                    size: 87889 bytes
 (epstopdf)             Output file: <Figures1/figfun610agents-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2016-01-28 11:29:56
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 79000 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figfun610agents-e
 ps-converted-to.pdf Figures1/figfun610agents.eps>
 (epstopdf)             \includegraphics on input line 128.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun610agents-eps-converted-to.pdf, id=589, 862.22125pt x 496.85625
+<Figures1/figfun610agents-eps-converted-to.pdf, id=590, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun610agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun610agents-eps-converted-to.pdf>
@@ -661,18 +672,18 @@ Package pdftex.def Info: Figures1/figfun610agents-eps-converted-to.pdf used on
 input line 128.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 Package epstopdf Info: Source file: <Figures1/figfun620agents.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:56:14
 (epstopdf)                    size: 88080 bytes
 (epstopdf)             Output file: <Figures1/figfun620agents-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2016-01-28 11:29:56
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 78911 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figfun620agents-e
 ps-converted-to.pdf Figures1/figfun620agents.eps>
 (epstopdf)             \includegraphics on input line 129.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun620agents-eps-converted-to.pdf, id=590, 862.22125pt x 496.85625
+<Figures1/figfun620agents-eps-converted-to.pdf, id=591, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun620agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun620agents-eps-converted-to.pdf>
@@ -680,18 +691,18 @@ Package pdftex.def Info: Figures1/figfun620agents-eps-converted-to.pdf used on
 input line 129.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 Package epstopdf Info: Source file: <Figures1/figfun640agents.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:56:08
 (epstopdf)                    size: 89346 bytes
 (epstopdf)             Output file: <Figures1/figfun640agents-eps-converted-to.
 pdf>
-(epstopdf)                    date: 2016-01-28 11:29:56
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 80564 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figfun640agents-e
 ps-converted-to.pdf Figures1/figfun640agents.eps>
 (epstopdf)             \includegraphics on input line 130.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figfun640agents-eps-converted-to.pdf, id=591, 862.22125pt x 496.85625
+<Figures1/figfun640agents-eps-converted-to.pdf, id=592, 862.22125pt x 496.85625
 pt>
 File: Figures1/figfun640agents-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figfun640agents-eps-converted-to.pdf>
@@ -699,7 +710,7 @@ Package pdftex.def Info: Figures1/figfun640agents-eps-converted-to.pdf used on
 input line 130.
 (pdftex.def)             Requested size: 230.04079pt x 132.56088pt.
 
-<Figures1/figfun680agents.pdf, id=592, 862.22125pt x 496.85625pt>
+<Figures1/figfun680agents.pdf, id=593, 862.22125pt x 496.85625pt>
 File: Figures1/figfun680agents.pdf Graphic file (type pdf)
 
 <use Figures1/figfun680agents.pdf>
@@ -710,42 +721,43 @@ Package pdftex.def Info: Figures1/figfun680agents.pdf used on input line 131.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <Figures1/fig61l10E2vsENlog.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 22:47:21
 (epstopdf)                    size: 11338 bytes
 (epstopdf)             Output file: <Figures1/fig61l10E2vsENlog-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2016-01-28 11:08:06
-(epstopdf)                    size: 7582 bytes
+(epstopdf)                    date: 2016-01-31 15:16:21
+(epstopdf)                    size: 7959 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/fig61l10E2vsENlog
 -eps-converted-to.pdf Figures1/fig61l10E2vsENlog.eps>
 (epstopdf)             \includegraphics on input line 144.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/fig61l10E2vsENlog-eps-converted-to.pdf, id=596, 1348.03625pt x 691.58
-376pt>
+<Figures1/fig61l10E2vsENlog-eps-converted-to.pdf, id=597, 823.075pt x 527.9725p
+t>
 File: Figures1/fig61l10E2vsENlog-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/fig61l10E2vsENlog-eps-converted-to.pdf>
 Package pdftex.def Info: Figures1/fig61l10E2vsENlog-eps-converted-to.pdf used o
 n input line 144.
-(pdftex.def)             Requested size: 242.58789pt x 124.44804pt.
+(pdftex.def)             Requested size: 242.58789pt x 155.60551pt.
 Package epstopdf Info: Source file: <Figures1/figureM2log.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 22:47:40
 (epstopdf)                    size: 9411 bytes
 (epstopdf)             Output file: <Figures1/figureM2log-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2016-01-28 11:08:06
-(epstopdf)                    size: 6522 bytes
+(epstopdf)                    date: 2016-01-31 15:16:22
+(epstopdf)                    size: 6455 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figureM2log-eps-c
 onverted-to.pdf Figures1/figureM2log.eps>
 (epstopdf)             \includegraphics on input line 152.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figureM2log-eps-converted-to.pdf, id=597, 1348.03625pt x 691.58376pt>
+<Figures1/figureM2log-eps-converted-to.pdf, id=598, 823.075pt x 527.9725pt>
 File: Figures1/figureM2log-eps-converted-to.pdf Graphic file (type pdf)
+
 <use Figures1/figureM2log-eps-converted-to.pdf>
 Package pdftex.def Info: Figures1/figureM2log-eps-converted-to.pdf used on inpu
 t line 152.
-(pdftex.def)             Requested size: 230.04079pt x 118.0109pt.
+(pdftex.def)             Requested size: 230.04079pt x 147.55737pt.
 
 Underfull \hbox (badness 3482) in paragraph at lines 155--155
 []\OT1/cmr/m/n/10.95 Figure 4: []Values in log-a-rith-mic scale of
@@ -777,25 +789,25 @@ ted-to.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Figures1/figPotfun8.pdf, id=684, 862.22125pt x 496.85625pt>
+<Figures1/figPotfun8.pdf, id=685, 862.22125pt x 496.85625pt>
 File: Figures1/figPotfun8.pdf Graphic file (type pdf)
 
 <use Figures1/figPotfun8.pdf>
 Package pdftex.def Info: Figures1/figPotfun8.pdf used on input line 209.
 (pdftex.def)             Requested size: 261.40854pt x 150.63495pt.
 Package epstopdf Info: Source file: <Figures1/figTrajfun8.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-10-07 09:25:05
 (epstopdf)                    size: 107490 bytes
 (epstopdf)             Output file: <Figures1/figTrajfun8-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-10-07 09:29:50
 (epstopdf)                    size: 65163 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figTrajfun8-eps-c
 onverted-to.pdf Figures1/figTrajfun8.eps>
 (epstopdf)             \includegraphics on input line 210.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figTrajfun8-eps-converted-to.pdf, id=685, 561.09625pt x 421.575pt>
+<Figures1/figTrajfun8-eps-converted-to.pdf, id=686, 561.09625pt x 421.575pt>
 File: Figures1/figTrajfun8-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/figTrajfun8-eps-converted-to.pdf>
@@ -803,25 +815,25 @@ Package pdftex.def Info: Figures1/figTrajfun8-eps-converted-to.pdf used on inpu
 t line 210.
 (pdftex.def)             Requested size: 198.67303pt x 149.27098pt.
 
-<Figures1/figPotfun61.pdf, id=686, 862.22125pt x 458.71375pt>
+<Figures1/figPotfun61.pdf, id=687, 862.22125pt x 458.71375pt>
 File: Figures1/figPotfun61.pdf Graphic file (type pdf)
 
 <use Figures1/figPotfun61.pdf>
 Package pdftex.def Info: Figures1/figPotfun61.pdf used on input line 211.
 (pdftex.def)             Requested size: 269.7754pt x 143.52267pt.
 Package epstopdf Info: Source file: <Figures1/figTrajfun61.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-10-07 09:25:16
 (epstopdf)                    size: 103713 bytes
 (epstopdf)             Output file: <Figures1/figTrajfun61-eps-converted-to.pdf
 >
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-10-07 09:29:48
 (epstopdf)                    size: 84099 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figTrajfun61-eps-
 converted-to.pdf Figures1/figTrajfun61.eps>
 (epstopdf)             \includegraphics on input line 212.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figTrajfun61-eps-converted-to.pdf, id=687, 561.09625pt x 421.575pt>
+<Figures1/figTrajfun61-eps-converted-to.pdf, id=688, 561.09625pt x 421.575pt>
 File: Figures1/figTrajfun61-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/figTrajfun61-eps-converted-to.pdf>
@@ -833,18 +845,18 @@ ut line 212.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 Package epstopdf Info: Source file: <Figures1/DifferentM3.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 21:48:41
 (epstopdf)                    size: 23445 bytes
 (epstopdf)             Output file: <Figures1/DifferentM3-eps-converted-to.pdf>
 
-(epstopdf)                    date: 2016-01-28 11:29:57
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 12864 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/DifferentM3-eps-c
 onverted-to.pdf Figures1/DifferentM3.eps>
 (epstopdf)             \includegraphics on input line 226.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/DifferentM3-eps-converted-to.pdf, id=689, 862.22125pt x 496.85625pt>
+<Figures1/DifferentM3-eps-converted-to.pdf, id=690, 862.22125pt x 496.85625pt>
 File: Figures1/DifferentM3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Figures1/DifferentM3-eps-converted-to.pdf>
@@ -869,7 +881,7 @@ igures1/figfun680agents.pdf>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<Figures1/figNfissofun8alias.pdf, id=740, 823.075pt x 592.2125pt>
+<Figures1/figNfissofun8alias.pdf, id=741, 823.075pt x 592.2125pt>
 File: Figures1/figNfissofun8alias.pdf Graphic file (type pdf)
 
 <use Figures1/figNfissofun8alias.pdf>
@@ -877,18 +889,18 @@ Package pdftex.def Info: Figures1/figNfissofun8alias.pdf used on input line 257
 .
 (pdftex.def)             Requested size: 234.22102pt x 168.52025pt.
 Package epstopdf Info: Source file: <Figures1/figNfissofun8part.eps>
-(epstopdf)                    date: 2016-01-28 11:08:06
+(epstopdf)                    date: 2015-12-27 23:07:00
 (epstopdf)                    size: 9333 bytes
 (epstopdf)             Output file: <Figures1/figNfissofun8part-eps-converted-t
 o.pdf>
-(epstopdf)                    date: 2016-01-28 11:29:57
+(epstopdf)                    date: 2016-01-29 11:08:21
 (epstopdf)                    size: 7567 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures1/figNfissofun8part
 -eps-converted-to.pdf Figures1/figNfissofun8part.eps>
 (epstopdf)             \includegraphics on input line 258.
 Package epstopdf Info: Output file is already uptodate.
 
-<Figures1/figNfissofun8part-eps-converted-to.pdf, id=741, 823.075pt x 592.2125p
+<Figures1/figNfissofun8part-eps-converted-to.pdf, id=742, 823.075pt x 592.2125p
 t>
 File: Figures1/figNfissofun8part-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures1/figNfissofun8part-eps-converted-to.pdf>
@@ -915,30 +927,30 @@ LaTeX Warning: Text page 36 contains only floats.
 
 [36 <./Figures1/DifferentM3-eps-converted-to.pdf> <./Figures1/figNfissofun8alia
 s.pdf> <./Figures1/figNfissofun8part-eps-converted-to.pdf>] [37] [38]
-Overfull \hbox (0.59543pt too wide) in paragraph at lines 244--244
+Overfull \hbox (0.59543pt too wide) in paragraph at lines 249--249
 [] 
  []
 
 [39]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hbox' on input line 282.
+(hyperref)                removing `\hbox' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 282.
+(hyperref)                removing `\mathsurround' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 282.
+(hyperref)                removing `\z@' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\unskip' on input line 282.
+(hyperref)                removing `\unskip' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@italiccorr' on input line 282.
+(hyperref)                removing `\@@italiccorr' on input line 287.
 
 [40] [41] [42] [43] (./dynamicslearning.bbl [44]
 Missing character: There is no Å in font cmr10!
@@ -946,29 +958,29 @@ Missing character: There is no ¡ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ­ in font cmr10!
  [45])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 455.
  [46]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 455.
 
 (./dynamicslearning.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 450.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 455.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 455.
 Package rerunfilecheck Info: File `dynamicslearning.out' has not changed.
 (rerunfilecheck)             Checksum: A2A6A947C6CFABA6F6D0220170898ECC;2552.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 455.
  ) 
 Here is how much of TeX's memory you used:
- 7455 strings out of 493089
- 107937 string characters out of 6134842
- 212328 words of memory out of 5000000
- 10553 multiletter control sequences out of 15000+600000
- 21958 words of font info for 81 fonts, out of 8000000 for 9000
+ 7492 strings out of 493089
+ 108462 string characters out of 6134842
+ 212920 words of memory out of 5000000
+ 10580 multiletter control sequences out of 15000+600000
+ 24424 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,19n,31p,1618b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,19n,31p,1619b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -983,18 +995,19 @@ cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
 l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on dynamicslearning.pdf (46 pages, 1425106 bytes).
+/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on dynamicslearning.pdf (46 pages, 1444943 bytes).
 PDF statistics:
- 1133 PDF objects out of 1200 (max. 8388607)
- 991 compressed objects within 10 object streams
+ 1139 PDF objects out of 1200 (max. 8388607)
+ 996 compressed objects within 10 object streams
  215 named destinations out of 1000 (max. 500000)
  334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
