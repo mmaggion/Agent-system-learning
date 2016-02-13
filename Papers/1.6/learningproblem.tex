@@ -2,7 +2,7 @@
 
 \section{The learning problem for the kernel function}\label{sec:learn}
 
-As already explained in the introduction, our goal is to learn $a \in X$ from observation of the dynamics of $\mu^N$ corresponding to system \eqref{eq:discrdyn} with $a$ as interaction kernel, $\mu_0^N$ as initial datum and $T$ as finite time horizon.
+As already explained in the introduction, our goal is to learn $a \in X$ from observation of the dynamics of $\mu^N$ corresponding to system \eqref{eq:discrdyn} with $a$ as interaction kernel, $\mu_0^N$ as initial datum, and $T$ as finite time horizon.
 
 We pick $\widehat a$ among those functions in $X$ which would give rise to a dynamics close to $\mu^N$: roughly speaking we choose $\widehat a_N \in X$ as a minimizer of the following \textit{discrete error functional}
 \begin{align}\label{eq-def-error}
@@ -299,7 +299,7 @@ Notice that $\mathcal E^{[a]}(a)=0$, and since $\Eahat\geq 0$ for all $\widehat 
 \subsubsection{Coercivity is ``generically'' satisfied}\label{randomod}
 We make the case that while ``degeneracies'' would cause our coercivity condition to fail, i.e., $c_T=0$, in a ``generic'' case the coercivity inequality holds.
 On the one hand, we show that if we could model the misfit $\mathcal K(r)=(a(r)- \widehat a(r))r$ to behave randomly, in a sufficiently independent manner, over a finite set of trajectory distances, then
-the coercivity condition holds with high probability. While the needed independence assumptions will typicallybe  too strong to be applicable in practice, the arguments we provide are by far not the most general possible, and we view them as one possible notion of a ``generic'' case.
+the coercivity condition holds with high probability. While the needed independence assumptions will typically be  too strong to be applicable in practice, the arguments we provide are by far not the most general possible, and we view them as one possible notion of a ``generic'' case.
 On the other hand, in the next section we also present a more rigorous {\it deterministic} argument to verify the coercivity condition for very particular choices of $a$.
 
 With the notation of the misfit just introduced, the coercivity condition reads
@@ -324,7 +324,7 @@ We assume that $\mathbf K$ has independent Gaussian rows, each with variance $\s
 Since the bounds we wish to obtain, and our estimates below, are scale invariant, we may, and will, assume $\sigma=1$.
 We now show that the coercivity assumption is satisfied, with a constant $c'_{t_0}=O(1/N)$. Let $\mathbf{X}_i\in\mathbb{R}^{N\times d}$ be the matrix whose $j$-th row is the (fixed) vector $\frac{x_i-x_j}{|x_i-x_j|}\in\mathbb{R}^d$, and let $\mathbf{K}(i,:)\in\mathbb{R}^N$ be the $i$-th row of $\mathbf{K}$. The coercivity inequality \eqref{e:coercivitydiscrete} may be re-written as:
 \begin{align}
-\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac{c'_t}{N^2}||\mathbf{K}||^2_{\mathbb{F}}\,.
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac{c'_t}{N^2}\|\mathbf{K}\|^2_{\mathbb{F}}\,.
 \label{e:coermatrix}
 \end{align}
 Then we estimate
@@ -332,7 +332,7 @@ Then we estimate
 \mathbb{E}\left[|\mathbf{K}(i,:)\mathbf{X}_i|^2\right]
 &=\sum_{l=1}^d\sum_{j,j'=1}^N\mathbb{E}\left[\mathcal{K}(|x_i-x_j|)\mathcal{K}(|x_i-x_{j'}|)|\right] \left(\frac{x_i-x_j}{|x_i-x_j|}\right)_l \left(\frac{x_i-x_{j'}}{|x_i-x_{j'}|}\right)_l\\
 &=\sum_{l=1}^d\sum_{j=1}^N \mathbb{E}\left[\mathcal{K}(|x_i-x_j|)^2\right] \left(\frac{x_i-x_j}{|x_i-x_j|}\right)^2_l \\
-&= \sum_{j=1}^N |\mathbf{X}_i(j,:)|^2 = || \mathbf{X}_i||^2_{\mathbb{F}}=N\,,
+&= \sum_{j=1}^N |\mathbf{X}_i(j,:)|^2 = \| \mathbf{X}_i\|^2_{\mathbb{F}}=N\,,
 \end{align*}
 where we used independence, %in the second step we used standard properties of random projections (or inner products) against Gaussian vectors \cite{Vershynin:NARMT}, 
 and in the last step we used the fact that every row of $\mathbf{X}_i$ is a unit vector. By concentration one readily obtains that with high probability
@@ -342,8 +342,7 @@ and in the last step we used the fact that every row of $\mathbf{X}_i$ is a unit
 One the other hand, since $\mathbb{E}[||\mathbf{K}||^2_{\mathbb{F}}]\le CN^2$ by standard random matrix theory results (e.g. \cite{Vershynin:NARMT}), and in fact not just in expectation but also with high probability, the right hand side of \eqref{e:coermatrix} is bounded by $c'_{t_0}C$ from above. Choosing $c'_{t_0}$ small enough (and at least as small as $O(1/N)$, as a function of $N$), we obtain \eqref{e:coermatrix} with high-probability.
 
 The argument  may be generalized to other models of random matrices, for example with sub-Gaussian rows (for $\mathbf{K}$) and uniformly lower-bounded smallest singular values. One may also consider $\mathbf{X}_i$ random, sufficiently uncorrelated with $\mathbf{K}$, and obtain similar results. Also, the continuous case is not substantially different from the discrete case, as it may be derived by smoothing discrete approximations. We do not pursue these generalizations, as our purpose here is to show that the coercivity assumption is  ``generically'' satisfied.
-
-
+A model where the behavior of the coercivity constant $c'_t$ would be quite different as $N$ grows, is the following: we assume that $\mathcal{K}(|x_i-x_j|)$ is distributed as $\frac{\eta_{ij}}{|x_i-x_j|^\alpha}$, where $\eta_{ij}$ are i.i.d. standard normal distributions, and furthermore we assume that as $N$ grows the quantity $\frac1N\sum_{j=1}^N |x_i-x_j|^{-\alpha}$ grows as $N^{\gamma-1}$, for some $\gamma\ge1$, and for every $i=1,\dots,N$ fixed. Repeating the calculation above we obtain that the coercivity condition holds with constant that scales as $O(N^{\gamma-1})$, in particular is $O(1)$ independently of $N$ for $\gamma=1$. The first assumption may be motivated that estimators of the influence function may have performance proportional to the gradient of the influence function itself, and such gradient may decay with distance; the second assumption is about the scaling of the ``bulk'' of the system as $N$ grows: for $\gamma=0$ such size is independent of $N$, for $\gamma>0$ it grows with $N$. Note that the case $\gamma=1$ is indeed very natural: the quantity $\frac1N\sum_{j=1}^N |x_i-x_j|^{-\alpha}$ is expected to approach the corresponding integral in the mean-field limit, which is independent of $N$. Under this natural scaling, the coercivity constant is independent of $N$, suggesting it holds in the limit as well.
 
 %For the sake of simplicity let us assume that $\mathbf K$ has Gaussian rows with independent entries, and, without loss of generality, we can assume $\mathbb E  \left [ \mathbf K_{i,j}^2  \right ] =1$ for all $i,j$ in view of the homogeneity of the inequality \eqref{e:coercivitydiscrete}.
 %Let $\mathbf X = ( \mathbf X_1 | \dots | \mathbf X_N)\in\mathbb{R}^{$ whose columns are defined by $ \mathbf X_i =\left (\frac{x_i-x_1}{|x_i-x_1|}, \dots, \frac{x_N-x_1}{|x_N-x_1| }\right )$.
@@ -397,7 +396,7 @@ Now, let us observe more closely the integrand on the left-hand-side, and for $\
 &=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2=\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
 \end{eqnarray*}
 Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \mapsto x_i(t)$. 
-Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. (Notice that we circumvented this problem in the random model in section \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
+Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. (Notice that we circumvented this problem in the random model in Section \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
 To simplify the problem we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
 $$
 \frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
@@ -425,7 +424,7 @@ In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one
 \begin{equation}\label{coerN4}
 \frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 = \frac{1}{16} ( \mathcal K(2 r) +  \sqrt 2 \mathcal K(\sqrt 2 r) )^2.
 \end{equation}
-Let us assume that the maximal absolute value of $\mathcal K$ in absolute value is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
+Let us assume that the maximal absolute value of $\mathcal K$ is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
 the case where $\mathcal K(2 r)  = -  \mathcal K(\sqrt 2 r)$ yielding the following estimate from below
 \begin{eqnarray*}
 \frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  &\geq& \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
