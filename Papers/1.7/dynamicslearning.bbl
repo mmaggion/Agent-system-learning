@@ -102,11 +102,6 @@ S.~Dereich, M.~Scheutzow, and R.~Schottstedt.
 \newblock Constructive quantization: approximation by empirical measures.
 \newblock {\em Ann. Inst. Henri Poincar\'e (B)}, 49(4):1183--1203, 2013.
 
-\bibitem{Fil}
-A.~{Filippov}.
-\newblock {\em {Differential equations with discontinuous right-hand sides}}.
-\newblock Kluwer Academic Publishers, 1988.
-
 \bibitem{fohavy11}
 M.~Fornasier, J.~Haškovec, and J.~Vybíral.
 \newblock Particle systems and kinetic equations modeling interacting agents in
@@ -160,6 +155,11 @@ R.~Mann.
   groups.
 \newblock {\em PLoS ONE}, 6(8):e22827. doi:10.1371/journal.pone.0022827, 2011.
 
+\bibitem{Motsch2011}
+E.~Motsch, Sebastienand~Tadmor.
+\newblock A new model for self-organized dynamics and its flocking behavior.
+\newblock {\em Journal of Statistical Physics}, 144(5):923--947, 2011.
+
 \bibitem{Vershynin:NARMT}
 R.~Vershynin.
 \newblock Introduction to the non-asymptotic analysis of random matrices.
@@ -169,11 +169,5 @@ R.~Vershynin.
 A.~T. Vicsek, E.~Czir\'ok, O.~Ben-Jacob, and O.~Shochet.
 \newblock Novel type of phase transition in a system of self-driven particles.
 \newblock {\em Phys. Rev. Lett.}, 75(6):1226--1229, 1995.
-
-\bibitem{villani}
-C.~Villani.
-\newblock {\em {Topics in Optimal Transportation}}, volume~58 of {\em Graduate
-  Studies in Mathematics}.
-\newblock American Mathematical Society, Providence, RI, 2003.
 
 \end{thebibliography}
