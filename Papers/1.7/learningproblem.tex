@@ -251,11 +251,11 @@ This model is not completely unreasonable: after all $\mathbf K$ involves the di
 \begin{proposition}
 Let $\mathbf{K}:=(\mathcal K(|x_i-x_j|))_{i,j=1,\dots,N}$, where $\mathcal K(r)=(a(r)- \widehat a(r))r$,  be a random matrix with independent Gaussian rows, each with variance $\sigma^2I_N$. Then with high probability the coercivity bound \eqref{e:coercivitydiscrete} holds with a constant $c'_{t_0}=\Omega(1/N)$.
 
-Moreover, if there is $\alpha>0$ such that $\mathcal{K}(|x_i-x_j|)|x_i-x_j|^\frac\alpha2$ is distributed as $\eta_{ij}$, where $\eta_{ij}$ are independent standard normal distributions, and the quantity $\frac1N\sum_{j=1}^N|x_i-x_j|^{-\alpha}\in[c_1,c_2]$ for all $i=1,\dots,N$, and for all $N$ large enough, with $c_1,c_2>0$, then coercivity holds with a constant $c'_{t_0}$ independent of $N$.
+Moreover, if there is $\alpha>0$ such that $\mathcal{K}(|x_i-x_j|)|x_i-x_j|^\frac\alpha2$ is distributed as $\eta_{ij}$, where $\eta_{ij}$ are independent standard normal distributions, and there exist $c_1,c_2>0$ such that $\frac1N\sum_{j=1}^N|x_i-x_j|^{-\alpha}\in[c_1,c_2]$ for all $i=1,\dots,N$, and for all $N$ large enough, then coercivity holds with a constant $c'_{t_0}$ independent of $N$.
 \label{p:randomcoercivity}
 \end{proposition}
 We postpone the proof, based on standard results in random matrix theory, to the appendix.
-Here we comment on the second part of the statement. First of all there are two key additional assumptions. The first one captures the situation that the quantity $\frac1N\sum_{j=1}^N|x_i-x_j|^{-\alpha}$ ought to have, at least for some $\alpha$, and under reasonable assumptions, a positive limit as $N$ tends to infinity, and so in particular it is bounded above and below, and away from $0$, for $N$ large. The second one requires that the estimator has errors that decrease with the distance $|x_i-x_j|$ in the fashion prescribed: if the kernel and its gradient decrease with the distance $r$, then it is indeed natural to expect that the estimator would have this property.
+Here we comment on the second part of the statement. First of all there are two key additional assumptions. The first one requires that the estimator has errors that decrease with the distance $|x_i-x_j|$ in the fashion prescribed: if the kernel and its gradient decrease with the distance $r$, then it is indeed natural to expect that the estimator would have this property. The second one captures the situation that the quantity $\frac1N\sum_{j=1}^N|x_i-x_j|^{-\alpha}$ ought to have, at least for some $\alpha$, and under reasonable assumptions, a positive limit as $N$ tends to infinity, and so in particular it is bounded above and below, and away from $0$, for $N$ large. 
 Under these assumptions, we obtain that the coercivity condition holds with a constant independent of $N$, which in turns suggests it also holds in the continuous limit.
 
 The argument  may be generalized to other models of random matrices, for example with independent sub-Gaussian rows (for $\mathbf{K}$) and uniformly lower-bounded smallest singular values. One may also consider $\mathbf{X}_i$ random, sufficiently uncorrelated with $\mathbf{K}$, and obtain similar results. We do not pursue these generalizations, as our purpose here is to show that the coercivity assumption is  ``generically'' satisfied.
@@ -300,53 +300,20 @@ The argument  may be generalized to other models of random matrices, for example
 
 
 \subsubsection{The deterministic case}
-We construct now  deterministic examples of trajectories $t \to \mu(t)$ for which the  coercivity condition \eqref{eq-coercive} holds.
-We start with the simple case of two particles, i.e., $N=2$, for which no specific assumptions on $a,\widehat a$ are required to verify \eqref{eq-coercive} other than their boundedness in $0$. Again it is convenient to write $\mathcal K(r) = (a(r) - \widehat a(r)) r$, so that the coercivity condition in this case can be reformulated as 
-\begin{equation}\label{coercN2}
-\frac{1}{T} \int_0^T \frac{1}{N} \sum_{i=1}^N \left | \frac{1}{N} \sum_{j=1}^N \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \geq \frac{c_T}{N^2T} \int_0^T  \sum_{i=1}^N \sum_{j=1}^N |\mathcal K(|x_i-x_j|)|^2  dt.
-\end{equation}
-Now, let us observe more closely the integrand on the left-hand-side, and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
-\begin{eqnarray*}
-\frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j=1}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 &=& \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j\neq i}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
-&=&  \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \frac{x_i-x_{\widehat i}}{|x_i-x_{\widehat i}|} \right |^2\\
-&=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2=\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
-\end{eqnarray*}
-Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \mapsto x_i(t)$. 
-Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. (Notice that we circumvented this problem in the random model in Section \ref{randomod} thanks to the assumed independence of the entries of the rows of $\mathbf K$.)
-To simplify the problem we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
-$$
-\frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
-$$
-Notice that, independently of the behavior of the particles at any other time $t \in [0,T]$, it holds also
-\begin{equation}\label{maxbound}
-\frac{1}{9 T} \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
-\end{equation}
-A direct computation in this case of particles disposed at the vertexes of a equilateral triangle shows that 
-$$
- \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2,
-$$
-and therefore
-$$ 
-\frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \geq \frac{1}{18}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2.
-$$
-Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal absolute value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles form precisely the equilateral triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to belong to a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant (such as the functions in $X_{M,K}$).
-Under this equi-continuity assumption, there exist $\varepsilon>0$ and a constant $c_{T,\varepsilon}>0$ independent of $\mathcal K$ (but perhaps depending only on its modulus of continuity) such that
-\begin{eqnarray*}\label{coercint}
-&&\frac{1}{T} \int_0^T \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \\\
-&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt\\
-&\geq & \frac{c_{T,\varepsilon}}{3}  \mathcal K(r_0) \geq \frac{c_{T,\varepsilon}}{18T } \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt.
-\end{eqnarray*}
-In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one can construct examples for which the coercivity assumption is verifiable. Actually this construction can be extended to any group of $N$ particles disposed on the vertexes of regular polygons. As an example of how one should proceed, let us consider the case of $N=4$ particles disposed instantanously at the vertexes of a square of side length $\sqrt{2} r>0$. In this case one directly verfies that
-\begin{equation}\label{coerN4}
-\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 = \frac{1}{16} ( \mathcal K(2 r) +  \sqrt 2 \mathcal K(\sqrt 2 r) )^2.
-\end{equation}
-Let us assume that the maximal absolute value of $\mathcal K$ is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
-the case where $\mathcal K(2 r)  = -  \mathcal K(\sqrt 2 r)$ yielding the following estimate from below
-\begin{eqnarray*}
-\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  &\geq& \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
-\end{eqnarray*}
-Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible, perhaps not surprisingly, to conclude the coercivity condition for the uniform distribution over the circle.
-\\
+
+We now consider particular cases of trajectories for which coercivity may be proved:
+
+\begin{proposition}
+Let $a, \widehat a$ be bounded at $0$, and $\mathcal K(r) = (a(r) - \widehat a(r)) r$.
+Then
+\begin{itemize}
+\item[(i)] for $N=2$ the coercivity condition is satisfied, with $c_T=1$;
+\item[(ii)] for $N=3$, assume that the particles are at the vertices of an equilateral triangle with vertices at distance $r(t)$ from the origin, that at a certain time $t_0$ the particles are  at distance $r_0$ from the origin, that $\mathcal{K}$ attains its maximal value at $r_0$, and that $\hat a$ belong to a family of equicontinuous functions $\mathcal{A}$. Then coercivity holds with a constant dependent on $T$ and $\mathcal{A}$.
+\item[(iii)] for $N=4$, if at a certain time the particles are at the vertices of a square with vertices at distance $r_0$, and $\mathcal K$ attains its maximum at $r_0$, then coercivity holds.
+\end{itemize}
+Similar results hold for larger $N$; numerical experiments show that the coercivity constant decreases rapidly with $N$.
+\label{p:disccoerc}
+\end{proposition}
 
 All the examples presented so far are based on discrete measures $\mu^N=\frac{1}{N} \sum_{i=1}^N\delta_{x_i}$ supported on particles lying on the vertexes of polytopes. However, one can consider an approximated convolution identity $g_\varepsilon$ for which $g_\varepsilon \to \delta_0$ for $\varepsilon \to 0$, where $\delta_0$ is a Dirac delta in $0$, and  the regularized probability measure
 $$
@@ -365,7 +332,7 @@ to $\mu_\varepsilon$ as follows
 for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
 \\
 
-In these latter sections we showed that the coercivity condition holds for ``generic" cases as well as for highly structured deterministic ones. In practice we can numerically verify that it holds in many situations, see Section \ref{numcoer}, and from now on we assume it without further concerns. 
+In these last two sections we showed that the coercivity condition holds for ``generic" cases as well as for highly structured deterministic ones. In practice we can numerically verify that it holds in many situations, see Section \ref{numcoer}, and from now on we assume it without further concerns. 
 
 
 

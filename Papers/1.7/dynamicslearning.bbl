@@ -170,4 +170,10 @@ A.~T. Vicsek, E.~Czir\'ok, O.~Ben-Jacob, and O.~Shochet.
 \newblock Novel type of phase transition in a system of self-driven particles.
 \newblock {\em Phys. Rev. Lett.}, 75(6):1226--1229, 1995.
 
+\bibitem{villani}
+C.~Villani.
+\newblock {\em {Topics in Optimal Transportation}}, volume~58 of {\em Graduate
+  Studies in Mathematics}.
+\newblock American Mathematical Society, Providence, RI, 2003.
+
 \end{thebibliography}
