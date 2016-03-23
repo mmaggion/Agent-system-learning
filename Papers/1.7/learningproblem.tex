@@ -228,20 +228,20 @@ On the one hand, we show that if we could model the misfit $\mathcal K(r)=(a(r)-
 the coercivity condition holds with high probability. While the needed independence assumptions will typically be  too strong to be hold in practice, the arguments we provide are by far not the most general possible, and we view them as one possible notion of a ``generic'' case.
 On the other hand, in the next section we also present a {\it deterministic} argument to verify the coercivity condition for very particular choices of $a$.
 
-With the notation of the misfit just introduced, the coercivity condition reads
+In the notation we just introduced, the coercivity condition reads
 \begin{align*}
 \frac1T\int_0^T\int_{\R^d}&\left|\int_{\R^d} \mathcal K(|x-y|)\frac{x-y}{|x-y|}d\mu(t)(x)\right|^2d\mu(t)(y) \\
 &\ge\frac{c_T}{T}\int_0^T\int_{\R^d}\int_{\R^d}\left| \mathcal K(|x-y|)\right|^2d\mu(t)(x)d\mu(t)(y)\,.
 \end{align*}
 If the inequality holds without the time average for a fixed $t_0$,
 \begin{align*}
-\int_{\R^d}\left|\int_{\R^d} \mathcal K(|x-y|)\frac{x-y}{|x-y|}d\mu(t_0)(x)\right|^2d\mu(t_0)(y)
-\ge c_{t_0}'\int_{\R^d}\int_{\R^d}\left| \mathcal K(|x-y|)\right|^2d\mu(t_0)(x)d\mu(t_0)(y)\,,
+\int_{\R^d}\!\!\left|\int_{\R^d} \mathcal K(|x-y|)\frac{x-y}{|x-y|}d\mu(t_0)(x)\right|^2\!\!\!\!d\mu(t_0)(y)\!
+\ge c_{t_0}'\int_{\R^d}\!\!\int_{\R^d}\!\!\left| \mathcal K(|x-y|)\right|^2\!\!d\mu(t_0)(x)d\mu(t_0)(y)\,,
 \end{align*}
 then by a continuity argument it can be extended to a nontrivial time interval. We will therefore freeze time and investigate the inequality at this fixed time. 
 Additionally, we restrict our attention to the case where $\mu(t_0)$ is a discrete measure $\mu^N=\frac1N\sum_{i=1}^N\delta_{x_i}$ (we drop $t_0$ since it is now fixed), so that the inequality reads
 \begin{align}
-\frac1N\sum_{i=1}^N\left|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\right|^2\ge \frac{c'_{t_0}}{N^2}\sum_{i=1}^N\sum_{j=1}^N\left| \mathcal K(|x_i-x_j|)\right|^2\,.
+\frac1N\sum_{i=1}^N\bigg|\frac{1}{N} \sum_{j=1}^N  \mathcal K(|x_i-x_j|)\frac{x_i-x_j}{|x_i-x_j|}\bigg|^2\ge \frac{c'_{t_0}}{N^2}\sum_{i=1}^N\sum_{j=1}^N\left| \mathcal K(|x_i-x_j|)\right|^2\,.
 \label{e:coercivitydiscrete}
 \end{align}
 We argue now that this (``instantaneous'') coercivity inequality holds with high probability as soon as the matrix $\mathbf{K}:=(\mathcal K(|x_i-x_j|))_{i,j=1,\dots,N}$ is modeled as a random matrix.
@@ -311,9 +311,9 @@ Then
 \item[(ii)] for $N=3$, assume that the particles are at the vertices of an equilateral triangle with vertices at distance $r(t)$ from the origin, that at a certain time $t_0$ the particles are  at distance $r_0$ from the origin, that $\mathcal{K}$ attains its maximal value at $r_0$, and that $\hat a$ belong to a family of equicontinuous functions $\mathcal{A}$. Then coercivity holds with a constant dependent on $T$ and $\mathcal{A}$.
 \item[(iii)] for $N=4$, if at a certain time the particles are at the vertices of a square with vertices at distance $r_0$, and $\mathcal K$ attains its maximum at $r_0$, then coercivity holds.
 \end{itemize}
-Similar results hold for larger $N$; numerical experiments show that the coercivity constant decreases rapidly with $N$.
 \label{p:disccoerc}
 \end{proposition}
+Similar results hold for larger $N$; numerical experiments show that the coercivity constant decreases rapidly with $N$.
 
 All the examples presented so far are based on discrete measures $\mu^N=\frac{1}{N} \sum_{i=1}^N\delta_{x_i}$ supported on particles lying on the vertexes of polytopes. However, one can consider an approximated convolution identity $g_\varepsilon$ for which $g_\varepsilon \to \delta_0$ for $\varepsilon \to 0$, where $\delta_0$ is a Dirac delta in $0$, and  the regularized probability measure
 $$
@@ -326,8 +326,8 @@ $$
 Under the additional assumption that $\Lip_K(\widehat a) \sim \| \widehat a \|_{L_\infty(K)}$ (and this is true whenever $\widehat a$ is a piecewise polynomial function over a finite partition of $\R_+$, with the constant of the equivalence depending on the particular partition) one can extend the validity of the coercivity condition for $\mu^N$ \eqref{coercN2} 
 to $\mu_\varepsilon$ as follows
 \begin{align*}
-&\frac{1}{T} \int_0^T \int_{\mathbb R^d}  \left | \int_{\mathbb R^d}  \mathcal K(|x-y|) \frac{y-x}{|y-x|} d \mu_\varepsilon(x) \right |^2 d\mu_\varepsilon(y) dt \\
-& \geq  \frac{c_{T,\varepsilon }}{T} \int_0^T  \int_{\mathbb R^d}  \int_{\mathbb R^d}  |\mathcal K(|x-y|)|^2    d\mu_\varepsilon(x) d\mu_\varepsilon(y)dt,
+\frac{1}{T} \int_0^T \!\!\int_{\mathbb R^d} \!\! \left | \int_{\mathbb R^d}\!\!  \mathcal K(|x-y|) \frac{y-x}{|y-x|} d \mu_\varepsilon(x) \right |^2\!\!\! d\mu_\varepsilon(y) dt\!
+\geq  \frac{c_{T,\varepsilon }}{T} \!\!\int_0^T \!\! \int_{\mathbb R^d} \!\! \int_{\mathbb R^d}\!\!  |\mathcal K(|x-y|)|^2\! d\mu_\varepsilon(x) d\mu_\varepsilon(y)dt,
 \end{align*}
 for a constant $c_{T,\varepsilon }>0$ for $\varepsilon>0$ small enough.
 \\
@@ -383,22 +383,22 @@ Since $\inf \mathcal E^{[a],N} \geq 0$, we can consider a minimizing sequence $(
 As a first step, notice that the uniform convergence of $(\widehat a_n)_{n \in \N}$ to $\widehat a$ on $K$ and the compactness of $K$ imply that the functionals $\Fun{\widehat a_n}(x-y)$ converge uniformly to $\Fun{\widehat a}(x-y)$ on $B(0,R)\times B(0,R)$ (where $R$ is as in \eqref{Rest}). Moreover, we have the uniform bound
 \begin{align}
 \begin{split}\label{Faest}
-\sup_{x,y\in B(0,R)}|\Fun{\widehat a_n}(x-y) - \Fun{a}(x-y)| &= \sup_{x,y\in B(0,R)}|\widehat a_n(|x-y|) -  a(|x-y|)| |x-y| \\
-&\leq 2R \sup_{r\in K} |\widehat a_n(r) -  a(r)| \\
-& \leq 2R(M + \|a\|_{L_{\infty}(K)}).
+\sup_{x,y\in B(0,R)}|\Fun{\widehat a_n}(x-y) &- \Fun{a}(x-y)| = \sup_{x,y\in B(0,R)}|\widehat a_n(|x-y|) -  a(|x-y|)| |x-y| \\
+&\leq 2R \sup_{r\in K} |\widehat a_n(r) -  a(r)|
+ \leq 2R(M + \|a\|_{L_{\infty}(K)}).
 \end{split}
 \end{align}
 As the measures $\mu^N(t)$ are compactly supported in $B(0,R)$ uniformly in time, the boundedness \eqref{Faest} allows us to apply three times the dominated convergence theorem to yield
 \begin{align*}
-\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) &= \lim_{n \rightarrow \infty}\frac{1}{T}\int_0^T\int_{\R^d} \left| \int_{\R^d}
-			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2d\mu^N(t)(x) dt\\
-			&= \frac{1}{T}\int_0^T\lim_{n \rightarrow \infty}\int_{\R^d} \left| \int_{\R^d}
-			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
-			&= \frac{1}{T}\int_0^T\int_{\R^d} \left| \lim_{n \rightarrow \infty}\int_{\R^d}
-			\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
-			&= \frac{1}{T}\int_0^T\int_{\R^d} \left| \int_{\R^d}
-			\left(\Fun{\widehat a}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2 d\mu^N(t)(x) dt\\
-&=  \Eahatn,
+\lim_{n \rightarrow \infty}  \mathcal E^{[a],N} (\widehat a_n) &= \lim_{n \rightarrow \infty}\frac{1}{T}\int_0^T\!\!\int_{\R^d} \left| \int_{\R^d}
+			\!\!\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2\!\!d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\!\!\lim_{n \rightarrow \infty}\int_{\R^d} \left| \int_{\R^d}
+			\!\!\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2\!\! d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\!\!\int_{\R^d} \left| \lim_{n \rightarrow \infty}\int_{\R^d}
+			\!\!\left(\Fun{\widehat a_n}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2\!\! d\mu^N(t)(x) dt\\
+			&= \frac{1}{T}\int_0^T\!\!\int_{\R^d} \left| \int_{\R^d}
+			\!\!\left(\Fun{\widehat a}(x-y)-\Fun{a}(x-y)\right)d\mu^N(t)(y)\right|^2\!\! d\mu^N(t)(x) dt\\
+			&=  \Eahatn,
 \end{align*}
 which proves the statement.
 
