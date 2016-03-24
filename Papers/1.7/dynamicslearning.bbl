@@ -102,11 +102,6 @@ S.~Dereich, M.~Scheutzow, and R.~Schottstedt.
 \newblock Constructive quantization: approximation by empirical measures.
 \newblock {\em Ann. Inst. Henri Poincar\'e (B)}, 49(4):1183--1203, 2013.
 
-\bibitem{Fil}
-A.~{Filippov}.
-\newblock {\em {Differential equations with discontinuous right-hand sides}}.
-\newblock Kluwer Academic Publishers, 1988.
-
 \bibitem{fohavy11}
 M.~Fornasier, J.~Haškovec, and J.~Vybíral.
 \newblock Particle systems and kinetic equations modeling interacting agents in
@@ -159,6 +154,11 @@ R.~Mann.
 \newblock Bayesian inference for identifying interaction rules in moving animal
   groups.
 \newblock {\em PLoS ONE}, 6(8):e22827. doi:10.1371/journal.pone.0022827, 2011.
+
+\bibitem{Motsch2011}
+E.~Motsch, Sebastienand~Tadmor.
+\newblock A new model for self-organized dynamics and its flocking behavior.
+\newblock {\em Journal of Statistical Physics}, 144(5):923--947, 2011.
 
 \bibitem{Vershynin:NARMT}
 R.~Vershynin.

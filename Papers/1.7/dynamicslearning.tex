@@ -122,9 +122,36 @@ In this paper we are concerned with the  learnability of nonlocal interaction ke
 \input{numericalexperiments}
 
 
+
+
+\section{Conclusion and future work}
+We discussed the problem of learning an unknown influence function between interacting agents, in the particular case of deterministic first-order systems, and influence function dependent only on pairwise distances. We introduced an optimization problem yielding an estimate for the influence function, which may be solved in a computationally efficient fashion, and has desirable characteristics, in particular its solution tends, in a suitable sense, to the true solution in the mean-field limit when the number of agents tends to infinity. We believe that extending machine learning techniques to the inference of interaction rules in multi-agent systems is of interest in wide variety of applications.
+
+%XXX Massimo:  extension to higher order systems: pay attention, non-trivial, we are convinced that it can be done, the natural extension of the approach in this paper gives OK but not great results, need to elaborate more, adaptation in time and space needed, refer to paper in preparation [7]...
+
+The present work may be extended in several directions. First of all it may be extended to second-order systems: the optimization problems and algorithms are readily extended, but the theoretical justifications may generalize with some effort. In Figure \ref{fig:CuckerSmaleEx} we show the reconstruction of the potential for a Cucker-Smale system \cite{CucSma07} with an increasing number of agents. While these preliminary results are encouraging and suggest that the proposed optimization problem can be successfully generalized to higher order systems, they also show that na\'ive extension of the current approach leads to rather unsatisfactory results, with slowly decreasing errors and excessive lack of regularity in the estimated influence function. Better algorithms, together with their convergence properties, are subject of current investigation.
+
+Another possible generalization is to more general families of potentials, that do not depend only on distance between the agents, but possibly also on orientation, or are locally scaled by the density of the agents, or depend on a fixed number of nearby agents (rather than all the agents within a certain radius of interaction), as well as the situation where there multiple agent types (with the type of each agent being known or perhaps even unknown), and the influence function between a pair of agents depends on the types of the interacting agents \cite{parisi08,parisi08-1,parisi08-2,Hildenbrandt01112010,mann11,heoemascszwa11,Motsch2011}. We will report on progress in our investigation of these extensions, as well as the case of stochastic systems, in forthcoming work.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{CuckerSmale_N=10}
+\includegraphics[width=0.49\textwidth]{CuckerSmale_N=20}
+%\includegraphics[width=0.19\textwidth]{CuckerSmale_N=40}
+\includegraphics[width=0.49\textwidth]{CuckerSmale_N=80}
+\includegraphics[width=0.49\textwidth]{CuckerSmaleErrorN}
+\end{center}
+\caption{Different reconstructions of a potential for a Cucker-Smale system with $N=10,20,80$ agents (top left, top right, bottom left respectively), and the decrease in error for the empirical and true errors (bottom right).}
+\label{fig:CuckerSmaleEx}
+\end{figure}
+
+
+
+
+
 \section*{Acknowledgement}
 
-Mattia Bongini, Massimo Fornasier, and Markus Hansen acknowledge the financial support of the ERC-Starting Grant (European Research Council, 306274) â€œHigh-Dimensional Sparse Optimal Controlâ€ (HDSPCONTR). Mauro Maggioni acknowledges the support of ONR-N00014-12-1-0601 and NSF-ATD/DMS-12-22567. The authors acknowledge the hospitality and the financial support of the University of Bonn and the Hausdorff Center for Mathematics during the Hausdorff Trimester Program ``Mathematics of Signal Processing" for the final preparation of this work.
+Mattia Bongini, Massimo Fornasier, and Markus Hansen acknowledge the financial support of the ERC-Starting Grant (European Research Council, 306274) ``High-Dimensional Sparse Optimal Control''€ (HDSPCONTR). Mauro Maggioni acknowledges the support of ONR-N00014-12-1-0601 and NSF-ATD/DMS-12-22567. The authors acknowledge the hospitality and the financial support of the University of Bonn and the Hausdorff Center for Mathematics during the Hausdorff Trimester Program ``Mathematics of Signal Processing" for the final preparation of this work.
 
 
 \section{Appendix}
@@ -318,6 +345,57 @@ $$
 \frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge \frac1N\sum_{i=1}^N\frac CN\sum_{j=1}^N |x_i-x_j|^{-2\alpha}\ge C \,,
 $$
 which implies the claim.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition \ref{p:disccoerc}]
+We construct now  deterministic examples of trajectories $t \to \mu(t)$ for which the  coercivity condition \eqref{eq-coercive} holds.
+We start with the simple case of two particles, i.e., $N=2$, for which no specific assumptions on $a,\widehat a$ are required to verify \eqref{eq-coercive} other than their boundedness in $0$. Again it is convenient to write $\mathcal K(r) = (a(r) - \widehat a(r)) r$, so that the coercivity condition in this case can be reformulated as 
+\begin{equation}\label{coercN2}
+\frac{1}{T} \int_0^T \frac{1}{N} \sum_{i=1}^N \left | \frac{1}{N} \sum_{j=1}^N \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \geq \frac{c_T}{N^2T} \int_0^T  \sum_{i=1}^N \sum_{j=1}^N |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{equation}
+Now, let us observe more closely the integrand on the left-hand-side, and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
+\begin{eqnarray*}
+\frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j=1}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 &=& \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j\neq i}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
+&=&  \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \frac{x_i-x_{\widehat i}}{|x_i-x_{\widehat i}|} \right |^2\\
+&=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2=\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
+\end{eqnarray*}
+Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \mapsto x_i(t)$. 
+Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. 
+To simplify the problem we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
+$$
+\frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+$$
+Notice that, independently of the behavior of the particles at any other time $t \in [0,T]$, it holds also
+\begin{equation}
+\label{maxbound}
+\frac{1}{9 T} \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+\end{equation}
+A direct computation in this case of particles disposed at the vertexes of a equilateral triangle shows that 
+$$
+ \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2,
+$$
+and therefore
+$$ 
+\frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \geq \frac{1}{18}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2.
+$$
+Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal absolute value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles form precisely the equilateral triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to belong to a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant (such as the functions in $X_{M,K}$).
+Under this equi-continuity assumption, there exist $\varepsilon>0$ and a constant $c_{T,\varepsilon}>0$ independent of $\mathcal K$ (but perhaps depending only on its modulus of continuity) such that
+\begin{eqnarray*}\label{coercint}
+&&\frac{1}{T} \int_0^T \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \\\
+&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt\\
+&\geq & \frac{c_{T,\varepsilon}}{3}  \mathcal K(r_0) \geq \frac{c_{T,\varepsilon}}{18T } \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{eqnarray*}
+In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one can construct examples for which the coercivity assumption is verifiable. Actually this construction can be extended to any group of $N$ particles disposed on the vertexes of regular polygons. As an example of how one should proceed, let us consider the case of $N=4$ particles disposed instantanously at the vertexes of a square of side length $\sqrt{2} r>0$. In this case one directly verfies that
+\begin{equation}\label{coerN4}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 = \frac{1}{16} ( \mathcal K(2 r) +  \sqrt 2 \mathcal K(\sqrt 2 r) )^2.
+\end{equation}
+Let us assume that the maximal absolute value of $\mathcal K$ is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
+the case where $\mathcal K(2 r)  = -  \mathcal K(\sqrt 2 r)$ yielding the following estimate from below
+\begin{eqnarray*}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  &\geq& \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
+\end{eqnarray*}
+Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible to conclude the coercivity condition for the uniform distribution over the circle.
 \end{proof}
 
 
