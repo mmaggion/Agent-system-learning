@@ -86,6 +86,9 @@
 
 \graphicspath{{Figures1/}}
 
+
+\def\IsShortVersion{1}
+
 \title{Inferring Interaction Rules from Observations of Evolutive Systems I: The Variational Approach}
 
 \author{M. Bongini\footnote{Faculty of Mathematics, Technical University of Munich, Boltzmannstrasse 3, 85748 Garching bei M\"unchen, Germany, Email: mattia.bongini@ma.tum.de}, 
@@ -195,7 +198,8 @@ Now, notice that from \eqref{dualwass} it follows
 $$
 \mathcal W_1(\mu^N(t), \mu^N(s)) \leq \frac{1}{N} \sum_{i=1}^N | x_i^N(t) - x_i^N(s)| ,
 $$
-and the local Liptschitz contiunuity of $\mu^N(t)$ follows from the one of $x_i^N(t)$: indeed  $|x^N_i(t)| \leq R$ for a.e. $t \in [0,T]$, for all $N \in N$ and $i = 1, \ldots, N$, and Lemma \ref{p-estkernel} yields
+and the local Liptschitz contiunuity of $\mu^N(t)$ follows from the one of $x_i^N(t)$: indeed  $|x^N_i(t)| \leq R$ for a.e. $t \in [0,T]$, for all $N \in N$ and $i = 1, \ldots, N$, and %Lemma \ref{p-estkernel} 
+simple estimates yield
 \begin{align*}
 |\dot{x}^N_i(t)| &= |(\Fun{a}*\mu^N(t))(x^N_i(t))| \\
 &\leq \|a\|_{L_{\infty}(\R_+)} \left( |x^N_i(t)| + \frac{1}{N}\sum^N_{j = 1}|x^N_j(t)|\right) \\
@@ -227,8 +231,7 @@ By Lemma \ref{p-lipkernel}, the inequality \eqref{eq:inftynormW1}, and the compa
 \end{align*}
 If we denote with $\mathcal L_1\llcorner_{[0,t]}$ the Lebesgue measure on the time interval $[0,t]$, since the product measures $\frac{1}{t} \mu^{N}(s) \times \mathcal L_1\llcorner_{[0,t]}$ converge in $\mathcal P_1([0,t] \times \mathbb R^{d})$ to $\frac{1}{t} \mu(s) \times \mathcal L_1\llcorner_{[0,t]}$, we finally get from the dominated convergence theorem that
 \begin{align}
-\lim_{N \to \infty} \int_0^{t} \int_{\mathbb R^{d}} \nabla \phi(x) \cdot (\Fun{a}*&\mu^N(s))(x) d\mu^N(s)(x) ds  \nonumber \\
-&=  \int_0^{t} \int_{\mathbb R^{d}} \nabla \phi(x) \cdot (\Fun{a}*\mu(s))(x) d \mu(s)(x) ds, \label{limitmf}.
+\int_0^{t}\!\! \int_{\mathbb R^{d}}\!\! \nabla \phi(x)\! \cdot\! (\Fun{a}*&\mu^N(s))(x) d\mu^N(s)(x) ds\rightarrow_{N \to \infty}  \int_0^{t}\!\! \int_{\mathbb R^{d}}\!\! \nabla \phi(x)\!\cdot\! (\Fun{a}*\mu(s))(x) d \mu(s)(x) ds \label{limitmf}.
 \end{align}
 The statement now follows from combination of \eqref{initialdatum} and \eqref{limitmf}.  
 \end{proof}
@@ -331,9 +334,9 @@ We have
 \end{align*}
 where we used independence, %in the second step we used standard properties of random projections (or inner products) against Gaussian vectors \cite{Vershynin:NARMT}, 
 and in the last step we used the fact that every row of $\mathbf{X}_i$ is a unit vector. By concentration arguments (e.g. \cite{Vershynin:NARMT}) one readily obtains that with high probability
-\begin{align*}
-\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac CN\,.
-\end{align*}
+$
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac CN
+$.
 One the other hand, since $\mathbb{E}[||\mathbf{K}||^2_{\mathbb{F}}]\le CN^2$ by standard random matrix theory results (e.g. \cite{Vershynin:NARMT}), and in fact not just in expectation but also with high probability, the right hand side of \eqref{e:coermatrix} is bounded by $c'_{t_0}C$ from above. Choosing $c'_{t_0}$ small enough (and at least as small as $O(1/N)$, as a function of $N$), we obtain \eqref{e:coermatrix} with high-probability.
 
 For the second case, we proceed exactly as above, and note that in this case
