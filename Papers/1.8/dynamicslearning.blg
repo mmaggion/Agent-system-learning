@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: dynamicslearning.aux
+The style file: abbrv.bst
+Database file #1: biblio.bib
+Repeated entry---line 553 of file biblio.bib
+ : @article {foso14
+ :                 ,
+I'm skipping whatever remains of this entry
+You've used 36 entries,
+            2118 wiz_defined-function locations,
+            732 strings with 10634 characters,
+and the built_in function-call counts, 12796 in all, are:
+= -- 1240
+> -- 675
+< -- 8
++ -- 268
+- -- 229
+* -- 966
+:= -- 2173
+add.period$ -- 117
+call.type$ -- 36
+change.case$ -- 214
+chr.to.int$ -- 0
+cite$ -- 36
+duplicate$ -- 433
+empty$ -- 952
+format.name$ -- 229
+if$ -- 2635
+int.to.chr$ -- 0
+int.to.str$ -- 36
+missing$ -- 41
+newline$ -- 184
+num.names$ -- 74
+pop$ -- 214
+preamble$ -- 1
+purify$ -- 185
+quote$ -- 0
+skip$ -- 284
+stack$ -- 0
+substring$ -- 814
+swap$ -- 69
+text.length$ -- 8
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 126
+warning$ -- 0
+while$ -- 109
+width$ -- 38
+write$ -- 402
+(There was 1 error message)

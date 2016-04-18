@@ -1,0 +1,739 @@
+\documentclass[A4paper,11pt]{article}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{enumerate}
+%\usepackage{enumitem}
+\usepackage{paralist}
+\usepackage{graphics} %% add this and next lines if pictures should be in esp format
+\usepackage{float}
+\usepackage{epsfig} %For pictures: screened artwork should be set up with an 85 or 100 line screen
+\usepackage{graphicx}
+\usepackage{epstopdf}%This is to transfer .eps figure to .pdf figure; please compile your paper using PDFLeTex or PDFTeXify.
+%\usepackage[colorlinks=true]{hyperref}
+%\hypersetup{urlcolor=blue, citecolor=red}
+\usepackage{hyperref}
+%\usepackage{refcheck}
+
+\usepackage{bm}
+\usepackage{color}
+
+%  \textheight=8.2 true in
+%   \textwidth=5.0 true in
+%    \topmargin 30pt
+%     \setcounter{page}{1}
+
+\usepackage[a4paper]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{main}{Main Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem*{problem}{Problem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
+\newtheorem*{notation}{Notation}
+\newtheorem{assumption}{Assumption}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\eps}[1]{{#1}_{\varepsilon}}
+
+\newcommand{\vnorm}[1]{\left\| #1 \right\|}
+\newcommand{\scalarp}[1]{\left\langle #1 \right\rangle}
+\newcommand{\redd}[1]{{\color{red}{#1}}}
+
+\newcommand{\Lip}{\textup{Lip}}
+\newcommand{\loc}{\textup{loc}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\cb}{\mathcal{B}}
+\newcommand{\cf}{\mathcal{F}}
+\newcommand{\ch}{\mathcal{H}}
+\newcommand{\cl}{\mathcal{L}}
+\newcommand{\cn}{\mathcal{N}}
+\newcommand{\ct}{\mathcal{T}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\PP}{\mathcal{P}_1}
+\newcommand{\PC}{\mathcal{P}_c}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\argmin}{arg\,min}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+\newcommand{\Fun}[1]{F^{[#1]}}
+\newcommand{\Energy}{\mathcal E}
+\newcommand{\Ea}[1]{\Energy^{[a]}(#1)}
+\newcommand{\Eahat}{\Ea{\widehat a}}
+\newcommand{\Ean}{\Energy^{[a],N}}
+\newcommand{\Eahatn}{\Ean(\widehat a)}
+\newcommand{\prerho}{\overline\rho}
+\newcommand{\x}{x^{[a]}}
+\newcommand{\xahat}{x^{[\widehat a]}}
+\newcommand{\dotx}{\dot{x}^{[a]}}
+\newcommand{\dotxahat}{\dot{x}^{[\widehat a]}}
+
+
+\newcommand{\MMcomment}[1]{{\color{blue}{#1}}}
+\newcommand{\MFcomment}[1]{{\color{red}{#1}}}
+\allowdisplaybreaks
+
+\graphicspath{{Figures1/}}
+
+
+\def\IsShortVersion{1}
+
+\title{Inferring Interaction Rules from Observations of Evolutive Systems I: The Variational Approach}
+
+\author{M. Bongini\footnote{Faculty of Mathematics, Technical University of Munich, Boltzmannstrasse 3, 85748 Garching bei M\"unchen, Germany, Email: mattia.bongini@ma.tum.de}, 
+M. Fornasier\footnote{Faculty of Mathematics, Technical University of Munich, Boltzmannstrasse 3, 85748 Garching bei M\"unchen, Germany, Email: massimo.fornasier@ma.tum.de}, 
+M. Hansen\footnote{Faculty of Mathematics, Technical University of Munich, Boltzmannstrasse 3, 85748 Garching bei M\"unchen, Germany, Email: markus.hansen@ma.tum.de}, 
+and M. Maggioni\footnote{Department of Mathematics, Duke University, 	117 Physics Bldg., Science Dr., Box 90320
+Durham, NC 27708-0320
+U.S.A., Email: mauro@math.duke.edu}}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+In this paper we are concerned with the  learnability of nonlocal interaction kernels for  first order systems modeling certain social interactions, from observations of realizations of their dynamics. This paper is the first  of a series  on learnability of nonlocal interaction kernels and presents a variational approach to the problem. In particular, we assume here that  the kernel to be learned is bounded and locally Lipschitz continuous and that the initial conditions of the systems are drawn identically and independently at random according to a given initial probability distribution. Then the minimization over a rather arbitrary  sequence of (finite dimensional) subspaces of a least square functional measuring the discrepancy from observed trajectories  produces uniform approximations to the kernel on compact sets. The convergence result is obtained by combining mean-field limits, transport methods, and a $\Gamma$-convergence argument. A crucial condition for the learnability is a certain coercivity property of the least square functional, majoring an $L_2$-norm discrepancy to the kernel with respect to a probability measure, depending on the given initial probability distribution by suitable push forwards and transport maps. We illustrate the convergence result by means of several numerical experiments. 
+\end{abstract}
+{\bf Keywords}: nonlocal interaction kernel learning, first order nonlocal interaction equations, mean-field equations, $\Gamma$-convergence
+
+\bigskip
+
+\tableofcontents
+
+\input{introduction}
+
+\input{framework}
+
+\input{preliminaries}
+
+\input{learningproblem}
+
+\input{gammaconvergence}
+
+\input{numericalexperiments}
+
+
+%
+%
+%\section{Conclusion and future work}
+%We discussed the problem of learning an unknown influence function between interacting agents, in the particular case of deterministic first-order systems, and influence function dependent only on pairwise distances. We introduced an optimization problem yielding an estimate for the influence function, which may be solved in a computationally efficient fashion, and has desirable characteristics, in particular its solution tends, in a suitable sense, to the true solution in the mean-field limit when the number of agents tends to infinity. We believe that extending machine learning techniques to the inference of interaction rules in multi-agent systems is of interest in wide variety of applications.
+%
+%%XXX Massimo:  extension to higher order systems: pay attention, non-trivial, we are convinced that it can be done, the natural extension of the approach in this paper gives OK but not great results, need to elaborate more, adaptation in time and space needed, refer to paper in preparation [7]...
+%
+%The present work may be {generalized} in several directions. First of all it may be extended to second-order systems: the optimization problems and algorithms are readily {adapted}, but the theoretical justifications may generalize with some effort. In Figure \ref{fig:CuckerSmaleEx} we show the reconstruction of the potential for a Cucker-Smale system \cite{CucSma07} with an increasing number of agents. While these preliminary results are encouraging and suggest that the proposed optimization problem can be successfully generalized to higher order systems, they also show that na\'ive extension of the current approach leads to rather unsatisfactory results, with slowly decreasing errors and excessive lack of regularity in the estimated influence function. Better algorithms, together with their convergence properties, are subject of current investigation.
+%
+%Another possible generalization is to more general families of potentials, that do not depend only on distance between the agents, but possibly also on orientation, or are locally scaled by the density of the agents, or depend on a fixed number of nearby agents (rather than all the agents within a certain radius of interaction), as well as the situation where there are multiple agent types (with the type of each agent being known or perhaps even unknown), and the influence function between a pair of agents depends on the types of the interacting agents \cite{parisi08,parisi08-1,parisi08-2,Hildenbrandt01112010,mann11,heoemascszwa11,Motsch2011}. We will report on progress in our investigation of these extensions, as well as the case of stochastic systems, in forthcoming work.
+%
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.49\textwidth]{CuckerSmale_N=10}
+%\includegraphics[width=0.49\textwidth]{CuckerSmale_N=20}
+%%\includegraphics[width=0.19\textwidth]{CuckerSmale_N=40}
+%\includegraphics[width=0.49\textwidth]{CuckerSmale_N=80}
+%\includegraphics[width=0.49\textwidth]{CuckerSmaleErrorN}
+%\end{center}
+%\caption{Different reconstructions of a potential for a Cucker-Smale system with $N=10,20,80$ agents (top left, top right, bottom left respectively), and the decrease in error for the empirical and true errors (bottom right).}
+%\label{fig:CuckerSmaleEx}
+%\end{figure}
+%
+
+
+
+
+\section*{Acknowledgement}
+
+Mattia Bongini, Massimo Fornasier, and Markus Hansen acknowledge the financial support of the ERC-Starting Grant (European Research Council, 306274) ``High-Dimensional Sparse Optimal Control'' (HDSPCONTR). Mauro Maggioni acknowledges the support of ONR-N00014-12-1-0601 and NSF-ATD/DMS-12-22567. The authors acknowledge the hospitality and the financial support of the University of Bonn and the Hausdorff Center for Mathematics during the Hausdorff Trimester Program ``Mathematics of Signal Processing" for the final preparation of this work.
+
+
+\section{Appendix}
+
+{In this Appendix we collect the proofs of the main technical results of the paper. A more extended account of them is at disposal of the interested reader in \cite{bofohama15}. 
+
+For the sake of self-containedness and for the explicit reference to the constant $R>0$ appearing in several of our results}, we show {below} the proof of Proposition \ref{pr:exist}, which states the existence of solutions for \eqref{eq:contdyn}  {and the explicit size of their spatial support}. We will need the following Lemma, which may be proved  {with similar arguments as} those for \cite[Lemma 6.7]{MFOC} and \cite[Lemma 4.7]{CanCarRos10}
+
+\begin{lemma}\label{p-lipkernel}
+Let $a \in X$ and let $\mu:[0,T] \rightarrow \mathcal{P}_c(\R^d)$ and $\nu: [0,T] \to \mathcal{P}_c(\R^d)$ be two continuous maps with respect to $\W_1$ satisfying
+\begin{align}\label{eq:bsupp}
+\supp(\mu(t)) \cup \supp(\nu(t)) \subseteq B(0,R),
+\end{align}
+for every $t \in [0,T]$, for some $R > 0$. Then for every $r > 0$ there exists a constant $L_{a,r,R}$ such that
+\begin{align}\label{eq:inftynormW1}
+\|\Fun{a} * \mu(t) - \Fun{a} * \nu(t)\|_{L_{\infty}(B(0,r))} \leq L_{a,r,R} \W_1(\mu(t),\nu(t))
+\end{align}
+for every $t \in [0,T]$.
+\end{lemma}
+
+
+\begin{proof}[Proof of Proposition \ref{pr:exist}]
+Let us define the quantity $\mathcal X_N(t) := \max_{i=1,\dots,N} |x_i^N(t)|$. By integration of \eqref{eq:discr1} we obtain
+\begin{eqnarray*}
+ |x_i^N(t)| &\leq& |x^N_{0,i}| + \int_0^t (\Fun{a} * \mu^N(s))(x_i^N)| ds \\
+&\leq&  |x^N_{0,i}| + \int_0^t\frac{1}{N} \sum_{j=1}^N |a(|x_i-x_j|)||x_j-x_i| ds \\
+&\leq&  |x^N_{0,i}| + \|a\|_{L_{\infty}(\R_+)} \int_0^t\frac{1}{N} \sum_{j=1}^N( |x_j| + | x_i| )ds,
+\end{eqnarray*}
+implying
+$$
+\mathcal X_N(t) \leq \mathcal X_N(0) + 2  \|a\|_{L_{\infty}(\R_+)} \int_0^t \mathcal X_N(s) ds. 
+$$
+Hence, Gronwall's Lemma and the hypothesis $x^{N}_{0,i} \in \supp(\mu_0)$ for every $N \in \N$ and $i = 1, \ldots, N$, imply that
+\begin{align*}
+\mathcal X_N(t) \leq \mathcal X_N(0) e^{2 \|a\|_{L_{\infty}(\R_+)} t} \leq C_0 e^{2 \|a\|_{L_{\infty}(\R_+)} t} \text{ for a.e. } t \in [0,T],
+\end{align*}
+for some uniform constant $C_0$ depending only on $\mu_0$. Therefore, the support of the empirical measure $\mu^N(\cdot)$ is bounded uniformly in $N$ in a ball $B(0,R) \subset \R^d$, where
+\begin{align}\label{Rest}
+R =  C_0 e^{2 \|a\|_{L_{\infty}(\R_+)} T}.
+\end{align}
+Now, notice that from \eqref{dualwass} it follows
+$$
+\mathcal W_1(\mu^N(t), \mu^N(s)) \leq \frac{1}{N} \sum_{i=1}^N | x_i^N(t) - x_i^N(s)| ,
+$$
+and the local Liptschitz contiunuity of $\mu^N(t)$ follows from the one of $x_i^N(t)$: indeed  $|x^N_i(t)| \leq R$ for a.e. $t \in [0,T]$, for all $N \in N$ and $i = 1, \ldots, N$, and %Lemma \ref{p-estkernel} 
+simple estimates yield
+\begin{align*}
+|\dot{x}^N_i(t)| &= |(\Fun{a}*\mu^N(t))(x^N_i(t))| \\
+&\leq \|a\|_{L_{\infty}(\R_+)} \left( |x^N_i(t)| + \frac{1}{N}\sum^N_{j = 1}|x^N_j(t)|\right) \\
+&\leq 2R\|a\|_{L_{\infty}(\R_+)}.
+\end{align*}
+Hence, the sequence $(\mu^N)_{N \in \N} \subset \mathcal{C}^0([0,T],\mathcal{P}_1(B(0,R)))$ is equicontinuous, because equi-Lipschitz continuous, and equibounded in the complete metric space $(\mathcal{P}_1(B(0,R)),\W_1)$.
+Therefore, we can apply the Ascoli-Arzel\'{a} Theorem for functions with values in a metric space (see for instance, \cite[Chapter 7, Theorem 18]{KelleyTop}) to infer the existence of a subsequence $(\mu^{N_k})_{k \in \N}$ of $(\mu^N)_{N \in \N}$ such that
+\begin{align}\label{eq:unifconv}
+\lim_{k \rightarrow \infty}\W_1(\mu^{N_k}(t),\mu(t)) = 0 \quad \text{ uniformly for a.e. } t \in [0,T],
+\end{align}
+for some $\mu \in \mathcal{C}^0([0,T],\mathcal{P}_1(B(0,R)))$ with Lipschitz constant bounded by $2R\|a\|_{L_{\infty}(\R_+)}$. The hypothesis $\lim_{N\rightarrow\infty}\W_1(\mu^N_0,\mu_0) = 0$ now obviously implies $\mu(0) = \mu_0$. In particular it holds
+\begin{equation}\label{initialdatum}
+\lim_{k\to \infty} \langle \varphi, \mu^N(t) - \mu^N(0) \rangle  =  \langle \varphi, \mu(t) - \mu_0 \rangle
+\end{equation}
+for all $\varphi \in \mathcal{C}^1_c(\R^d;\R)$.
+
+
+We are now left with verifying that this curve $\mu$ is a {weak} solution of \eqref{eq:contdyn}. For all $t \in [0,T]$ and for all $\varphi \in \mathcal{C}^1_c(\R^d;\R)$, it holds
+\begin{align*}
+\frac{d}{dt}\langle \varphi, \mu^N(t) \rangle = \frac{1}{N}\frac{d}{dt} \sum^N_{i = 1} \varphi(x^N_i(t)) = \frac{1}{N} \sum^N_{i = 1} \nabla\varphi(x^N_i(t)) \cdot \dot{x}_i^N(t).
+\end{align*}
+By directly applying the substitution $\dot{x}_i^N(t) = (\Fun{a}*\mu^N(t))(x^N_i(t))$, we have
+\begin{align*}
+\langle \varphi, \mu^N(t) - \mu^N(0) \rangle = \int^t_0 \left[ \int_{\R^d}\nabla \varphi(x) \cdot (\Fun{a}*\mu^N(s))(x) d\mu^N(s)(x) \right] ds.
+\end{align*}
+By Lemma \ref{p-lipkernel}, the inequality \eqref{eq:inftynormW1}, and the compact support of $\varphi \in \mathcal{C}^1_c(\R^d;\R)$, it follows
+\begin{align*}
+\lim_{N \rightarrow \infty} \|\nabla\varphi \cdot (\Fun{a}*\mu^N(t) - \Fun{a}*\mu(t))\|_{L_{\infty}(\R^d)} = 0 \quad \text{ uniformly for a.e. } t \in [0,T].
+\end{align*}
+If we denote with $\mathcal L_1\llcorner_{[0,t]}$ the Lebesgue measure on the time interval $[0,t]$, since the product measures $\frac{1}{t} \mu^{N}(s) \times \mathcal L_1\llcorner_{[0,t]}$ converge in $\mathcal P_1([0,t] \times \mathbb R^{d})$ to $\frac{1}{t} \mu(s) \times \mathcal L_1\llcorner_{[0,t]}$, we finally get from the dominated convergence theorem that
+\begin{align}
+\int_0^{t}\!\! \int_{\mathbb R^{d}}\!\! \nabla \phi(x)\! \cdot\! (\Fun{a}*&\mu^N(s))(x) d\mu^N(s)(x) ds\rightarrow_{N \to \infty}  \int_0^{t}\!\! \int_{\mathbb R^{d}}\!\! \nabla \phi(x)\!\cdot\! (\Fun{a}*\mu(s))(x) d \mu(s)(x) ds \label{limitmf}.
+\end{align}
+The statement now follows from combination of \eqref{initialdatum} and \eqref{limitmf}.  
+\end{proof}
+
+{We report below the proofs of the results of Section \ref{sec:measrho}.}
+
+\begin{proof}[Proof of Lemma \ref{rhosc}] As a first step we show that for every given sequence $(t_n)_{n \in \N}$ converging to $t\in [0,T]$ we have the weak
+	convergence $\varrho(t_n)\rightharpoonup\varrho(t)$ for $n \rightarrow \infty$. 
+	%For this, in turn we first prove the weak convergence of the product measure $\mu(t_n)\otimes\mu(t_n)\rightharpoonup\mu(t)\otimes\mu(t)$.
+	We first note that $\mu(t_n)\otimes\mu(t_n)\rightharpoonup\mu(t)\otimes\mu(t)$, since $\mu(t_n)\rightharpoonup\mu(t)$ because of the continuity of $\mu(t)$ in the Wasserstein metric $\W_1$.	
+%	A well-known property of the space $\mathcal{C}(\R^d\times\R^d)$ is that it coincides with the inductive tensor product
+%	$\mathcal{C}(\R^d)\otimes_\varepsilon \mathcal{C}(\R^d)$. In particular, functions of the form $h=\sum_{j=1}^J f_j\otimes g_j$ with
+%	$f_j,g_j\in \mathcal{C}(\R^d)$, for $j=1,\ldots,J$ and $J\in\N$, are a dense subspace of $\mathcal{C}(\R^{2d})$. Hence, to prove the weak
+%	convergence of measures on $\R^{2d}$, we can restrict the proof to functions of this form. Due to linearity of
+%	integrals, this can be further reduced to simple tensor products of the form $h=f\otimes g$.
+%	
+%	For such tensor products we can directly apply Fubini's Theorem and the weak convergence
+%	$\mu(t_n)\rightharpoonup\mu(t)$ (which is a consequence of the continuity of $\mu$ w.r.t. the
+%	Wasserstein metric $\W_1$), and find
+%	\[
+%		\int_{\R^{2d}}f\otimes g\, d(\mu(t_n)\otimes\mu(t_n))
+%			=\int_{\R^d}f d\mu(t_n)\cdot\int_{\R^d}g d\mu(t_n)
+%			\stackrel{n\rightarrow\infty}{\longrightarrow}\int_{\R^d}f d\mu(t)\cdot\int_{\R^d}g d\mu(t).
+%	\]
+	This implies the claimed weak convergence $\varrho(t_n)\rightharpoonup\varrho(t)$, since for any
+	function $f\in \mathcal{C}(\R_+)$, it holds $f\circ d\in\mathcal{C}(\R^d\times\R^d)$, and hence
+	\begin{align*}
+		\int_{\R_+}f\,d\varrho(t_n)
+			&=\int_{\R^{2d}}(f\circ d)(x,y)d(\mu(t_n)\otimes\mu(t_n))(x,y)\\
+			&\stackrel{n\rightarrow\infty}{\longrightarrow}
+				\int_{\R^{2d}}(f\circ d)(x,y)d(\mu(t)\otimes\mu(t))(x,y)
+			=\int_{\R_+}f\,d\varrho(t).
+	\end{align*}
+	The claim now follows from general results for weakly* convergent sequences of Radon measures, see e.g. \cite[Proposition 1.62]{AFP00}.
+\end{proof}
+
+
+
+\begin{proof}[Proof of Lemma \ref{lemma-AC-1}]
+Both $\mu_0$ and $\mu(t)$ are supported in $B(0,R)$, with $R$ as in \eqref{Rest}. The measure $\mu(t)$ is the pushforward of $\mu_0$ under the locally bi-Lipschitz map $\ct^\mu_t$, see Proposition \ref{p-transportlip}. Since $\ct^\mu_t$ has Lipschitz inverse on $B(0,R)$, this inverse maps $\cl_d$-null sets to $\cl_d$-null sets, so $\mu_0$-null sets are not only $\cl_d$-null sets by assumption, but are also $\mu(t)$-null sets.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{le-abs}]
+	Fix $t\in [0,T]$. By Lemma \ref{lemma-AC-1} we already know that $\mu(t)$ is absolutely continuous w.r.t.
+	$\cl_d$, and so $\mu(t)\otimes\mu(t)$ is absolutely continuous w.r.t. $\cl_{2d}$. It hence
+	remains to show that $\cl_{2d}$ is absolutely continuous w.r.t. $\cl_1\llcorner_{\R_+}$, where $d$ is the distance function,
+	but this follows easily by observing that $d^{-1}(A)=0$ for every $\cl_1\llcorner_{\R_+}$-null set $A$, and an application of Fubini's theorem.	
+%	Let $A\subset\R_+$ be a Lebesgue null-set, and put $B=d^{-1}(A)\subset\R^{2d}$. Moreover, we denote by
+%	$B_x=\{y\in\R^d:|x-y|\in A\}$. Then clearly $B_{x+z}=z+B_x$. Moreover, using Fubini's Theorem we obtain
+%	\begin{align*}
+%		\cl_{2d}(B)=\int_{\R^d}\cl_d(B_x)d\cl_d(x)\,.
+%	\end{align*}
+%	It thus remains to show that $\cl_d(B_x)=0$ for one single $x\in\R^d$ (and thus for all, due to translation invariance of $\cl_d$).
+%	However, to calculate $\cl_d(B_0)$, we can pass to polar coordinates, and once again using Fubini's Theorem
+%	we obtain
+%	\begin{align*}
+%		\cl_d(B_x)=\int_{\R^d}\chi_{B_0}(y)d\cl_d(y)
+%			=\int_{S^d}\int_{\R_+}\chi_A(r)dr d\omega=\Omega_d\cl_1(A)=0\,,
+%	\end{align*}
+%	where $\Omega_d$ is the surface measure of the unit sphere $S_d$. This proves the absolute continuity of
+%	$\varrho(t)$, since
+%	\begin{align*}
+%		\cl_1(A)=0\Longrightarrow\cl_{2d}(d^{-1}(A))
+%			\Longrightarrow (\mu(t)\otimes\mu(t))(d^{-1}(A))=0\iff\varrho(t)(A)=0\,.
+%	\end{align*}
+	The absolute continuity of $\prerho$ now follows immediately from the one of $\varrho(t)$ for every $t$ and its
+	definition as an integral average \eqref{eq-rho-4}.
+\end{proof}
+
+
+\begin{proof}[Proof of Lemma \ref{rhocompact}]
+We have
+\begin{align*}
+\begin{split}
+\prerho(\R_+)&= \frac{1}{T}\int_0^T \varrho(t)(\R_+)dt 
+%&= \frac{1}{T}\int_0^T (\mu(t) \otimes \mu(t))(d^{-1}(\R_+))dt \\
+= \frac{1}{T}\int_0^T \int_{\R^d \times \R^d} |x - y| d\mu(t)(x) d \mu(t)(y)dt
+<+\infty,
+\end{split}
+\end{align*}
+since the distance function is continuous and the support of $\mu$ is uniformly bounded in time. This shows that $\prerho$ is bounded.
+Since the supports of the measures $\varrho(t)$ are the subsets of
+$K=\{|x-y|:x,y\in B(0,R)\} = [0,2R]$, where $R$ is given by \eqref{Rest}, by construction we also have $\supp \prerho\subseteq K$.
+\end{proof}
+
+{The following proofs justify the validity of the coercivity condition in certain generic and deterministic cases. }
+\begin{proof}[Proof of Proposition \ref{p:randomcoercivity}]
+By assumption $\mathbf K$ has independent Gaussian rows, each with variance $\sigma^2I_N$. %(a random vector $Z$ is called sub-Gaussian with sub-Gaussian norm $\sigma$ if for every $t>1$ and every $\theta$ with norm $1$, $\mathbb{P}( |\langle Z,\theta\rangle| > t) \le 2 e^{-t^2/\sigma^2}$). 
+Since the bounds we wish to obtain, and our estimates below, are scale invariant, we may, and will, assume $\sigma=1$. Also, we have fixed a certain time $t_0$, which will be omitted from the notation.
+Let $\mathbf{X}_i\in\mathbb{R}^{N\times d}$ be the matrix whose $j$-th row is the vector $\frac{x_i-x_j}{|x_i-x_j|}\in\mathbb{R}^d$, and let $\mathbf{K}(i,:)\in\mathbb{R}^N$ be the $i$-th row of $\mathbf{K}$. The coercivity inequality \eqref{e:coercivitydiscrete} may be re-written as:
+\begin{align}
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac{c'_t}{N^2}\|\mathbf{K}\|^2_{\mathbb{F}}\,.
+\label{e:coermatrix}
+\end{align}
+We have
+\begin{align*}
+\mathbb{E}\left[|\mathbf{K}(i,:)\mathbf{X}_i|^2\right]
+&=\sum_{l=1}^d\sum_{j,j'=1}^N\mathbb{E}\left[\mathcal{K}(|x_i-x_j|)\mathcal{K}(|x_i-x_{j'}|)|\right] \left(\frac{x_i-x_j}{|x_i-x_j|}\right)_l \left(\frac{x_i-x_{j'}}{|x_i-x_{j'}|}\right)_l\\
+&=\sum_{j=1}^N \mathbb{E}\left[\mathcal{K}(|x_i-x_j|)^2\right] \sum_{l=1}^d\left(\frac{x_i-x_j}{|x_i-x_j|}\right)^2_l = \sum_{j=1}^N \mathbb{E}\left[\mathcal{K}(|x_i-x_j|)^2\right]=N\\
+%&= \sum_{j=1}^N |\mathbf{X}_i(j,:)|^2 = \| \mathbf{X}_i\|^2_{\mathbb{F}}=N\,,
+\end{align*}
+where we used independence, %in the second step we used standard properties of random projections (or inner products) against Gaussian vectors \cite{Vershynin:NARMT}, 
+and in the last step we used the fact that every row of $\mathbf{X}_i$ is a unit vector. By concentration arguments (e.g. \cite{Vershynin:NARMT}) one readily obtains that with high probability
+$
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge\frac CN
+$.
+One the other hand, since $\mathbb{E}[||\mathbf{K}||^2_{\mathbb{F}}]\le CN^2$ by standard random matrix theory results (e.g. \cite{Vershynin:NARMT}), and in fact not just in expectation but also with high probability, the right hand side of \eqref{e:coermatrix} is bounded by $c'_{t_0}C$ from above. Choosing $c'_{t_0}$ small enough (and at least as small as $O(1/N)$, as a function of $N$), we obtain \eqref{e:coermatrix} with high-probability.
+
+For the second case, we proceed exactly as above, and note that in this case
+\begin{align*}
+\mathbb{E}\left[|\mathbf{K}(i,:)\mathbf{X}_i|^2\right] = \sum_{j=1}^N |x_i-x_j|^{-\alpha}\,.
+\end{align*}
+Continuing as above, we obtain that with high probability
+$$
+\frac 1N\sum_{i=1}^N\left|\frac1N\mathbf{K}(i,:)\mathbf{X}_i\right|^2\ge \frac1N\sum_{i=1}^N\frac CN\sum_{j=1}^N |x_i-x_j|^{-2\alpha}\ge C \,,
+$$
+which implies the claim.
+\end{proof}
+
+
+\begin{proof}[Proof of Proposition \ref{p:disccoerc}]
+We construct now  deterministic examples of trajectories $t \to \mu(t)$ for which the  coercivity condition \eqref{eq-coercive} holds.
+We start with the simple case of two particles, i.e., $N=2$, for which no specific assumptions on $a,\widehat a$ are required to verify \eqref{eq-coercive} other than their boundedness in $0$. Again it is convenient to write $\mathcal K(r) = (a(r) - \widehat a(r)) r$, so that the coercivity condition in this case can be reformulated as 
+\begin{equation}\label{coercN2}
+\frac{1}{T} \int_0^T \frac{1}{N} \sum_{i=1}^N \left | \frac{1}{N} \sum_{j=1}^N \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \geq \frac{c_T}{N^2T} \int_0^T  \sum_{i=1}^N \sum_{j=1}^N |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{equation}
+Now, let us observe more closely the integrand on the left-hand-side, and for $\widehat i \neq i$, $i,  \widehat i \in \{1,2\}$ and $N=2$, and we obtain
+\begin{eqnarray*}
+\frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j=1}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 &=& \frac{1}{2} \sum_{i=1}^2 \left | \frac{1}{2} \sum_{j\neq i}^2 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \\
+&=&  \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \frac{x_i-x_{\widehat i}}{|x_i-x_{\widehat i}|} \right |^2\\
+&=& \frac{1}{4} \sum_{i=1}^2 \left |  \mathcal K(|x_i-x_{\widehat i}|) \right |^2=\frac{1}{4}  \sum_{i=1}^2 \sum_{j=1}^2 |\mathcal K(|x_i-x_j|)|^2.
+\end{eqnarray*}
+Integrating over time the latter equality yields \eqref{coercN2} for $N=2$ with an actual equal sign and $c_T=1$. Notice that here we have not made any specific assumptions on the trajectories $t \mapsto x_i(t)$. 
+Let us then consider the case of $N=3$ particles. Already in this simple case the angles between particles may be rather arbitrary and analyzing the many possible configurations becomes an involved exercise. 
+To simplify the problem we assume that $d=2$  and that at a certain time $t$ the particles are disposed precisely at the vertexes of a equilateral triangle of edge length $r$. This makes the computation of the angles very simple. We also assume that $\mathcal K$ gets its maximal absolute value precisely at $r$, hence
+$$
+\frac{1}{9}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+$$
+Notice that, independently of the behavior of the particles at any other time $t \in [0,T]$, it holds also
+\begin{equation}
+\label{maxbound}
+\frac{1}{9 T} \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt \leq \|\mathcal K\|_\infty^2 = \mathcal K(r)^2.
+\end{equation}
+A direct computation in this case of particles disposed at the vertexes of a equilateral triangle shows that 
+$$
+ \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 =\frac{1}{3}  \mathcal K(r)^2,
+$$
+and therefore
+$$ 
+\frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 \geq \frac{1}{18}   \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2.
+$$
+Unfortunately the assumption that $\mathcal K$ achieves its maximum in absolute value at $r$ does not  allow us yet to conclude by a simple integration over time the coercivity condition as we did for the case of two particles. In order to extend the validity of the inequality to arbitrary functions taking maxima at other points, we need to integrate over time by assuming now that the particles are vertexes of equilateral triangles with time dependent edge length, say from $r=0$ growing in time up to $r=2 R>0$. This will allow the trajectories to explore any possible distance within a given interval and to capture the maximal absolute value of  any kernel. More precisely, let us now assume that $\mathcal K$ is an arbitrary bounded continuous function,  achieving its maximal absolute value over $[0,2R]$, say at $r_0 \in (0,2R)$ and we can assume that this is obtained corresponding to the time $t_0$ when the particles form precisely the equilateral triangle of side length $r_0$. Now we need to make a stronger assumption on $\widehat a$, i.e., we require $\widehat a$ to belong to a class of equi-continuous functions, for instance functions which are Lipschitz continuous with uniform Lipschitz constant (such as the functions in $X_{M,K}$).
+Under this equi-continuity assumption, there exist $\varepsilon>0$ and a constant $c_{T,\varepsilon}>0$ independent of $\mathcal K$ (but perhaps depending only on its modulus of continuity) such that
+\begin{eqnarray*}\label{coercint}
+&&\frac{1}{T} \int_0^T \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt \\\
+&\geq& \frac{1}{T} \int_{t_0 - \varepsilon}^{t_0+\varepsilon} \frac{1}{3} \sum_{i=1}^3 \left | \frac{1}{3} \sum_{j=1}^3 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 dt\\
+&\geq & \frac{c_{T,\varepsilon}}{3}  \mathcal K(r_0) \geq \frac{c_{T,\varepsilon}}{18T } \int_0^T  \sum_{i=1}^3 \sum_{j=1}^3 |\mathcal K(|x_i-x_j|)|^2  dt.
+\end{eqnarray*}
+In the latter inequality we used \eqref{maxbound}. Hence, also in this case, one can construct examples for which the coercivity assumption is verifiable. Actually this construction can be extended to any group of $N$ particles disposed on the vertexes of regular polygons. As an example of how one should proceed, let us consider the case of $N=4$ particles disposed instantanously at the vertexes of a square of side length $\sqrt{2} r>0$. In this case one directly verfies that
+\begin{equation}\label{coerN4}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2 = \frac{1}{16} ( \mathcal K(2 r) +  \sqrt 2 \mathcal K(\sqrt 2 r) )^2.
+\end{equation}
+Let us assume that the maximal absolute value of $\mathcal K$ is attained precisely at $\sqrt 2 r$. Then the minimum of the expression on the right-hand side of \eqref{coerN4} is attained for
+the case where $\mathcal K(2 r)  = -  \mathcal K(\sqrt 2 r)$ yielding the following estimate from below
+\begin{eqnarray*}
+\frac{1}{4} \sum_{i=1}^4 \left | \frac{1}{4} \sum_{j=1}^4 \mathcal K(|x_i-x_j|) \frac{x_i-x_j}{|x_i-x_j|} \right |^2  &\geq& \frac{3 -2 \sqrt 2}{16} \mathcal K(\sqrt 2 r)^2.
+\end{eqnarray*}
+Hence, also in this case, we can apply the continuity argument above to eventually show the coercivity condition. Similar procedures can be followed for any $N \geq 5$. However, as $N \to \infty$ one can show numerically that the lower bound vanishes quite rapidly, making it impossible to conclude the coercivity condition for the uniform distribution over the circle.
+\end{proof}
+
+
+
+
+%\section{Appendix}
+%
+% Although  similar results on the limit relationship between ODE systems of the type \eqref{eq:discrdyn} and their mean-field equations \eqref{eq:contdyn}
+%appear in different forms in other papers, see, e.g., \cite{AGS,CanCarRos10,13-Carrillo-Choi-Hauray-MFL,MFOC}, in this Appendix we collect them for our specific setting in a nutshell for the sake of being self-contained and for the convenience of those readers less familiar with these properties of evolutive systems.
+%
+%
+%
+%%\subsection{Standard results on existence and uniqueness for ODE}\label{ap00}
+%%
+%%For the reader's convenience and for the sake of a self-contained presentation, we start by briefly recalling some general, well-known results about solutions to Carath{\'e}odory differential equations. We fix a domain $\Omega \subset \R^d$, a Carath{\'e}odory function $g\colon[0,T]\times \Omega \to \R^d$, i.e. the function $g$ is continuous in $y$ and measurable in $t$, and $0<\tau \le T$. A function $y\colon [0,\tau]\to \Omega$ is called a solution of the Carath{\'e}odory differential equation
+%%\begin{equation}\label{cara}
+%%\dot y(t)=g(t, y(t))
+%%\end{equation}
+%%on $[0,\tau]$ if and only if $y$ is absolutely continuous and \eqref{cara} is satisfied a.e.\ in $[0,\tau]$.
+%%The following well-known local existence result holds, see \cite[Chapter 1, Theorem 1]{Fil} .
+%%
+%%
+%%\begin{theorem}\label{cara-local}
+%%Fix $T > 0$ and $y_0 \in \R^d$. Suppose that there exists a compact subset $\Omega$ of $\R^d$ such that $y_0 \in \textup{int}(\Omega)$ and there exists $m_{\Omega} \in L_1([0,T])$ for which it holds
+%%%Consider an interval $[0,T]$ on the real line, a compact subset $K$ of $\R^n$, and a Carath{\'e}odory function $g\colon[0,T]\times \R^n \to \R^n$. If there exists a function $m \in L_1((0,T))$ such that
+%%\begin{align}\label{l1}
+%%|g(t,y)|\le m_{\Omega}(t),
+%%\end{align}
+%%for a.e.\ $t \in [0,T]$ and for all $y \in \Omega$. Then there exists a $\tau > 0$ and a solution $y(t)$ of \eqref{cara} defined on the interval $[0,\tau]$ which satisfies $y(0)=y_0$. 
+%%\end{theorem}
+%%
+%%The result can be extended to a global existence as follows.
+%%
+%%\begin{theorem}\label{cara-global}
+%%Consider an interval $[0,T]$  on the real line and a  Carath{\'e}odory function $g\colon[0,T]\times \R^d \to \R^d$.
+%%Assume that there exists a constant $C > 0$ such that the function $g$ satisfies the condition
+%%\begin{align}\label{ttz}
+%%|g(t,y)|\le C(1+|y|),
+%%\end{align}
+%%for a.e.\ $t \in [0,T]$ and every $y \in \mathbb R^d$. Then there exists a solution $y(t)$ of \eqref{cara} defined on the whole interval $[0,T]$, which satisfies $y(0)=y_0$. Moreover, for every $t \in [0,T]$, any solution satisfies
+%%\begin{equation}\label{gron}
+%%|y(t)|\le \Big(|y_0|+ Ct\Big) \,e^{Ct}.
+%%\end{equation}
+%%\end{theorem}
+%%
+%%\begin{proof}
+%%Set $\rho:= (|y_0|+CT) \,e^{CT}$. Consider now a ball $\Omega \subset \mathbb R^n$ centered at $0$ with radius strictly greater than $\rho$. Existence of a local solution defined on an interval $[0,\tau]$ and taking values in $\Omega$ follows now easily from \eqref{ttz} and Theorem \ref{cara-local}. If \eqref{ttz} holds, any solution of \eqref{cara} with initial datum $y_0$ satisfies
+%%$$
+%%|y(t)|\le |y_0|+ Ct+C\int_0^t |y(s)|\,ds
+%%$$
+%%for every $t \in [0,\tau]$, therefore \eqref{gron} follows from Gronwall's inequality. In particular the graph of a solution $y(t)$ cannot reach the boundary of $[0,T]\times B(0,|y_0|+CTe^{CT})$ unless $\tau=T$, therefore the continuation of the local solution to a global one on $[0,T]$ follows, for instance, from \cite[Chapter 1, Theorem 4]{Fil}.
+%%%Finally, if \eqref{cara3} holds, uniqueness of the global solution follows from \cite[Chapter 1, Theorem 2]{Fil}.
+%%\end{proof}
+%%
+%%A further application of Gronwall's inequality yields the following results on continuous dependence on the initial data.
+%%
+%%\begin{proposition}\label{le:uniquecara}
+%%Let $g_1$ and $g_2\colon[0,T]\times \R^n \to \R^n$ be Carath{\'e}odory functions both satisfying \eqref{ttz} for the same  constant $C > 0$. Let $r>0$ and define 
+%%\begin{align*}
+%%\rho_{r, C, T}:=\Big(r+ CT\Big) \,e^{CT}\,.
+%%\end{align*}
+%%Assume in addition that there exists a constant $L > 0$ satisfying
+%%\begin{align*}
+%%|g_1(t, y_1)-g_1(t, y_2)|\le L|y_1-y_2|
+%%\end{align*}
+%%for every $t \in [0, T]$ and every $y_1$, $y_2$ such that $|y_i|\le \rho_{r, C, T}$, $i=1,2$.
+%%Then, if $\dot y_1(t)=g_1(t, y_1(t))$, $\dot y_2(t)=g_2(t, y_2(t))$, $|y_1(0)|\le r$ and $|y_2(0)|\le r$, one has
+%%\begin{equation}\label{gronvalla}
+%%|y_1(t)-y_2(t)|\le e^{Lt}\left(|y_1(0)-y_2(0)|+\int_0^t \|g_1(s, \cdot)-g_2(s, \cdot)\|_{L_\infty(B(0, \rho_{r, C, T}))} \,ds \right)
+%%\end{equation}
+%%for every $t \in [0, T]$.
+%%\end{proposition}
+%%\begin{proof}
+%%We can bound $|y_1(t) - y_2(t)|$ from above as follows:
+%%\begin{align*}
+%%|y_1(t) - y_2(t)| &\leq |y_1(0) - y_2(0)| + \int^t_0 |\dot{y}_1(s) - \dot{y}_2(s)| ds \\
+%%&= |y_1(0) - y_2(0)| \\
+%%& \quad + \int^t_0 |g_1(s, y_1(s)) - g_1(s, y_2(s)) + g_1(s, y_2(s)) - g_2(s, y_2(s))| ds \\
+%%& \leq |y_1(0) - y_2(0)| + \int_0^t \|g_1(s, \cdot)-g_2(s, \cdot)\|_{L_\infty(B(0, \rho_{r, C, T}))} \,ds \\
+%%& \quad  + L \int^t_0|y_1(s) - y_2(s)| ds.
+%%\end{align*}
+%%Since the function $\alpha(t) = |y_1(0) - y_2(0)| + \int_0^t \|g_1(s, \cdot)-g_2(s, \cdot)\|_{L_\infty(B(0, \rho_{r, C, T}))} \,ds$ is increasing, an application of Gronwall's inequality gives \eqref{gronvalla}, as desired.
+%%\end{proof}
+%
+%
+%
+%\subsection{Technical results for the mean-field limit}\label{ap1}
+%
+%Let us start this section with some lemmas concerning the growth and the Lipschitz continuity of the right-hand side of  \eqref{eq:discrdyn} .
+%
+%
+%\begin{lemma}\label{p-estkernel}
+%Let $a\in X$ and $\mu \in \PP(\R^d)$. Then for all $y \in \R^d$ the following hold:
+%\begin{align*}
+%|(\Fun{a} * \mu)(y)| \leq \|a\|_{L_{\infty}(\R_+)}\left( | y | + \int_{\R^d} | x | d\mu(x) \right).
+%\end{align*}
+%\end{lemma}
+%\begin{proof}
+%It follows directly from $a \in L_{\infty}(\R_+)$.
+%\end{proof}
+%
+%\begin{lemma}\label{p-Floclip}
+%If $a\in X$ then $\Fun{a} \in \Lip_\loc(\R^d)$.
+%\end{lemma}
+%\begin{proof}
+%For any compact set $K \subset \R^d$ and for every $x,y \in K$ it holds
+%\begin{align*}
+%|\Fun{a}(x) - \Fun{a}(y)| &= |a(|x|)x - a(|y|)y| \\
+%&\leq |a(|x|)| |x-y| + |a(|x|) - a(|y|)| |y| \\
+%&\leq (|a(|x|)| + \Lip_K(a) |y|) |x-y|,
+%\end{align*}
+%and since $a \in L_{\infty}(\R_+)$ and $y \in K$, it follows that $\Fun{a}$ is locally Lipschitz with Lipschitz constant depending only on $a$ and $K$.
+%\end{proof}
+%
+%
+% 
+%\begin{lemma}\label{p-Fmuloclip}
+%If $a\in X$ and $\mu \in \mathcal{P}_c(\R^d)$ then $\Fun{a}*\mu \in \Lip_{\loc}(\R^d)$.
+%\end{lemma}
+%\begin{proof}
+%For any compact set $K \subset \R^d$ and for every $x,y \in K$ it holds
+%\begin{align*}
+%|(\Fun{a}*\mu)(x) - (\Fun{a}*\mu)(y)| &= \left|\int_{\R^d}a(|x-z|)(x-z)d\mu(z) - \int_{\R^d}a(|y-z|)(y-z)d\mu(z)\right| \\
+%&\leq \int_{\R^d}|a(|x-z|)-a(|y-z|)|x-z|d\mu(z)\\
+%&\quad+ \int_{\R^d}|a(|y-z|)||x-y|d\mu(z) \\
+%&\leq \Lip_{\widehat{K}}(a)|x-y| \int_{\R^d}|x-z|d\mu(z) + \|a\|_{L_{\infty}(\R_+)}|x-y| \\
+%& \leq \left(C\Lip_{\widehat{K}}(a) + \|a\|_{L_{\infty}(\R_+)} \right)|x-y|,
+%\end{align*}
+%where $C$ is a constant depending on $K$, and $\widehat{K}$ is a compact set containing both $K$ and $\supp(\mu)$.
+%\end{proof}
+%
+%
+%\begin{proposition} Let us fix  $N \in \mathbb N$ and  $a \in X$. Then the system \eqref{eq:discrdyn} admits a unique global solution in $[0,T]$ for every initial datum $x^{N}_0 \in \R^{d \times N}$.
+%\end{proposition}
+%\begin{proof}
+%Let us define  the
+% function $g:\R^{d \times N} \rightarrow \R^{d \times N}$ defined for every $x=(x_1, \ldots, x_N)\in \R^{d \times N}$ as
+%\begin{align*}
+%g(x_1, \ldots, x_N) = ((\Fun{a}*\mu^N)(x_1),\ldots,(\Fun{a}*\mu^N)(x_N)),
+%\end{align*}
+%where $\mu^N$ is the empirical measure given by \eqref{eq:empmeas}. The system \eqref{eq:discrdyn} in the form \eqref{eq:discr1} can be rewritten compactly as
+%$$
+%\dot x (t) = g(x(t)).
+%$$
+%The function $g$ is continuous, satisfies a sublinear growth condition of the type \eqref{ttz}, and is locally Lipschitz: indeed, for any $x_1, \ldots, x_N, y_1, \ldots, y_N \in K$ compact subset of $\R^d$, denoting with $\nu^N$ the empirical measure given by $y_1, \ldots, y_N$, we have
+%\begin{align*}
+%|g(x_1, \ldots, x_N) - g(y_1,\ldots,y_N)| &\leq \sum^N_{i = 1} |(\Fun{a}*\mu^N)(x_i) - (\Fun{a}*\nu^N)(y_i)| \\
+%&\leq \sum^N_{i = 1} \Bigg( |(\Fun{a}*\mu^N)(x_i) - (\Fun{a}*\mu^N)(y_i)| \\
+%&\quad \quad \quad \quad +|(\Fun{a}*\mu^N)(y_i) - (\Fun{a}*\nu^N)(y_i)| \Bigg).
+%\end{align*}
+%Applying Lemma \ref{p-Fmuloclip} to the first term and performing similar calculations to the ones in the proof of Lemma \ref{p-Floclip} on the second one, gives the desired result. By standard results in ODE's, we conclude the existence and uniqueness of a global solution.
+%\end{proof}
+%
+%The following preliminary result tells us that solutions to system \eqref{eq:discrdyn} are also solutions to the equation \eqref{eq:contdyn}, whenever conveniently rewritten.
+%
+%\begin{proposition}\label{p-rewritten}
+%Let $N \in \N$ be given and $a \in X$. Let $(x^N_1, \ldots, x^N_N):[0,T] \rightarrow \R^{d\times N}$ be the solution of \eqref{eq:discrdyn} with initial datum $x^{N}_0 \in \R^{d \times N}$. Then the empirical measure $\mu^N:[0,T] \rightarrow \PP(\R^d)$ defined as in \eqref{eq:empmeas} is a solution of \eqref{eq:contdyn} with initial datum $\mu_{0}= \mu^N(0) \in \PC(\R^d)$.
+%\end{proposition}
+%\begin{proof}
+%It can be  proved by testing the equation  \eqref{eq:contdyn}  against a continuously differentiable function, arguing exactly as in \cite[Lemma 4.3]{MFOC}.
+%\end{proof}
+%
+%
+%
+%
+%\subsection{Existence and uniqueness of solutions  for  \eqref{eq:contdyn} }\label{ap3}
+%
+%
+%
+%Variants of the following result, with similar proofs, are \cite[Lemma 6.7]{MFOC} and \cite[Lemma 4.7]{CanCarRos10}
+%
+%\begin{lemma}\label{p-lipkernel}
+%Let $a \in X$ and let $\mu:[0,T] \rightarrow \mathcal{P}_c(\R^d)$ and $\nu: [0,T] \to \mathcal{P}_c(\R^d)$ be two continuous maps with respect to $\W_1$ satisfying
+%\begin{align}\label{eq:bsupp}
+%\supp(\mu(t)) \cup \supp(\nu(t)) \subseteq B(0,R),
+%\end{align}
+%for every $t \in [0,T]$, for some $R > 0$. Then for every $r > 0$ there exists a constant $L_{a,r,R}$ such that
+%\begin{align}\label{eq:inftynormW1}
+%\|\Fun{a} * \mu(t) - \Fun{a} * \nu(t)\|_{L_{\infty}(B(0,r))} \leq L_{a,r,R} \W_1(\mu(t),\nu(t))
+%\end{align}
+%for every $t \in [0,T]$.
+%\end{lemma}
+%%\begin{proof}
+%%Fix $t \in [0,T]$ and take $\pi \in \Gamma_o(\mu(t),\nu(t))$. Since the marginals of $\pi$ are by definition $\mu(t)$ and $\nu(t)$, it follows
+%%\begin{align*}
+%%\Fun{a} * \mu(t)(x) - \Fun{a} * \nu(t)(x) &= \int_{B(0,R)} \Fun{a}(x-y) d\mu(t)(y) - \int_{B(0,R)} \Fun{a}(x-z) d\nu(t)(z)  \\
+%%&= \int_{B(0,R)^2} \left(\Fun{a}(x-y) - \Fun{a}(x-z)\right) d\pi(y,z)
+%%\end{align*}
+%%By using Lemma \ref{p-Floclip} and the hypothesis \eqref{eq:bsupp}, we have
+%%\begin{align*}
+%%\|\Fun{a} * \mu(t) - \Fun{a} * \nu(t)\|_{L_{\infty}(B(0,r))} &\leq \esssup_{x \in B(0,r)} \int_{B(0,R)^2} \left|\Fun{a}(x-y) - \Fun{a}(x-z)\right| d\pi(y,z) \\
+%%&\leq \Lip_{B(0,R+r)}(\Fun{a}) \int_{B(0,R)^2} |y - z| d\pi(y,z) \\
+%%&= \Lip_{B(0,R+r)}(\Fun{a}) \W_1(\mu(t),\nu(t)),
+%%\end{align*}
+%%hence \eqref{eq:inftynormW1} holds with $L_{a,r,R} = \Lip_{B(0,R+r)}(\Fun{a})$.
+%%\end{proof}
+%
+%
+%
+%
+%
+%
+%
+%%We show now the proof of Proposition \ref{pr:exist} which states the existence of solutions for \eqref{eq:contdyn} .
+%%
+%%\begin{proof}[Proof of Proposition \ref{pr:exist}]
+%%Let us define the quantity $\mathcal X_N(t) := \max_{i=1,\dots,N} |x_i^N(t)|$. By integration of \eqref{eq:discr1} we obtain
+%%\begin{eqnarray*}
+%% |x_i^N(t)| &\leq& |x^N_{0,i}| + \int_0^t (\Fun{a} * \mu^N(s))(x_i^N)| ds \\
+%%&\leq&  |x^N_{0,i}| + \int_0^t\frac{1}{N} \sum_{j=1}^N |a(|x_i-x_j|)||x_j-x_i| ds \\
+%%&\leq&  |x^N_{0,i}| + \|a\|_{L_{\infty}(\R_+)} \int_0^t\frac{1}{N} \sum_{j=1}^N( |x_j| + | x_i| )ds,
+%%\end{eqnarray*}
+%%implying
+%%$$
+%%\mathcal X_N(t) \leq \mathcal X_N(0) + 2  \|a\|_{L_{\infty}(\R_+)} \int_0^t \mathcal X_N(s) ds. 
+%%$$
+%%Hence, Gronwall's Lemma and the hypothesis $x^{N}_{0,i} \in \supp(\mu_0)$ for every $N \in \N$ and $i = 1, \ldots, N$, imply that
+%%\begin{align*}
+%%\mathcal X_N(t) \leq \mathcal X_N(0) e^{2 \|a\|_{L_{\infty}(\R_+)} t} \leq C_0 e^{2 \|a\|_{L_{\infty}(\R_+)} t} \text{ for a.e. } t \in [0,T],
+%%\end{align*}
+%%for some uniform constant $C_0$ depending only on $\mu_0$. Therefore, the support of the empirical measure $\mu^N(\cdot)$ is bounded uniformly in $N$ in a ball $B(0,R) \subset \R^d$, where
+%%\begin{align}\label{Rest}
+%%R =  C_0 e^{2 \|a\|_{L_{\infty}(\R_+)} T}.
+%%\end{align}
+%%Now, notice that from \eqref{dualwass} it follows
+%%$$
+%%\mathcal W_1(\mu^N(t), \mu^N(s)) \leq \frac{1}{N} \sum_{i=1}^N | x_i^N(t) - x_i^N(s)| ,
+%%$$
+%%and the local Liptschitz contiunuity of $\mu^N(t)$ follows from the one of $x_i^N(t)$: indeed  $|x^N_i(t)| \leq R$ for a.e. $t \in [0,T]$, for all $N \in N$ and $i = 1, \ldots, N$, and Lemma \ref{p-estkernel} yields
+%%\begin{align*}
+%%|\dot{x}^N_i(t)| &= |(\Fun{a}*\mu^N(t))(x^N_i(t))| \\
+%%&\leq \|a\|_{L_{\infty}(\R_+)} \left( |x^N_i(t)| + \frac{1}{N}\sum^N_{j = 1}|x^N_j(t)|\right) \\
+%%&\leq 2R\|a\|_{L_{\infty}(\R_+)}.
+%%\end{align*}
+%%Hence, the sequence $(\mu^N)_{N \in \N} \subset \mathcal{C}^0([0,T],\mathcal{P}_1(B(0,R)))$ is equicontinuous, because equi-Lipschitz continuous, and equibounded in the complete metric space $(\mathcal{P}_1(B(0,R)),\W_1)$.
+%%Therefore, we can apply the Ascoli-Arzel\'{a} Theorem for functions with values in a metric space (see for instance, \cite[Chapter 7, Theorem 18]{KelleyTop}) to infer the existence of a subsequence $(\mu^{N_k})_{k \in \N}$ of $(\mu^N)_{N \in \N}$ such that
+%%\begin{align}\label{eq:unifconv}
+%%\lim_{k \rightarrow \infty}\W_1(\mu^{N_k}(t),\mu(t)) = 0 \quad \text{ uniformly for a.e. } t \in [0,T],
+%%\end{align}
+%%for some $\mu \in \mathcal{C}^0([0,T],\mathcal{P}_1(B(0,R)))$ with Lipschitz constant bounded by $2R\|a\|_{L_{\infty}(\R_+)}$. The hypothesis $\lim_{N\rightarrow\infty}\W_1(\mu^N_0,\mu_0) = 0$ now obviously implies $\mu(0) = \mu_0$. In particular it holds
+%%\begin{equation}\label{initialdatum}
+%%\lim_{k\to \infty} \langle \varphi, \mu^N(t) - \mu^N(0) \rangle  =  \langle \varphi, \mu(t) - \mu_0 \rangle
+%%\end{equation}
+%%for all $\varphi \in \mathcal{C}^1_c(\R^d;\R)$.
+%%
+%%
+%%We are now left with verifying that this curve $\mu$ is a solution of \eqref{eq:contdyn}. For all $t \in [0,T]$ and for all $\varphi \in \mathcal{C}^1_c(\R^d;\R)$, it holds
+%%\begin{align*}
+%%\frac{d}{dt}\langle \varphi, \mu^N(t) \rangle = \frac{1}{N}\frac{d}{dt} \sum^N_{i = 1} \varphi(x^N_i(t)) = \frac{1}{N} \sum^N_{i = 1} \nabla\varphi(x^N_i(t)) \cdot \dot{x}_i^N(t).
+%%\end{align*}
+%%By directly applying the substitution $\dot{x}_i^N(t) = (\Fun{a}*\mu^N(t))(x^N_i(t))$, we have
+%%\begin{align*}
+%%\langle \varphi, \mu^N(t) - \mu^N(0) \rangle = \int^t_0 \left[ \int_{\R^d}\nabla \varphi(x) \cdot (\Fun{a}*\mu^N(s))(x) d\mu^N(s)(x) \right] ds.
+%%\end{align*}
+%%By Lemma \ref{p-lipkernel}, the inequality \eqref{eq:inftynormW1}, and the compact support of $\varphi \in \mathcal{C}^1_c(\R^d;\R)$, it follows
+%%\begin{align*}
+%%\lim_{N \rightarrow \infty} \|\nabla\varphi \cdot (\Fun{a}*\mu^N(t) - \Fun{a}*\mu(t))\|_{L_{\infty}(\R^d)} = 0 \quad \text{ uniformly for a.e. } t \in [0,T].
+%%\end{align*}
+%%If we denote with $\mathcal L_1\llcorner_{[0,t]}$ the Lebesgue measure on the time interval $[0,t]$, since the product measures $\frac{1}{t} \mu^{N}(s) \times \mathcal L_1\llcorner_{[0,t]}$ converge in $\mathcal P_1([0,t] \times \mathbb R^{d})$ to $\frac{1}{t} \mu(s) \times \mathcal L_1\llcorner_{[0,t]}$, we finally get from the dominated convergence theorem that
+%%\begin{align}
+%%\lim_{N \to \infty} \int_0^{t} \int_{\mathbb R^{d}} \nabla \phi(x) \cdot (\Fun{a}*&\mu^N(s))(x) d\mu^N(s)(x) ds  \nonumber \\
+%%&=  \int_0^{t} \int_{\mathbb R^{d}} \nabla \phi(x) \cdot (\Fun{a}*\mu(s))(x) d \mu(s)(x) ds, \label{limitmf}.
+%%\end{align}
+%%The statement now follows from combination of \eqref{initialdatum} and \eqref{limitmf}.  
+%%\end{proof}
+%
+%
+%%\begin{proposition}\label{exmono}
+%%Fix $T > 0$, $a \in X$, $\mu_0 \in \mathcal{P}_c(\R^d)$, $\xi_0 \in \R^d$ and $R > 0$. %be given by Proposition \ref{pr:exist} from the choice of $T, a$ and $\mu_0$
+%%For every map $\mu:[0,T] \rightarrow \PP(\R^d)$ which is continuous with respect to $\W_1$ such that
+%%\begin{align*}
+%%\supp(\mu(t)) \subseteq B(0,R) \quad \text{ for every } t \in [0,T],
+%%\end{align*}
+%%there exists a unique solution of system \eqref{eq:transpdyn} with initial value $\xi_0$ defined on the whole interval $[0,T]$.
+%%\end{proposition}
+%%\begin{proof}
+%%The statement follows again by a proper combination of Lemma \ref{p-estkernel}  and  Lemma \ref{p-Fmuloclip} with Theorem \ref{cara-global}
+%%for the existence, and the uniqueness similarly follows from Proposition \ref{le:uniquecara}.
+%%\end{proof}
+%
+%%\subsection{Continuous dependence on the initial data}\label{ap4}
+%
+%%The following Lemma and \eqref{gronvalla} are the main ingredients of the proof of Theorem \ref{uniq} on continuous dependance on initial data and uniqueness
+%%of solutions for \eqref{eq:contdyn}.
+%%
+%%\begin{lemma}\label{primstim}
+%%Let $\mathcal{T}_1$ and $\mathcal{T}_2 \colon \R^n \to \R^n$ be two bounded Borel measurable functions. Then, for every $\mu \in \PP(\R^n)$ one has
+%%\begin{align*}
+%%\W_1((\mathcal{T}_1)_{\#}\mu, (\mathcal{T}_2)_{\#} \mu) \le \|\mathcal{T}_1-\mathcal{T}_2\|_{L_\infty({\rm supp}\,\mu)}.
+%%\end{align*}
+%%If in addition $\mathcal{T}_1$ is locally Lipschitz continuous, and $\mu$, $\nu \in \PP(\R^n)$ are both compactly supported on a ball $B(0,r)$ of $\R^n$ for $r>0$, then
+%%\begin{align*}
+%%\W_1((\mathcal{T}_1)_{\#} \mu, (\mathcal{T}_1)_{\#} \nu) \le \Lip_{B(0,r)}(E_1) \W_1(\mu, \nu).
+%%\end{align*}
+%%\end{lemma}
+%%
+%%\begin{proof}
+%%See \cite[Lemma 3.11]{CanCarRos10} and \cite[Lemma 3.13]{CanCarRos10}.
+%%\end{proof}
+%%
+%%We can now prove Theorem \ref{uniq}.
+%%
+%%\begin{proof}[Proof of Theorem \ref{uniq}]
+%%Let  ${\mathcal T}^\mu_t$ and ${\mathcal T}^\nu_t$ be the flow maps associated to system \eqref{eq:transpdyn} with measure $\mu$ and $\nu$, respectively.
+%%By \eqref{eq:fixedpoint}, the triangle inequality, Lemma \ref{p-lipkernel}, Lemma \ref{primstim} and \eqref{eq:liptrans} we have for every $t \in [0,T]$
+%%\begin{align}
+%%\begin{split}\label{start}
+%%\W_1(\mu(t), \nu(t))&=\W_1(({\mathcal T}^\mu_t)_{\#} \mu_0, ({\mathcal T}^\nu_t)_{\#} \nu_0)  \\
+%%&\le \W_1(({\mathcal T}^\mu_t)_{\#} \mu_0, ({\mathcal T}^\mu_t)_{\#} \nu_0) + \W_1(({\mathcal T}^\mu_t)_{\#} \nu_0, ({\mathcal T}^\nu_t)_{\#} \nu_0)\\
+%%&\le e^{T \, \Lip_{B(0,R)}(\Fun{a})} \W_1(\mu_0, \nu_0)+\|{\mathcal T}^\mu_t-{\mathcal T}^\nu_t\|_{L_\infty(B(0,R))}.
+%%\end{split}
+%%\end{align}
+%%
+%%Using \eqref{gronvalla} with $y_1(0)= y_2(0)$ we get
+%%\begin{equation}\label{stima2}
+%%\|{\mathcal T}^\mu_t-{\mathcal T}^\nu_t\|_{L_\infty(B(0,r))}\le e^{t \, \Lip_{B(0,R)}(\Fun{a})}\int_0^t \|\Fun{a}* \mu(s)-\Fun{a}* \nu(s)\|_{L_\infty(B(0,R))}\,ds.
+%%\end{equation}
+%%
+%%Combining \eqref{start} and \eqref{stima2} with Lemma \ref{p-lipkernel}, we have
+%%$$
+%%\W_1(\mu(t), \nu(t))\le e^{T \, \Lip_{B(0,R)}(\Fun{a})} \left(\W_1(\mu^0, \nu_0)+ L_{a,R,R}\int_0^t \W_1(\mu(s), \nu(s)) \,ds\right)
+%%$$
+%%for every $t \in [0, T]$, where $L_{a,R,R}$ is the constant from Lemma \ref{p-lipkernel}. Gronwall's inequality now gives
+%%$$
+%%\W_1(\mu(t), \nu(t))\le e^{T \, \Lip_{B(0,R)}(\Fun{a}) + L_{a,R,R}} \W_1(\mu^0, \nu_0),
+%%$$
+%%which is exactly \eqref{stab} with $\overline{C}= e^{T \, \Lip_{B(0,R)}(\Fun{a}) + L_{a,R,R}}$.
+%%
+%%Consider now two solutions of \eqref{eq:contdyn} with the same initial datum $\mu_0$.  By definition they both satisfy \eqref{supptot} for some $R>0 $ and \eqref{stab} guarantees they both describe the same trajectory in $\PP(\R^d)$. This concludes the proof.
+%%\end{proof}
+
+\bibliographystyle{abbrv}
+\bibliography{biblio}	
+\addcontentsline{toc}{section}{References}
+
+\end{document}
